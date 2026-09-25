@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KIAMAIKO FM — Voice &amp; Pulse of the Community (98.4 FM)</title>
+<!-- Google Fonts: Newsreader (Editorial Serif), Hanken Grotesk, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Permanent+Marker&amp;family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#b70011",
+            "tertiary-fixed": "#ffdcc3",
+            "on-tertiary": "#ffffff",
+            "on-error": "#ffffff",
+            "tertiary-container": "#ad5d00",
+            "on-primary-container": "#fff6f5",
+            "on-secondary-container": "#00714e",
+            "primary-fixed": "#ffdad6",
+            "inverse-primary": "#ffb4ab",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed": "#410002",
+            "secondary-fixed-dim": "#68dba9",
+            "on-secondary-fixed-variant": "#005137",
+            "on-tertiary-fixed": "#2f1500",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#ffb77d",
+            "on-background": "#1b1b1e",
+            "surface-variant": "#e4e1e6",
+            "primary-container": "#dc2626",
+            "outline-variant": "#e6bdb8",
+            "surface-container-high": "#eae7eb",
+            "on-tertiary-container": "#fff6f2",
+            "on-primary-fixed-variant": "#93000b",
+            "surface-dim": "#dcd9dd",
+            "on-secondary-fixed": "#002114",
+            "primary-fixed-dim": "#ffb4ab",
+            "surface-bright": "#fbf8fc",
+            "inverse-on-surface": "#f3f0f4",
+            "surface": "#fbf8fc",
+            "surface-container-low": "#f6f2f7",
+            "on-surface": "#1b1b1e",
+            "on-surface-variant": "#5c403c",
+            "tertiary": "#894900",
+            "error": "#ba1a1a",
+            "on-error-container": "#93000a",
+            "surface-tint": "#bf0715",
+            "secondary-fixed": "#85f8c4",
+            "secondary-container": "#82f5c1",
+            "outline": "#916f6b",
+            "inverse-surface": "#303033",
+            "background": "#fbf8fc",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "surface-container": "#f0edf1",
+            "surface-container-highest": "#e4e1e6",
+            "on-primary": "#ffffff",
+            "secondary": "#006c4a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.5rem",
+            "margin-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "gutter-mobile": "1rem",
+            "space-xs": "0.25rem",
+            "margin": "3rem"
+          },
+          "fontFamily": {
+            "display-xl": ["Newsreader", "serif"],
+            "headline-lg-mobile": ["Newsreader", "serif"],
+            "body-md": ["Hanken Grotesk", "sans-serif"],
+            "body-lg": ["Hanken Grotesk", "sans-serif"],
+            "display-xl-mobile": ["Newsreader", "serif"],
+            "headline-md": ["Newsreader", "serif"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "body-sm": ["Hanken Grotesk", "sans-serif"],
+            "headline-lg": ["Newsreader", "serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "headline-sm": ["Newsreader", "serif"]
+          },
+          "fontSize": {
+            "display-xl": ["72px", { "lineHeight": "76px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "display-xl-mobile": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["32px", { "lineHeight": "38px", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "500" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg": ["48px", { "lineHeight": "54px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "headline-sm": ["24px", { "lineHeight": "30px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-hairline {
+      border-color: #E2E0D8;
+    }
+
+    /* ---------- Transparent header over the hero ---------- */
+    #site-header {
+      background: transparent;
+      border-color: transparent;
+      transition: background-color .35s ease, border-color .35s ease;
+    }
+    #site-header.is-scrolled {
+      background: rgba(13, 13, 15, .95);
+      border-color: #292524;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ---------- Layered hero ---------- */
+    #home { margin-top: -5rem; } /* slide under the sticky header */
+    .kb-hero {
+      --mx: 0; --my: 0;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: clamp(760px, 100svh, 920px);
+      display: flex;
+      flex-direction: column;
+      background: #0b0b0d;
+    }
+    .kb-hero [data-depth] { will-change: transform; }
+
+    .kb-hero__bg {
+      position: absolute;
+      inset: -40px;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 42% 48% at 52% 46%, rgba(183, 0, 17, .30), transparent 70%),
+        radial-gradient(ellipse 30% 36% at 78% 58%, rgba(0, 108, 74, .16), transparent 70%),
+        radial-gradient(ellipse 60% 55% at 50% 40%, rgba(255, 255, 255, .06), transparent 72%),
+        radial-gradient(ellipse at 50% 45%, #1a1718 0%, #0f0e10 55%, #09090a 100%);
+    }
+    /* film grain */
+    .kb-hero__bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .22;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    /* vignette: fade to black at the edges and bottom */
+    .kb-hero__bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 75% 70% at 50% 42%, transparent 45%, rgba(0, 0, 0, .75) 100%),
+        linear-gradient(to bottom, rgba(0, 0, 0, .55) 0%, transparent 18%, transparent 62%, #09090a 100%);
+    }
+
+    .kb-hero__inner {
+      position: relative; /* no z-index: children join the hero's stacking order */
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding-top: calc(5rem + 2rem);
+      padding-bottom: 4.5rem;
+    }
+    .kb-hero__kicker { position: relative; z-index: 5; }
+
+    /* Big textured word, fading out toward its base */
+    .kb-hero__title { position: relative; margin-top: .75rem; }
+    .kb-hero__word {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      font-family: "Anton", "Impact", sans-serif;
+      font-size: clamp(6rem, 25vw, 22.5rem);
+      line-height: .84;
+      letter-spacing: -.005em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+    .kb-hero__word > span {
+      position: relative;
+      display: inline-block;
+      color: transparent;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .1 0 0 0 0 .1 0 0 0 -1.4 1.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E"),
+        linear-gradient(180deg, #ece8e2 0%, #c9c3bb 38%, rgba(120, 114, 108, .55) 72%, rgba(40, 38, 36, 0) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      transition: translate .5s cubic-bezier(.2, .8, .2, 1), filter .5s ease;
+      animation: kb-rise 1s cubic-bezier(.2, .8, .2, 1) both;
+      animation-delay: calc(.15s + var(--i) * .07s);
+    }
+    .kb-hero__word > span:hover {
+      translate: 0 -.06em;
+      filter: brightness(1.18) drop-shadow(0 0 24px rgba(220, 38, 38, .35));
+    }
+    .kb-hero__crown {
+      position: absolute;
+      left: 72%;
+      top: -.2em;
+      width: .26em;
+      color: #f5b400;
+      filter: drop-shadow(0 0 10px rgba(245, 180, 0, .45));
+      animation: kb-crown 1.2s .9s cubic-bezier(.2, .8, .2, 1) both;
+    }
+    .kb-hero__crown path { stroke-dasharray: 200; }
+
+    .kb-hero__wave {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s .5s ease;
+    }
+    .kb-hero.is-ready .kb-hero__wave { opacity: 1; }
+
+    .kb-hero__portrait {
+      position: absolute;
+      z-index: 3;
+      bottom: 0;
+      left: 53%;
+      height: 70%;
+      max-width: none;
+      translate: -50% 0;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 98%);
+      mask-image: linear-gradient(to bottom, #000 62%, transparent 98%);
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .6));
+      animation: kb-portrait 1.4s .25s cubic-bezier(.2, .8, .2, 1) both;
+    }
+    @media (min-width: 768px) {
+      .kb-hero__portrait { height: 80%; left: 56%; }
+    }
+
+    /* Brush script lockup */
+    .kb-hero__script {
+      position: absolute;
+      z-index: 4;
+      left: -.1em;
+      top: 58%;
+      display: flex;
+      flex-direction: column;
+      font-family: "Permanent Marker", cursive;
+      font-size: clamp(2rem, 5.4vw, 5rem);
+      line-height: 1;
+      text-transform: uppercase;
+      rotate: -6deg;
+      transform-origin: left center;
+      text-shadow: 0 6px 30px rgba(0, 0, 0, .7);
+      pointer-events: none;
+    }
+    .kb-hero__script-1 { color: #f1eee9; animation: kb-slam .7s 1s cubic-bezier(.2, .9, .3, 1.2) both; }
+    .kb-hero__script-2 { color: #e11d2a; margin-left: -.05em; animation: kb-slam .7s 1.15s cubic-bezier(.2, .9, .3, 1.2) both; }
+    .kb-hero__underline {
+      width: 118%;
+      height: .38em;
+      margin-top: .08em;
+      margin-left: .1em;
+      color: #e11d2a;
+      overflow: visible;
+    }
+    .kb-hero__underline path {
+      stroke-dasharray: 420;
+      stroke-dashoffset: 420;
+      animation: kb-draw .8s 1.45s cubic-bezier(.6, 0, .2, 1) forwards;
+    }
+
+    .kb-hero__bottom { position: relative; z-index: 5; margin-top: auto; }
+    .kb-hero__bottom p { text-shadow: 0 2px 16px rgba(0, 0, 0, .8); }
+
+    .kb-hero__cta {
+      background: rgba(0, 0, 0, .35);
+      backdrop-filter: blur(8px);
+      transition: background-color .25s, color .25s, gap .25s;
+    }
+    .kb-hero__cta:hover { background: #fff; color: #000; gap: 1.1rem; }
+    .kb-hero__scroll .material-symbols-outlined { animation: kb-bob 1.8s ease-in-out infinite; }
+
+    .kb-hero__live {
+      width: 100%;
+      max-width: 17rem;
+      padding: 1.4rem 1.5rem;
+      background: rgba(20, 19, 21, .72);
+      border: 1px solid rgba(255, 255, 255, .1);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8);
+      transition: transform .35s ease, border-color .35s ease;
+    }
+    .kb-hero__live:hover { transform: translateY(-4px); border-color: rgba(225, 29, 42, .5); }
+    .kb-hero__live-title {
+      font-family: "Anton", "Impact", sans-serif;
+      font-size: 1.45rem;
+      line-height: 1.08;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .kb-hero__listen-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(255, 255, 255, .85);
+      display: grid;
+      place-items: center;
+      transition: background-color .25s, border-color .25s, transform .25s;
+    }
+    .kb-hero__listen:hover .kb-hero__listen-icon { background: #e11d2a; border-color: #e11d2a; transform: scale(1.06); }
+    .kb-hero__listen[aria-pressed="true"] .kb-hero__listen-icon { background: #e11d2a; border-color: #e11d2a; }
+    .kb-hero__mini-wave { display: flex; align-items: center; gap: 2px; height: 18px; margin-left: .5rem; }
+    .kb-hero__mini-wave i {
+      width: 2px;
+      height: 30%;
+      background: #d6d3d1;
+      border-radius: 1px;
+      animation: kb-eq 1.1s ease-in-out infinite;
+      animation-play-state: paused;
+    }
+    .kb-hero__mini-wave i:nth-child(odd) { animation-duration: .8s; }
+    .kb-hero__mini-wave i:nth-child(3n) { animation-duration: 1.3s; }
+    .kb-hero__mini-wave i:nth-child(2) { animation-delay: -.3s; }
+    .kb-hero__mini-wave i:nth-child(4) { animation-delay: -.6s; }
+    .kb-hero__mini-wave i:nth-child(6) { animation-delay: -.2s; }
+    .kb-hero__mini-wave i:nth-child(8) { animation-delay: -.5s; }
+    .kb-hero__listen[aria-pressed="true"] .kb-hero__mini-wave i { animation-play-state: running; background: #e11d2a; }
+
+    .kb-hero__tear { position: relative; z-index: 6; width: 100%; height: 2rem; margin-top: -2rem; }
+
+    .kb-reveal { animation: kb-fade .9s cubic-bezier(.2, .8, .2, 1) both; animation-delay: var(--d, 0s); }
+
+    @keyframes kb-rise { from { opacity: 0; transform: translateY(.35em); } to { opacity: 1; transform: none; } }
+    @keyframes kb-fade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    @keyframes kb-portrait { from { opacity: 0; translate: -50% 40px; } to { opacity: 1; translate: -50% 0; } }
+    @keyframes kb-slam { from { opacity: 0; transform: scale(1.35) translateX(-10px); } to { opacity: 1; transform: none; } }
+    @keyframes kb-draw { to { stroke-dashoffset: 0; } }
+    @keyframes kb-crown { from { opacity: 0; transform: translateY(-20px) rotate(-18deg); } to { opacity: 1; transform: rotate(8deg); } }
+    @keyframes kb-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    @keyframes kb-eq { 0%, 100% { height: 25%; } 50% { height: 100%; } }
+
+    @media (max-width: 767px) {
+      .kb-hero__inner { padding-bottom: 3.5rem; }
+      .kb-hero__title { margin-bottom: 19rem; }
+      .kb-hero__portrait { top: 10.5rem; bottom: auto; height: 27rem; left: 50%; }
+      .kb-hero__script { top: 78%; }
+      .kb-hero__live { max-width: none; }
+      .kb-hero__bottom::before {
+        content: "";
+        position: absolute;
+        inset: -2rem -1.5rem -4.5rem;
+        z-index: -1;
+        background: linear-gradient(to bottom, transparent, rgba(9, 9, 10, .92) 30%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .kb-hero *, .kb-hero *::before, .kb-hero *::after { animation: none !important; transition: none !important; }
+      .kb-hero__underline path { stroke-dashoffset: 0; }
+      .kb-hero__crown { transform: rotate(8deg); }
+    }
+  </style>
+</head>
+<body class="bg-[#FAF8F5] text-on-surface font-body-md text-body-md antialiased selection:bg-primary-container selection:text-white">
+<!-- 1. TOP UTILITY META BAR -->
+<header class="w-full sticky top-0 z-50 border-b text-white" id="site-header">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<a class="flex items-baseline gap-2 group select-none" href="#">
+<span class="font-display-xl text-2xl lg:text-3xl font-bold tracking-tighter text-white uppercase italic group-hover:text-primary transition-colors">
+          THE BUZZ
+        </span>
+<span class="font-label-sm text-[11px] text-primary tracking-widest uppercase font-semibold hidden sm:inline-block border-l border-stone-700 pl-2">
+          KIAMAIKO FM
+        </span>
+</a>
+</div>
+<nav class="hidden md:flex items-center space-x-8 font-label-md text-sm tracking-wider uppercase">
+<a class="text-white border-b-2 border-primary pb-1 font-semibold" href="#home">Home</a>
+<a class="text-stone-300 hover:text-white transition-colors" href="#culture">Culture</a>
+<a class="text-stone-300 hover:text-white transition-colors" href="#people">People</a>
+<a class="text-stone-300 hover:text-white transition-colors" href="#youth">Youth</a>
+<a class="text-stone-300 hover:text-white transition-colors" href="#ideas">Ideas</a>
+<a class="text-stone-300 hover:text-primary-fixed transition-colors flex items-center gap-1.5" href="#radio">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+        Radio 98.4
+      </a>
+</nav>
+<div class="flex items-center gap-4">
+<button aria-label="Search" class="w-10 h-10 rounded-full hover:bg-stone-800 flex items-center justify-center text-stone-200 transition-colors">
+<span class="material-symbols-outlined text-xl">search</span>
+</button>
+<button aria-label="Menu" class="w-10 h-10 rounded-full hover:bg-stone-800 flex items-center justify-center text-stone-200 transition-colors">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- 2. BREAKING / TRENDING TICKER -->
+<!-- MAIN EDITORIAL CONTAINER -->
+<main class="max-w-[1440px] mx-auto bg-[#FAF8F5] border-x border-[#E2E0D8]">
+<!-- 3. HERO & TRENDING DISPATCHES (ASYMMETRIC SPLIT 70% / 30%) -->
+<section class="relative bg-[#0d0d0f] text-white overflow-hidden" id="home">
+<!-- Layered Interactive Hero (live type, animated waveform, cut-out portrait) -->
+<div class="kb-hero" id="hero">
+<h1 class="sr-only">Culture — The Sound of Our Time</h1>
+<!-- Faded backdrop: glow, grain and vignette -->
+<div aria-hidden="true" class="kb-hero__bg" data-depth="-6"></div>
+<!-- Live soundwave band (sized to the headline by JS) -->
+<canvas aria-hidden="true" class="kb-hero__wave" id="kb-wave"></canvas>
+<!-- Cut-out portrait sits over the headline -->
+<img alt="" aria-hidden="true" class="kb-hero__portrait" data-depth="14" decoding="async" fetchpriority="high" src="assets/hero-portrait.webp"/>
+<div class="kb-hero__inner max-w-[1440px] mx-auto px-6 lg:px-12 w-full">
+<!-- Kicker -->
+<div class="kb-hero__kicker kb-reveal font-label-sm text-[11px] tracking-[0.2em] text-stone-300 uppercase flex flex-wrap items-center gap-2 font-mono" style="--d:.05s">
+<span>REAL STORIES</span>
+<span class="text-primary-container font-bold">/</span>
+<span>FRESH VOICES</span>
+<span class="text-primary-container font-bold">/</span>
+<span class="text-white font-bold">AFRICA</span>
+</div>
+<!-- Headline block -->
+<div aria-hidden="true" class="kb-hero__title">
+<div class="kb-hero__word" data-depth="-10" id="kb-word">
+<span style="--i:0">C</span><span style="--i:1">U</span><span style="--i:2">L</span><span class="kb-hero__crown-host" style="--i:3">T<svg class="kb-hero__crown" viewBox="0 0 60 44"><path d="M6 38 L4 8 L18 24 L30 4 L42 24 L56 8 L54 38 Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg></span><span style="--i:4">U</span><span style="--i:5">R</span><span style="--i:6">E</span>
+</div>
+<div class="kb-hero__script" data-depth="20">
+<span class="kb-hero__script-1">The Sound</span>
+<span class="kb-hero__script-2">of Our Time</span>
+<svg class="kb-hero__underline" preserveAspectRatio="none" viewBox="0 0 400 30"><path d="M6 22 C 90 10, 200 6, 394 8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="9"></path></svg>
+</div>
+</div>
+<!-- Bottom row: copy + CTA / scroll cue / live card -->
+<div class="kb-hero__bottom flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+<div class="max-w-md kb-reveal" style="--d:.9s">
+<p class="font-body-lg text-lg lg:text-xl font-medium text-white/95 leading-snug">
+          Music. Ideas. People. Culture.<br/>Stories from a new generation.
+        </p>
+<a class="kb-hero__cta mt-6 inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/80 font-label-md text-xs font-bold uppercase tracking-[0.18em] text-white" href="#pillars">
+<span>EXPLORE</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+<a class="kb-hero__scroll hidden lg:flex flex-col items-center text-stone-300 hover:text-white transition-colors kb-reveal" href="#pillars" style="--d:1.1s">
+<span class="material-symbols-outlined text-xl">arrow_downward</span>
+<span class="font-label-sm text-[10px] tracking-[0.2em] uppercase mt-2">SCROLL TO EXPLORE</span>
+</a>
+<div class="kb-hero__live kb-reveal" style="--d:1s">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="font-label-sm text-[10px] tracking-[0.2em] text-red-500 font-bold uppercase">LIVE</span>
+</div>
+<h2 class="kb-hero__live-title">Young Creatives<br/>On the Air</h2>
+<p class="font-body-sm text-xs text-stone-300 mt-2 leading-relaxed">
+          Music, art and real talk<br/>from the next generation.
+        </p>
+<button aria-pressed="false" class="kb-hero__listen mt-5 flex items-center gap-3 text-white font-label-md text-[11px] font-bold uppercase tracking-[0.15em]" data-radio-toggle="" type="button">
+<span class="kb-hero__listen-icon"><span class="material-symbols-outlined text-xl">play_arrow</span></span>
+<span class="kb-hero__listen-label">LISTEN NOW</span>
+<span aria-hidden="true" class="kb-hero__mini-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+</button>
+</div>
+</div>
+</div>
+<!-- Torn Paper Edge Bottom Transition -->
+<div class="kb-hero__tear">
+<div class="w-full h-full bg-[#FAF8F5] [clip-path:polygon(0_100%,100%_100%,100%_40%,95%_80%,90%_20%,85%_70%,80%_10%,75%_60%,70%_20%,65%_70%,60%_15%,55%_65%,50%_10%,45%_60%,40%_20%,35%_75%,30%_15%,25%_65%,20%_20%,15%_70%,10%_10%,5%_60%,0_20%)]"></div>
+</div>
+</div>
+<!-- 3. OUR PILLARS / THE STORIES THAT MOVE US (Warm Broadsheet Canvas) -->
+<div class="bg-[#FAF8F5] text-on-surface py-16 px-6 lg:px-12 border-b border-[#E2E0D8]" id="pillars">
+<div class="max-w-[1440px] mx-auto">
+<!-- Section Header -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+<div>
+<span class="font-label-sm text-xs font-bold uppercase tracking-widest text-primary block mb-2">
+            OUR PILLARS
+          </span>
+<div class="flex items-baseline flex-wrap gap-3">
+<h2 class="font-display-xl text-4xl sm:text-6xl font-extrabold uppercase tracking-tight text-black leading-none">
+              THE STORIES
+            </h2>
+<span class="font-headline-md italic font-bold text-primary text-3xl sm:text-4xl underline decoration-primary decoration-4 underline-offset-8">
+              THAT MOVE US
+            </span>
+</div>
+</div>
+<div class="max-w-md flex items-center justify-between gap-4">
+<p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
+            From the streets to the studios, from the classroom to the boardroom — we tell the stories that shape our world.
+          </p>
+<a class="w-10 h-10 rounded-full border border-black flex items-center justify-center flex-shrink-0 hover:bg-black hover:text-white transition-colors" href="#culture">
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 4-Column Pillar Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- 01 CULTURE -->
+<div class="group bg-white border border-[#E2E0D8] p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
+<div>
+<div class="relative aspect-[4/3] overflow-hidden mb-4 bg-stone-900">
+<img alt="Culture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoIYd-SCTput-gOBGe_ubQ-qbL8YTG75PVRfgNVaRM131HKr41Bn6iqLb4basN3_KqpwcIiC5m8w76az08Y3HR1ZB0LmmjLCUGALvJZiEg2mgJydkzIemxWuiS4f7PP3IF-TMx8CnUk1I7uSGa7UPRFCDzMajrhZU4fb89nxUycMhd-9XaELZh0H7cw6MKzIyJNIH4p8OLDdaL7dO3T8V14OFqUdEAqpaRxeEe-AiU9fpzyeu6KFDp"/>
+<!-- Red Soundwave Graphic Overlay -->
+<div class="absolute bottom-2 left-2 text-primary font-bold text-lg select-none drop-shadow">
+<span class="tracking-tighter">/∿∿∿/∿</span>
+</div>
+</div>
+<div class="font-mono font-bold text-primary text-xs uppercase">01</div>
+<h3 class="font-headline-sm text-xl font-extrabold uppercase text-black mt-0.5 tracking-tight group-hover:text-primary transition-colors">
+              CULTURE
+            </h3>
+<p class="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
+              Music, art, fashion, food, traditions and the places that define us.
+            </p>
+          </div>
+<div class="mt-5 pt-3 border-t border-stone-100">
+<a class="inline-flex items-center gap-1.5 font-label-md text-xs font-bold uppercase tracking-wider text-black group-hover:text-primary transition-colors" href="#culture">
+<span>EXPLORE</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 02 PEOPLE -->
+<div class="group bg-white border border-[#E2E0D8] p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
+<div>
+<div class="relative aspect-[4/3] overflow-hidden mb-4 bg-stone-900">
+<img alt="People" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1_tBZ9yZglckLJkfcIe7rBwmLQLyjrGWjhk1M3F_57pAZVRhAcvNfnSyJKZhtWy4Nwd8nwhVTQW9Diixqx2U2yKQngHKzP820AD-ooac3FtszXi7ziN85OqadsHAz9ifCBavk9LQRd-pgPmtr2zDDdcL-03oPj871LuIZ3sT-3oItO5cS4Eklzh08gRufkj3B6fhQN8W4Xxo_M5iShOEHr3CSpYddpfGW4HUX-Z4"/>
+<!-- Cyan Soundwave Overlay -->
+<div class="absolute bottom-2 left-2 text-secondary font-bold text-lg select-none drop-shadow">
+<span class="tracking-tighter">/∿∿∿/∿</span>
+</div>
+</div>
+<div class="font-mono font-bold text-secondary text-xs uppercase">02</div>
+<h3 class="font-headline-sm text-xl font-extrabold uppercase text-black mt-0.5 tracking-tight group-hover:text-primary transition-colors">
+              PEOPLE
+            </h3>
+<p class="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
+              Profiles, interviews and real stories from everyday changemakers.
+            </p>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-100">
+<a class="inline-flex items-center gap-1.5 font-label-md text-xs font-bold uppercase tracking-wider text-black group-hover:text-primary transition-colors" href="#people">
+<span>EXPLORE</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 03 YOUTH -->
+<div class="group bg-white border border-[#E2E0D8] p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
+<div>
+<div class="relative aspect-[4/3] overflow-hidden mb-4 bg-stone-900">
+<img alt="Youth" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA9dUwITR1VnNLOQjoQjOXUJ0Sm-UAXk6q0jGu-I_k7dfXtRipV-iRRcda3bLkTiBj0OOIBqOD_PX42uRkNACn8WPU0Tv9NxlqXJQ_XEBRyfTRWyposMv8-YiniHXQgBUdaRzi5Qe-LBn4y6uAXCC3GTAB5qqNgKj02cbqcbHD0rzPNK7jCRk2oKVKu93jZW17pK0Ghq_40sUGNQgR-f-RD4IDDyZaJuM7exIXQUA"/>
+<!-- Yellow Soundwave Overlay -->
+<div class="absolute bottom-2 left-2 text-amber-500 font-bold text-lg select-none drop-shadow">
+<span class="tracking-tighter">/∿∿∿/∿</span>
+</div>
+</div>
+<div class="font-mono font-bold text-amber-600 text-xs uppercase">03</div>
+<h3 class="font-headline-sm text-xl font-extrabold uppercase text-black mt-0.5 tracking-tight group-hover:text-primary transition-colors">
+              YOUTH
+            </h3>
+<p class="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
+              The dreams, struggles and bold ideas of a new generation.
+            </p>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-100">
+<a class="inline-flex items-center gap-1.5 font-label-md text-xs font-bold uppercase tracking-wider text-black group-hover:text-primary transition-colors" href="#youth">
+<span>EXPLORE</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 04 IDEAS -->
+<div class="group bg-white border border-[#E2E0D8] p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
+<div>
+<div class="relative aspect-[4/3] overflow-hidden mb-4 bg-stone-900">
+<img alt="Ideas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMR6Fz5TjatqFdCpqcvHiSfNdZMgPUfmMtVp_T4hi8ryFbSJf1zjqZulZIvnyn1LcMQJK4ORRzQe96Xam5hXABWolKQNqF6FbrK4ZQdajCZ-N2yZTk_U-vkpMv1Yvrdcv2T-SGijveF0zpLtMNBEFjtqBCsZAciKGzOpPvrZgCXynkisXfk_a6FWkDwHIfDnOBMk2RoX8O-3YJFOA_fONd34AC8D4dEQ8TW1urP9k"/>
+<!-- Green Soundwave Overlay -->
+<div class="absolute bottom-2 left-2 text-emerald-500 font-bold text-lg select-none drop-shadow">
+<span class="tracking-tighter">/∿∿∿/∿</span>
+</div>
+</div>
+<div class="font-mono font-bold text-emerald-600 text-xs uppercase">04</div>
+<h3 class="font-headline-sm text-xl font-extrabold uppercase text-black mt-0.5 tracking-tight group-hover:text-primary transition-colors">
+              IDEAS
+            </h3>
+<p class="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
+              Thoughts worth questioning, conversations that matter, ideas for what's next.
+            </p>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-100">
+<a class="inline-flex items-center gap-1.5 font-label-md text-xs font-bold uppercase tracking-wider text-black group-hover:text-primary transition-colors" href="#ideas">
+<span>EXPLORE</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. LATEST STORIES (ASYMMETRIC EDITORIAL GRID) -->
+<section class="p-6 lg:p-12 border-b border-[#E2E0D8]">
+<div class="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-on-surface pb-4 mb-8 gap-4">
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+            DISPATCH DESK
+          </span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight">
+            LATEST DISPATCHES / HABARI ZA SASA
+          </h2>
+</div>
+<!-- Filter Pills -->
+<div class="flex flex-wrap items-center gap-2 font-label-sm text-label-sm uppercase">
+<button class="px-3 py-1.5 bg-black text-white font-semibold">All Stories</button>
+<button class="px-3 py-1.5 bg-white border border-[#E2E0D8] text-on-surface hover:bg-stone-200 transition-colors">Investigative</button>
+<button class="px-3 py-1.5 bg-white border border-[#E2E0D8] text-on-surface hover:bg-stone-200 transition-colors">Music &amp; Sheng</button>
+<button class="px-3 py-1.5 bg-white border border-[#E2E0D8] text-on-surface hover:bg-stone-200 transition-colors">Policy</button>
+<button class="px-3 py-1.5 bg-white border border-[#E2E0D8] text-on-surface hover:bg-stone-200 transition-colors">Enterprise</button>
+</div>
+</div>
+<!-- Asymmetrical 4-Card Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 items-stretch">
+<!-- Feature Card (Spans 5 cols) -->
+<article class="lg:col-span-5 border border-[#E2E0D8] bg-white p-6 flex flex-col justify-between group">
+<div>
+<div class="relative overflow-hidden mb-4 border border-[#E2E0D8]">
+<img class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Intense portrait of a Kenyan urban agriculturalist tending lush green rooftop vegetables overlooking the Nairobi Eastlands skyline under bright daylight. Editorial photography emphasizing contrast between urban iron-sheet roofs and thriving organic vegetation. Vibrant deep greens, rich earth tones, and sharp architectural details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAar5umggD87HnMcgqwmEx4RhCuWXzU2BeF1mDlzsQJTCk6Me2qKfoREGLNm7tVXs9c7SoJq_G6DwodWrBNhUSW2MzIqL5rpAnsLERmljbeyOgaMiE1k6kUakhgzuG047nLFmgrYwdmW_ubhRjzNfouUdoahTFX7LB6PI4VoyeH0TgMWQ8c3k-HCyoMFiD8CoIhw0Pw3wOaHylGjPGj73ggvEKphiR4NpDijvb7dqc"/>
+<span class="absolute top-3 left-3 bg-[#18181B] text-white font-label-sm text-label-sm px-2.5 py-1 uppercase tracking-wider">
+                Ecological Resilience
+              </span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2 mb-2">
+<span>Oct 24, 2024</span>
+<span>•</span>
+<span>By Mercy Chebet</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+              Greening the Concrete: Rooftop Agriculture Thrives Along the Riverbank
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-3">
+              How youth environmental cooperatives transformed forty corrugated rooftops along the Nairobi River basin into high-yield organic hydroponic gardens, securing fresh greens for over 800 households.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-[#E2E0D8] flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Field Report #88</span>
+<span class="font-label-md text-label-md text-primary font-semibold flex items-center gap-1">
+              DISPATCH NOTES <span class="material-symbols-outlined text-sm">north_east</span>
+</span>
+</div>
+</article>
+<!-- Stacked Card 1 & 2 (Spans 4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Stacked 1 -->
+<article class="border border-[#E2E0D8] bg-white p-5 flex-1 flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Sheng &amp; Sound</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">4 min read</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+                The Sound of Gengetone 2.0: Producers Fusing Benga with Trap
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+                Inside bedroom recording booths in Kiamaiko, self-taught sound engineers are splicing traditional Luo Benga guitar licks with 808 sub-bass, pioneering East Africa’s newest sonic export.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-[#E2E0D8] flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-semibold">By Kenzy Oduor</span>
+<span class="text-primary font-semibold group-hover:translate-x-1 transition-transform">→ READ</span>
+</div>
+</article>
+<!-- Stacked 2 -->
+<article class="border border-[#E2E0D8] bg-white p-5 flex-1 flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">Street Canvas</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">5 min read</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+                Matatu Artistry: The Master Painters Preserving Street Aesthetics
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+                With spray cans and airbrushes, Kiamaiko garage workshops remain the beating heart of custom bus design, honoring Nairobi’s rolling art galleries.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-[#E2E0D8] flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-semibold">By Sarah Kamau</span>
+<span class="text-primary font-semibold group-hover:translate-x-1 transition-transform">→ READ</span>
+</div>
+</article>
+</div>
+<!-- Stat / Quote Callout Card (Spans 3 cols) -->
+<div class="lg:col-span-3 bg-[#18181B] text-white p-6 lg:p-8 flex flex-col justify-between border-t-4 border-primary">
+<div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-stone-400 mb-6 uppercase tracking-wider">
+<span>Oral Archive</span>
+<span class="material-symbols-outlined text-primary text-xl">format_quote</span>
+</div>
+<p class="font-display-xl text-3xl lg:text-4xl text-[#FAF8F5] leading-snug font-serif italic mb-6">
+              "Kiamaiko is not just a place on the map; it is Nairobi's beating heartbeat of resilience."
+            </p>
+<div class="w-12 h-0.5 bg-primary mb-4"></div>
+<p class="font-headline-sm text-base text-stone-200 font-semibold">Mzee Juma</p>
+<p class="font-label-sm text-label-sm text-stone-400 uppercase">Community Elder &amp; Founding Council Voice (Age 78)</p>
+</div>
+<div class="mt-8 pt-6 border-t border-stone-800">
+<div class="text-2xl font-bold font-label-md text-secondary-fixed">84,000+</div>
+<p class="font-label-sm text-label-sm text-stone-400 uppercase tracking-wider mt-1">Weekly Listeners &amp; Broadsheet Readers in Eastlands</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. EVENTS AROUND KIAMAIKO -->
+<section class="p-6 lg:p-12 border-b border-[#E2E0D8] bg-[#F4F1EA]/50" id="events">
+<div class="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-on-surface pb-4 mb-8">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-widest flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">event</span>
+            PUBLIC GATHERINGS
+          </span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight">
+            COMMUNITY CALENDAR • HAPPENING IN THE HOOD
+          </h2>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+          Direct Citizen Registration • Entry Free or Subsidized
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Event 1 -->
+<div class="bg-white border border-[#E2E0D8] p-6 flex flex-col justify-between relative group hover:border-black transition-colors">
+<div class="flex items-start justify-between mb-4">
+<div class="bg-[#18181B] text-white p-3 text-center min-w-[70px]">
+<span class="block font-label-sm text-xs text-primary-fixed uppercase tracking-wider">NOV</span>
+<span class="block font-display-xl text-3xl font-bold leading-none mt-1">02</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-emerald-100 text-secondary font-bold uppercase">Free Entry</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+              Eastlands Open Mic &amp; Spoken Word Slam
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              A high-voltage poetry battle highlighting youth perspectives on social justice, community rights, and Nairobi urban survival.
+            </p>
+<div class="mt-4 flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span>Kiamaiko Social Hall • 4:00 PM</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-[#E2E0D8] flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">142 Registered</span>
+<button class="px-3 py-1.5 bg-black text-white hover:bg-primary font-label-sm text-label-sm uppercase font-semibold transition-colors">
+              RSVP Pass
+            </button>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="bg-white border border-[#E2E0D8] p-6 flex flex-col justify-between relative group hover:border-black transition-colors">
+<div class="flex items-start justify-between mb-4">
+<div class="bg-[#18181B] text-white p-3 text-center min-w-[70px]">
+<span class="block font-label-sm text-xs text-primary-fixed uppercase tracking-wider">NOV</span>
+<span class="block font-display-xl text-3xl font-bold leading-none mt-1">08</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-stone-200 text-on-surface font-bold uppercase">Limited Seats</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+              Sheng &amp; Identity Symposium: Language as Cultural Armor
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Linguists, rappers, and historians gather to unpack how Nairobi street patois protects community autonomy against institutional erasure.
+            </p>
+<div class="mt-4 flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span>Nairobi Creative Space • 2:00 PM</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-[#E2E0D8] flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">96 Registered</span>
+<button class="px-3 py-1.5 bg-black text-white hover:bg-primary font-label-sm text-label-sm uppercase font-semibold transition-colors">
+              RSVP Pass
+            </button>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="bg-white border border-[#E2E0D8] p-6 flex flex-col justify-between relative group hover:border-black transition-colors">
+<div class="flex items-start justify-between mb-4">
+<div class="bg-[#18181B] text-white p-3 text-center min-w-[70px]">
+<span class="block font-label-sm text-xs text-primary-fixed uppercase tracking-wider">NOV</span>
+<span class="block font-display-xl text-3xl font-bold leading-none mt-1">15</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-emerald-100 text-secondary font-bold uppercase">All Ages</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+              Kiamaiko Artisan Street Bazaar &amp; Food Fair
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              A celebration of local leathercraft, hand-beaded design, street roasts, live Benga sets, and youth tech demonstrations.
+            </p>
+<div class="mt-4 flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span>Old Kiamaiko Road Corridor • All Day</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-[#E2E0D8] flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">380+ Attending</span>
+<button class="px-3 py-1.5 bg-black text-white hover:bg-primary font-label-sm text-label-sm uppercase font-semibold transition-colors">
+              Get Free Pass
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. COMMUNITY SPOTLIGHT: PEOPLE OF KIAMAIKO -->
+<section class="p-6 lg:p-12 border-b border-[#E2E0D8] bg-[#FBF8FC]" id="community">
+<div class="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-on-surface pb-4 mb-8">
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">group</span>
+            PORTRAIT SERIES
+          </span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight">
+            PEOPLE OF KIAMAIKO • GRASSROOTS LEADERSHIP
+          </h2>
+</div>
+<button class="inline-flex items-center gap-2 font-label-sm text-label-sm uppercase font-bold text-on-surface border border-[#E2E0D8] px-4 py-2 hover:bg-black hover:text-white transition-colors">
+<span>Nominate a Changemaker</span>
+<span class="material-symbols-outlined text-sm">add_circle</span>
+</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Profile 1 -->
+<div class="border border-[#E2E0D8] bg-white p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
+<div class="w-full md:w-48 h-60 flex-shrink-0 overflow-hidden border border-[#E2E0D8] relative">
+<img class="w-full h-full object-cover" data-alt="Dignified close-up editorial portrait of Amina Hassan, a sharp 24-year-old Kenyan woman software engineer and educator in Kiamaiko Nairobi. High-contrast ambient lighting, wearing a stylish modest headwrap and warm smile, with computer screens and circuit boards softly blurred in the background. Highly textured documentary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA9dUwITR1VnNLOQjoQjOXUJ0Sm-UAXk6q0jGu-I_k7dfXtRipV-iRRcda3bLkTiBj0OOIBqOD_PX42uRkNACn8WPU0Tv9NxlqXJQ_XEBRyfTRWyposMv8-YiniHXQgBUdaRzi5Qe-LBn4y6uAXCC3GTAB5qqNgKj02cbqcbHD0rzPNK7jCRk2oKVKu93jZW17pK0Ghq_40sUGNQgR-f-RD4IDDyZaJuM7exIXQUA"/>
+</div>
+<div class="flex-1">
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-emerald-100 text-secondary font-bold uppercase tracking-wider">
+              Tech Educator • Cohort Founder
+            </span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-2">
+              Amina Hassan
+            </h3>
+<p class="font-body-sm text-body-sm italic text-on-surface-variant mt-1">
+              "The market gave us sustenance; technology will give us global ownership."
+            </p>
+<p class="font-body-md text-body-md text-on-surface mt-3">
+              At 24, Amina built a micro-coding academy above her grandmother's butchery stall. She has trained over 120 young women in Python, digital finance, and e-commerce logistics.
+            </p>
+<div class="mt-4 pt-3 border-t border-[#E2E0D8] flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>@aminacodes_ke</span>
+<a class="text-primary font-bold hover:underline" href="#">Read Extended Profile →</a>
+</div>
+</div>
+</div>
+<!-- Profile 2 -->
+<div class="border border-[#E2E0D8] bg-white p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
+<div class="w-full md:w-48 h-60 flex-shrink-0 overflow-hidden border border-[#E2E0D8] relative">
+<img class="w-full h-full object-cover" data-alt="Intense high-contrast portrait of Karanja K-Jay Omondi, an East African metal sculptor standing in his gritty Kiamaiko open-air workshop surrounded by welding sparks and recycled iron sculptures. Warm natural sunlight, wearing safety goggles and leather apron, confident and visionary demeanor. Rich tonal contrast and deep shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1_tBZ9yZglckLJkfcIe7rBwmLQLyjrGWjhk1M3F_57pAZVRhAcvNfnSyJKZhtWy4Nwd8nwhVTQW9Diixqx2U2yKQngHKzP820AD-ooac3FtszXi7ziN85OqadsHAz9ifCBavk9LQRd-pgPmtr2zDDdcL-03oPj871LuIZ3sT-3oItO5cS4Eklzh08gRufkj3B6fhQN8W4Xxo_M5iShOEHr3CSpYddpfGW4HUX-Z4"/>
+</div>
+<div class="flex-1">
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-amber-100 text-amber-900 font-bold uppercase tracking-wider">
+              Visual Sculptor • Upcycler
+            </span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-2">
+              Karanja "K-Jay" Omondi
+            </h3>
+<p class="font-body-sm text-body-sm italic text-on-surface-variant mt-1">
+              "There is no waste in Nairobi; only resources waiting for vision."
+            </p>
+<p class="font-body-md text-body-md text-on-surface mt-3">
+              Sourcing scrap metals, engine valves, and discarded machinery parts from Eastlands yards, K-Jay constructs monumental wildlife and human figures exhibited worldwide.
+            </p>
+<div class="mt-4 pt-3 border-t border-[#E2E0D8] flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>@kjay_metalworks</span>
+<a class="text-primary font-bold hover:underline" href="#">Read Extended Profile →</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. KIAMAIKO FM VIDEO (DIGITAL MEDIA GRID / OBSIDIAN) -->
+<section class="p-6 lg:p-12 bg-[#18181B] text-[#FAF8F5] border-b border-black" id="studio">
+<div class="flex flex-col md:flex-row md:items-end justify-between border-b border-stone-800 pb-4 mb-8">
+<div>
+<span class="font-label-sm text-label-sm text-primary-fixed font-bold uppercase tracking-widest flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-primary">videocam</span>
+            FIELD RECORDINGS • CINEMA DISPATCHES
+          </span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-white uppercase tracking-tight">
+            KIAMAIKO TV • VISUAL JOURNALISM
+          </h2>
+</div>
+<div class="font-label-md text-label-md text-stone-400 uppercase tracking-wider flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+<span>Broadcasting in 4K UHD</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Main Featured Video (Spans 8 cols) -->
+<div class="lg:col-span-8 group cursor-pointer">
+<div class="relative overflow-hidden border border-stone-700 bg-black aspect-video flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85" data-alt="Cinematic wide 16:9 documentary still inside a historic artisan leather tannery in Kiamaiko Nairobi. High contrast lighting with atmospheric smoke shafts of afternoon sun illuminating skilled older craftsmen stretching and treating hide. Editorial color palette dominated by warm ochres rich deep blacks and subtle crimson tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMR6Fz5TjatqFdCpqcvHiSfNdZMgPUfmMtVp_T4hi8ryFbSJf1zjqZulZIvnyn1LcMQJK4ORRzQe96Xam5hXABWolKQNqF6FbrK4ZQdajCZ-N2yZTk_U-vkpMv1Yvrdcv2T-SGijveF0zpLtMNBEFjtqBCsZAciKGzOpPvrZgCXynkisXfk_a6FWkDwHIfDnOBMk2RoX8O-3YJFOA_fONd34AC8D4dEQ8TW1urP9k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+<!-- Play Trigger -->
+<div class="absolute w-16 h-16 bg-primary text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">play_arrow</span>
+</div>
+<div class="absolute top-4 left-4 bg-black/80 px-2.5 py-1 text-white font-label-sm text-label-sm uppercase font-mono tracking-widest">
+              DOCUSERIES EPISODE 01
+            </div>
+<div class="absolute bottom-4 right-4 bg-black/90 px-2 py-0.5 text-stone-300 font-label-sm text-label-sm font-mono">
+              14:20 MIN
+            </div>
+</div>
+<div class="mt-4">
+<span class="font-label-sm text-label-sm text-secondary-fixed font-bold uppercase tracking-widest">Featured Documentary</span>
+<h3 class="font-headline-md text-headline-md text-white font-bold group-hover:text-primary-fixed transition-colors mt-1">
+              Voices from the Tannery Quarter: Fifty Years of Craft and Community
+            </h3>
+<p class="font-body-md text-body-md text-stone-300 mt-2">
+              An immersive 15-minute investigation chronicling three generations of leather tanners navigating urban gentrification, water purification advocacy, and the global preservation of heritage techniques.
+            </p>
+</div>
+</div>
+<!-- Secondary Video Column (Spans 4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="font-label-sm text-label-sm text-stone-400 uppercase tracking-widest border-b border-stone-800 pb-2">
+            Recent Episodes &amp; Broadcast Tapes
+          </div>
+<!-- Episode 1 -->
+<div class="flex gap-4 group cursor-pointer">
+<div class="w-32 h-20 bg-stone-900 border border-stone-800 flex-shrink-0 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Documentary video thumbnail showing vibrant Eastlands Nairobi night street food stalls with sizzling skewers of meat and steaming broth pots under bright warm light bulbs. High contrast authentic urban nightlife photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyesbB0qyIZGKSPC-IXy9aFXQL30P2-dmMPDVGWmjCH77BYSOxp1ZreRSd7FJyIDuBsBNBCvf-lNeLES2JRshXCv0YdQKyZHczp3juKeVyFe2RlV7xkz8_6dEvlVebChp1ACLYIKR5Kp2wzkPrl1o44Epz0eIs32D_B67HeWY6R4CI30mqpuNcfjN79H2frPxqppayuQe0gAts55j4aZQloQNZ7A_lD46Ryh7SeSE"/>
+<span class="absolute bottom-1 right-1 bg-black/90 text-white font-label-sm text-[9px] px-1 font-mono">08:45</span>
+</div>
+<div>
+<span class="font-label-sm text-[10px] text-primary-fixed uppercase tracking-wider">Street Food Tour</span>
+<h4 class="font-headline-sm text-sm font-bold text-white group-hover:text-primary-fixed transition-colors line-clamp-2">
+                Searching for the Best Ugali &amp; Goat Broth in Eastlands
+              </h4>
+<p class="font-label-sm text-[11px] text-stone-400 mt-1">3.2k Views • 2 days ago</p>
+</div>
+</div>
+<!-- Episode 2 -->
+<div class="flex gap-4 group cursor-pointer">
+<div class="w-32 h-20 bg-stone-900 border border-stone-800 flex-shrink-0 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Intimate acoustic recording session thumbnail inside a radio studio showing a talented female East African singer singing passionately into a large studio condenser microphone under dramatic warm spotlighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDLZnus0ZcFJjEGMri8AaI8MQw-REIF76xrxOJyNHpWRf9U-uAmvMt0ex-IomuGoRgvFIzSS1_nKcqN9gWPk_AJ_iUrCuM9k35qErWHfIrQIWy6iR6QIXwHzcdop0cnPbB3Bnd_s_2mbiy0iqVdQ_dnsDPplsoN36FPJuVxnuud8rlAiWO78G_1ZCLOP2ufBax7OBl4PNqtIzyiRA4KfctNQP2e_y7glwotP3Dixc"/>
+<span class="absolute bottom-1 right-1 bg-black/90 text-white font-label-sm text-[9px] px-1 font-mono">11:12</span>
+</div>
+<div>
+<span class="font-label-sm text-[10px] text-secondary-fixed uppercase tracking-wider">Studio Sessions #4</span>
+<h4 class="font-headline-sm text-sm font-bold text-white group-hover:text-primary-fixed transition-colors line-clamp-2">
+                Live Acoustic Performance with Njoki Karu
+              </h4>
+<p class="font-label-sm text-[11px] text-stone-400 mt-1">6.8k Views • 5 days ago</p>
+</div>
+</div>
+<!-- Episode 3 -->
+<div class="flex gap-4 group cursor-pointer">
+<div class="w-32 h-20 bg-stone-900 border border-stone-800 flex-shrink-0 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Investigative journalism video thumbnail featuring a neighborhood town hall meeting in Nairobi with citizens addressing city infrastructure engineers over paper blueprints. High-contrast authentic editorial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKb-IShS94DOdufYL_AzxscZzNselNjbR8h_w4Cepu5SlcehbMFQPwencR3Bg7H6_ntJ8uJ7bpg3pyM3MdepaN7YNrLqP42fhXPSw0z5Tgs7R3arEq88hMg0Lz7OfKduu36IuZ5QIUzErjbhE_H5uMNke96JtJc9BOnVcPXziNBSZXKHKyvLJrkafSaFUtdyY5bJt4KK7QWkoh5-zPWuvwkk3bnh7PlXZV-IzooIo"/>
+<span class="absolute bottom-1 right-1 bg-black/90 text-white font-label-sm text-[9px] px-1 font-mono">06:30</span>
+</div>
+<div>
+<span class="font-label-sm text-[10px] text-tertiary-fixed uppercase tracking-wider">Civic Watch</span>
+<h4 class="font-headline-sm text-sm font-bold text-white group-hover:text-primary-fixed transition-colors line-clamp-2">
+                Roads, Clean Water &amp; Infrastructure Audit 2024
+              </h4>
+<p class="font-label-sm text-[11px] text-stone-400 mt-1">1.9k Views • 1 week ago</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. PODCAST & RADIO COMING SOON -->
+<section class="p-6 lg:p-12 border-b border-[#E2E0D8] bg-[#FAF8F5]" id="radio">
+<div class="border-4 border-on-surface p-6 lg:p-10 relative bg-white">
+<!-- Frequency Stamp Badge -->
+<div class="absolute -top-5 right-6 bg-primary text-white font-label-sm text-label-sm px-4 py-1 uppercase tracking-widest font-bold">
+          FREQUENCY ALLOCATION: 98.4 MHZ
+        </div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<div class="lg:col-span-7">
+<div class="flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase font-bold tracking-widest mb-2">
+<span class="material-symbols-outlined text-lg">mic</span>
+              ANALOG BROADCAST • COMMUNITY RADIO
+            </div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight uppercase leading-[1.1]">
+              98.4 KIAMAIKO FM — THE AIRWAVES ARE COMING TO LIFE
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-4">
+              Broadcasting real-time stories, hyper-local investigative journalism, and the freshest East African soundscapes directly from our Kiamaiko community studio. Tune in on analog frequency or stream lossless digital audio anywhere in Nairobi.
+            </p>
+<div class="mt-6 space-y-3">
+<div class="p-3 bg-[#FAF8F5] border border-[#E2E0D8] flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold">SHOW 01 • 06:00 - 10:00</span>
+<p class="font-headline-sm text-sm font-bold text-on-surface">Asubuhi Njema with Captain Otis (Morning Talk &amp; News)</p>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Daily</span>
+</div>
+<div class="p-3 bg-[#FAF8F5] border border-[#E2E0D8] flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">SHOW 02 • 14:00 - 18:00</span>
+<p class="font-headline-sm text-sm font-bold text-on-surface">Sheng Unplugged (Youth, Street Style &amp; Music)</p>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mon - Fri</span>
+</div>
+<div class="p-3 bg-[#FAF8F5] border border-[#E2E0D8] flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">SHOW 03 • 20:00 - 23:00</span>
+<p class="font-headline-sm text-sm font-bold text-on-surface">The Eastlands Digest (Economic Deep Dives &amp; Policy)</p>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Weekends</span>
+</div>
+</div>
+</div>
+<!-- Radio Frequency Tuning Dial Interface -->
+<div class="lg:col-span-5 bg-[#18181B] text-white p-6 border border-stone-800">
+<div class="flex items-center justify-between border-b border-stone-700 pb-3 mb-4">
+<span class="font-label-sm text-label-sm text-stone-400 uppercase">SIGNAL TUNER (FM / WEB)</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed font-mono font-bold">ONLINE PILOT</span>
+</div>
+<div class="text-center py-4 bg-black/60 border border-stone-800 my-2">
+<div class="font-display-xl text-5xl font-mono font-bold tracking-tighter text-white">98.4</div>
+<div class="font-label-sm text-label-sm text-primary-fixed tracking-widest uppercase mt-1">MEGAHERTZ NAIROBI</div>
+</div>
+<!-- Waveform Graphical Bars -->
+<div class="flex items-end justify-between h-12 py-2 gap-1 px-4 bg-stone-900 border border-stone-800">
+<span class="w-1 bg-primary h-4 animate-pulse"></span>
+<span class="w-1 bg-stone-500 h-8"></span>
+<span class="w-1 bg-secondary-fixed h-10 animate-bounce"></span>
+<span class="w-1 bg-primary h-6"></span>
+<span class="w-1 bg-stone-300 h-9"></span>
+<span class="w-1 bg-primary h-11 animate-pulse"></span>
+<span class="w-1 bg-stone-500 h-5"></span>
+<span class="w-1 bg-secondary-fixed h-8"></span>
+<span class="w-1 bg-primary h-12"></span>
+<span class="w-1 bg-stone-400 h-7 animate-pulse"></span>
+<span class="w-1 bg-primary h-5"></span>
+<span class="w-1 bg-secondary h-9"></span>
+</div>
+<div class="mt-6">
+<label class="block font-label-sm text-label-sm text-stone-300 uppercase tracking-wider mb-2">
+                Register for Launch Notification &amp; SMS Broadcast Alerts
+              </label>
+<div class="flex flex-col sm:flex-row gap-2">
+<input class="flex-1 bg-[#FAF8F5] text-on-surface text-sm px-3 py-2 border-0 rounded-none focus:ring-2 focus:ring-primary" placeholder="Enter email or M-Pesa phone" type="email"/>
+<button class="px-4 py-2 bg-primary hover:bg-primary-container text-white font-label-sm text-label-sm uppercase font-bold transition-colors whitespace-nowrap">
+                  Lock Frequency
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. NEWSLETTER & DISPATCH SIGNUP -->
+<section class="p-6 lg:p-12 border-b border-[#E2E0D8] bg-[#F4F1EA]">
+<div class="max-w-4xl mx-auto text-center">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-widest">
+          FIELD DISPATCH • NO SPAM • PURE NEIGHBORHOOD PRIDE
+        </span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight mt-2">
+          THE WEEKLY DISPATCH DELIVERED
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mt-3">
+          Every Friday morning, our editors curate the most important Kiamaiko stories, local enterprise guides, and cultural events straight to your inbox and WhatsApp.
+        </p>
+<form class="mt-8 flex flex-col sm:flex-row items-center justify-center max-w-xl mx-auto gap-2" onsubmit="event.preventDefault();">
+<input class="w-full sm:flex-1 bg-white border border-[#E2E0D8] text-on-surface px-4 py-3 text-body-md rounded-none focus:outline-none focus:border-black" placeholder="Enter your email address" required="" type="email"/>
+<button class="w-full sm:w-auto px-6 py-3 bg-[#18181B] text-white hover:bg-primary font-label-md text-label-md uppercase font-semibold transition-colors" type="submit">
+            Subscribe to Print &amp; Digital
+          </button>
+</form>
+<div class="mt-6 flex flex-wrap items-center justify-center gap-6 font-label-sm text-label-sm text-on-surface-variant uppercase">
+<span class="font-bold text-on-surface">Community Channels:</span>
+<a class="hover:text-primary transition-colors" href="#">X (Twitter)</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors" href="#">Instagram</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors" href="#">YouTube</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors" href="#">TikTok</a>
+<span>•</span>
+<a class="text-secondary font-bold hover:underline" href="#">WhatsApp Channel (24k)</a>
+</div>
+</div>
+</section>
+</main>
+<!-- 10. EDITORIAL FOOTER (SHARED COMPONENT IMPLEMENTATION) -->
+<footer class="w-full bg-[#18181B] text-white border-t border-black">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12 lg:py-16">
+<!-- Top Manifesto Header in Footer -->
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-end border-b border-stone-800 pb-10 gap-6">
+<div>
+<span class="font-headline-sm text-headline-sm font-bold text-white uppercase tracking-tight">
+            KIAMAIKO FM
+          </span>
+<p class="font-headline-sm text-base text-stone-300 italic mt-1 max-w-xl">
+            Rooted in Kiamaiko. Amplifying Nairobi. Broadcasting to the African Diaspora.
+          </p>
+</div>
+<div class="font-label-sm text-label-sm text-stone-400 uppercase tracking-widest text-left lg:text-right">
+<div>EASTLANDS REGIONAL TRANSMITTER: 98.4 MHZ</div>
+<div class="text-secondary-fixed mt-1">LICENCE NO: CAK/BRD/2024/098</div>
+</div>
+</div>
+<!-- Links Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 py-10 border-b border-stone-800 text-sm">
+<div>
+<h4 class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider font-semibold mb-3">Sections</h4>
+<ul class="space-y-2 font-body-sm text-body-sm text-stone-400">
+<li><a class="hover:text-white transition-colors" href="#">News Desk</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Culture &amp; Arts</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Sports &amp; Grassroots</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Opinion &amp; Essays</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Investigation Unit</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider font-semibold mb-3">Radio Studio</h4>
+<ul class="space-y-2 font-body-sm text-body-sm text-stone-400">
+<li><a class="hover:text-white transition-colors" href="#">Live Schedule</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Podcasts Archive</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Presenter Roster</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Studio Sessions</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Music Submissions</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider font-semibold mb-3">Community</h4>
+<ul class="space-y-2 font-body-sm text-body-sm text-stone-400">
+<li><a class="hover:text-white transition-colors" href="#">People of Kiamaiko</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Community Council</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Artisan Registry</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Youth Tech Labs</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Bazaar Bookings</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider font-semibold mb-3">Governance</h4>
+<ul class="space-y-2 font-body-sm text-body-sm text-stone-400">
+<li><a class="hover:text-white transition-colors" href="#">Editorial Manifesto</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Media Ethics Policy</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Archival Index</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Broadcast Licences</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Field Guidelines</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider font-semibold mb-3">Bureau &amp; Info</h4>
+<ul class="space-y-2 font-body-sm text-body-sm text-stone-400">
+<li><a class="hover:text-white transition-colors" href="#">Contact Bureau</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Anonymous Tips</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Frequency Map (98.4)</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Press Office</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Advertising Rates</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider font-semibold mb-3">Broadcast Location</h4>
+<p class="font-body-sm text-body-sm text-stone-400 leading-relaxed">
+            Old Kiamaiko Road, Sector 4<br/>
+            Eastlands, Nairobi, Kenya<br/>
+<span class="text-stone-300 font-mono mt-1 block">tips@kiamaikofm.ke</span>
+<span class="text-secondary-fixed font-mono block">+254 (0) 20 894 984</span>
+</p>
+</div>
+</div>
+<!-- Bottom Copyright & Legal Statement -->
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between text-stone-400 font-label-sm text-label-sm gap-4">
+<p>© 2024 Kiamaiko FM Broadcast &amp; Publishing House, Nairobi. Rooted in community authority.</p>
+<div class="flex items-center space-x-6 uppercase">
+<a class="hover:text-white transition-colors" href="#">Editorial Manifesto</a>
+<span>•</span>
+<a class="hover:text-white transition-colors" href="#">Archival Index</a>
+<span>•</span>
+<a class="hover:text-white transition-colors" href="#">Broadcast Licences</a>
+<span>•</span>
+<a class="hover:text-white transition-colors" href="#">Terms of Field Reporting</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- PERSISTENT BROADCAST AUDIO BAR (STICKY BOTTOM DOCKED) -->
+<div class="fixed bottom-0 inset-x-0 bg-[#18181B] text-white border-t border-black z-50 shadow-2xl">
+<div class="max-w-[1440px] mx-auto px-4 lg:px-12 py-2 flex items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<button aria-label="Play Broadcast" aria-pressed="false" data-radio-toggle="" type="button" class="w-9 h-9 bg-primary hover:bg-primary-container text-white flex items-center justify-center transition-colors select-none">
+<span class="material-symbols-outlined text-xl">play_arrow</span>
+</button>
+<div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="font-label-sm text-[11px] font-bold text-white tracking-widest">LIVE TRANSMISSION • 98.4 FM</span>
+</div>
+<p class="font-headline-sm text-xs font-semibold text-stone-300 truncate max-w-xs md:max-w-md">
+            Asubuhi Njema: Interview with Tannery Council &amp; Youth Co-op
+          </p>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-6 font-label-sm text-label-sm text-stone-400">
+<span>Bitrate: 320 kbps Lossless</span>
+<span>Studio: Eastlands Room 1</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">volume_up</span>
+<div class="w-16 h-1 bg-stone-700">
+<div class="w-10 h-1 bg-primary"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<a class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-200 font-label-sm text-label-sm uppercase font-semibold transition-colors" href="#radio">
+          Frequency Map
+        </a>
+</div>
+</div>
+</div>
+<script>
+  (function () {
+    // Set this to the Radio 98.4 stream URL to make "Listen Now" play real audio.
+    var STREAM_URL = '';
+
+    var hero = document.getElementById('hero');
+    var header = document.getElementById('site-header');
+    if (!hero) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var finePointer = window.matchMedia('(pointer: fine)').matches;
+
+    // ---------- Header: transparent over the hero, solid after scrolling ----------
+    function syncHeader() {
+      if (header) header.classList.toggle('is-scrolled', window.scrollY > 40);
+    }
+    syncHeader();
+    window.addEventListener('scroll', syncHeader, { passive: true });
+
+    // ---------- Radio toggle (hero card + docked player share one state) ----------
+    var playing = false;
+    var audio = STREAM_URL ? new Audio(STREAM_URL) : null;
+    if (audio) audio.preload = 'none';
+    var toggles = document.querySelectorAll('[data-radio-toggle]');
+
+    function setPlaying(next) {
+      playing = next;
+      if (audio) {
+        if (playing) audio.play().catch(function () { setPlaying(false); });
+        else audio.pause();
+      }
+      toggles.forEach(function (btn) {
+        btn.setAttribute('aria-pressed', String(playing));
+        var icon = btn.querySelector('.material-symbols-outlined');
+        if (icon) icon.textContent = playing ? 'pause' : 'play_arrow';
+        var label = btn.querySelector('.kb-hero__listen-label');
+        if (label) label.textContent = playing ? 'NOW PLAYING' : 'LISTEN NOW';
+      });
+    }
+    toggles.forEach(function (btn) {
+      btn.addEventListener('click', function () { setPlaying(!playing); });
+    });
+
+    // ---------- Waveform canvas ----------
+    var canvas = document.getElementById('kb-wave');
+    var ctx = canvas.getContext('2d');
+    var word = document.getElementById('kb-word');
+    var inner = hero.querySelector('.kb-hero__inner');
+    var title = hero.querySelector('.kb-hero__title');
+    var W = 0, H = 0, dpr = 1, colorGrad = null, fadeGrad = null;
+    var BAR = 3, GAP = 3, bars = [], targets = [];
+
+    function layoutWave() {
+      var wordTop = inner.offsetTop + title.offsetTop + word.offsetTop;
+      var wordH = word.offsetHeight;
+      var top = wordTop + wordH * 0.32;
+      H = Math.round(wordH * 0.75);
+      W = hero.clientWidth;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.style.top = top + 'px';
+      canvas.style.height = H + 'px';
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      colorGrad = ctx.createLinearGradient(0, 0, W, 0);
+      colorGrad.addColorStop(0, '#dc2626');
+      colorGrad.addColorStop(0.36, '#e11d2a');
+      colorGrad.addColorStop(0.5, '#f5b400');
+      colorGrad.addColorStop(0.62, '#f5b400');
+      colorGrad.addColorStop(0.72, '#10b981');
+      colorGrad.addColorStop(1, '#10b981');
+
+      fadeGrad = ctx.createLinearGradient(0, 0, W, 0);
+      fadeGrad.addColorStop(0, 'rgba(0,0,0,0)');
+      fadeGrad.addColorStop(0.06, 'rgba(0,0,0,1)');
+      fadeGrad.addColorStop(0.8, 'rgba(0,0,0,1)');
+      fadeGrad.addColorStop(0.92, 'rgba(0,0,0,0)');
+
+      var n = Math.ceil(W / (BAR + GAP));
+      while (bars.length < n) { bars.push(Math.random()); targets.push(Math.random()); }
+      bars.length = targets.length = n;
+    }
+
+    var energy = 0.45, pointerU = -1, pointerBoost = 0;
+
+    function drawWave(t) {
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = colorGrad;
+      var mid = H / 2, n = bars.length;
+      for (var i = 0; i < n; i++) {
+        // drift each bar toward a fresh random target so the band feels "live"
+        if (Math.random() < 0.06) targets[i] = Math.random();
+        bars[i] += (targets[i] - bars[i]) * 0.18;
+        var u = i / n;
+        var env = 0.3 + 0.7 * Math.pow(Math.abs(Math.sin(u * 9.5 + t * 0.6) * Math.cos(u * 3.1 - t * 0.35)), 0.8);
+        var pulse = 0.35 + 0.65 * Math.abs(Math.sin(u * 40 + t * 3.2));
+        var boost = pointerU < 0 ? 0 : Math.exp(-Math.pow(u - pointerU, 2) / 0.0035) * pointerBoost;
+        var a = mid * Math.min(1, (env * pulse * (0.35 + 0.65 * bars[i]) * energy) + boost * 0.7);
+        a = Math.max(1, a);
+        ctx.fillRect(i * (BAR + GAP), mid - a, BAR, a * 2);
+      }
+      // fade both ends into the background
+      ctx.globalCompositeOperation = 'destination-in';
+      ctx.fillStyle = fadeGrad;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    // ---------- Parallax (pointer + scroll) ----------
+    var layers = [].map.call(hero.querySelectorAll('[data-depth]'), function (el) {
+      return { el: el, depth: parseFloat(el.dataset.depth) || 0 };
+    });
+    var mx = 0, my = 0, tx = 0, ty = 0;
+
+    if (finePointer && !reduceMotion) {
+      hero.addEventListener('pointermove', function (e) {
+        var r = hero.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width) * 2 - 1;
+        ty = ((e.clientY - r.top) / r.height) * 2 - 1;
+        pointerU = (e.clientX - r.left) / r.width;
+      });
+      hero.addEventListener('pointerleave', function () { tx = ty = 0; pointerU = -1; });
+    }
+
+    function applyParallax() {
+      var sy = Math.min(window.scrollY, hero.offsetHeight);
+      layers.forEach(function (l) {
+        var x = mx * l.depth;
+        var y = my * l.depth * 0.6 + -sy * (l.depth / 60);
+        l.el.style.transform = 'translate3d(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px,0)';
+      });
+    }
+
+    // ---------- Main loop (paused while the hero is off-screen) ----------
+    var running = false, visible = true, start = performance.now();
+
+    function frame(now) {
+      if (!visible) { running = false; return; }
+      var t = (now - start) / 1000;
+      mx += (tx - mx) * 0.06;
+      my += (ty - my) * 0.06;
+      energy += ((playing ? 1 : 0.45) - energy) * 0.05;
+      pointerBoost += ((pointerU < 0 ? 0 : 1) - pointerBoost) * 0.08;
+      applyParallax();
+      drawWave(t);
+      requestAnimationFrame(frame);
+    }
+    function startLoop() {
+      if (running || reduceMotion) return;
+      running = true;
+      requestAnimationFrame(frame);
+    }
+
+    function init() {
+      layoutWave();
+      if (reduceMotion) { drawWave(0); } else { startLoop(); }
+      hero.classList.add('is-ready');
+    }
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        layoutWave();
+        if (reduceMotion) drawWave(0);
+      }, 120);
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible) startLoop();
+      }).observe(hero);
+    }
+
+    // Re-measure once the display font is in, since it changes the word's height.
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(init);
+  })();
+</script>
+</body></html>
