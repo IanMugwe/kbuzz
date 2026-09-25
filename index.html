@@ -138,13 +138,13 @@
     }
 
     /* ---------- Layered hero ---------- */
-    #home { margin-top: -5rem; } /* slide under the sticky header */
     .kb-hero {
       --mx: 0; --my: 0;
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      min-height: clamp(760px, 100svh, 920px);
+      margin-top: -5rem; /* slide under the sticky header */
+      min-height: max(700px, 100svh);
       display: flex;
       flex-direction: column;
       background: #0b0b0d;
@@ -257,7 +257,7 @@
       animation: kb-portrait 1.4s .25s cubic-bezier(.2, .8, .2, 1) both;
     }
     @media (min-width: 768px) {
-      .kb-hero__portrait { height: 80%; left: 56%; }
+      .kb-hero__portrait { height: min(80%, 880px); left: 56%; }
     }
 
     /* Brush script lockup */
@@ -378,8 +378,115 @@
       }
     }
 
+
+    /* ---------- Pillars: paper canvas below the hero ---------- */
+    .kb-pillars {
+      position: relative;
+      background-color: #efebe4;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+    }
+    .kb-pillars__title {
+      font-family: "Anton", "Impact", sans-serif;
+      font-size: clamp(3.25rem, 6.4vw, 5.75rem);
+      line-height: .9;
+      text-transform: uppercase;
+      color: #0b0b0b;
+    }
+    .kb-pillars__script {
+      position: relative;
+      display: inline-block;
+      font-family: "Permanent Marker", cursive;
+      font-size: clamp(1.6rem, 2.9vw, 2.6rem);
+      line-height: .95;
+      text-transform: uppercase;
+      color: #0b0b0b;
+      rotate: -8deg;
+      margin-bottom: .35em;
+    }
+    .kb-pillars__script svg {
+      position: absolute;
+      left: 12%;
+      bottom: -.5em;
+      width: 125%;
+      height: .45em;
+      color: #e11d2a;
+      overflow: visible;
+    }
+    .kb-pillars__arrow { transition: transform .25s ease; }
+    .kb-pillars__arrow:hover { transform: translateX(6px); }
+
+    .kb-pillar { display: flex; flex-direction: column; align-items: flex-start; }
+    .kb-pillar__media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2.05 / 1;
+      overflow: hidden;
+      background: #1c1917;
+    }
+    .kb-pillar__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s cubic-bezier(.2, .8, .2, 1), filter .6s ease;
+    }
+    .kb-pillar:hover .kb-pillar__media img { transform: scale(1.06); filter: brightness(1.08); }
+    .kb-pillar__wave {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 48%;
+      translate: 0 -40%;
+      color: var(--c);
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .45));
+    }
+    .kb-pillar__wave path { stroke-dasharray: 360; stroke-dashoffset: 0; }
+    .kb-pillar:hover .kb-pillar__wave path { animation: kb-draw-in .9s cubic-bezier(.6, 0, .2, 1); }
+    .kb-pillar__num {
+      margin-top: 1.25rem;
+      font-family: "Anton", "Impact", sans-serif;
+      font-size: 1.6rem;
+      line-height: 1;
+      color: var(--c);
+    }
+    .kb-pillar__name {
+      font-family: "Anton", "Impact", sans-serif;
+      font-size: 1.75rem;
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: #0b0b0b;
+      letter-spacing: -.005em;
+    }
+    .kb-pillar__cta {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      margin-top: auto;
+      padding-top: 1.5rem;
+      padding-bottom: .55rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: #0b0b0b;
+    }
+    .kb-pillar__cta::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1.5px;
+      background: var(--c);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .kb-pillar__cta .material-symbols-outlined { transition: transform .25s ease; }
+    .kb-pillar:hover .kb-pillar__cta .material-symbols-outlined { transform: translateX(5px); }
+    .kb-pillar:hover .kb-pillar__cta::after { transform: scaleX(1.25); }
+    @keyframes kb-draw-in { from { stroke-dashoffset: 360; } to { stroke-dashoffset: 0; } }
     @media (prefers-reduced-motion: reduce) {
-      .kb-hero *, .kb-hero *::before, .kb-hero *::after { animation: none !important; transition: none !important; }
+      .kb-hero *, .kb-hero *::before, .kb-hero *::after, .kb-pillars * { animation: none !important; transition: none !important; }
       .kb-hero__underline path { stroke-dashoffset: 0; }
       .kb-hero__crown { transform: rotate(8deg); }
     }
@@ -421,12 +528,9 @@
 </div>
 </header>
 <!-- 2. BREAKING / TRENDING TICKER -->
-<!-- MAIN EDITORIAL CONTAINER -->
-<main class="max-w-[1440px] mx-auto bg-[#FAF8F5] border-x border-[#E2E0D8]">
-<!-- 3. HERO & TRENDING DISPATCHES (ASYMMETRIC SPLIT 70% / 30%) -->
-<section class="relative bg-[#0d0d0f] text-white overflow-hidden" id="home">
+<!-- 3. FULL-BLEED HERO -->
 <!-- Layered Interactive Hero (live type, animated waveform, cut-out portrait) -->
-<div class="kb-hero" id="hero">
+<div class="kb-hero" id="home">
 <h1 class="sr-only">Culture — The Sound of Our Time</h1>
 <!-- Faded backdrop: glow, grain and vignette -->
 <div aria-hidden="true" class="kb-hero__bg" data-depth="-6"></div>
@@ -491,135 +595,88 @@
 <div class="w-full h-full bg-[#FAF8F5] [clip-path:polygon(0_100%,100%_100%,100%_40%,95%_80%,90%_20%,85%_70%,80%_10%,75%_60%,70%_20%,65%_70%,60%_15%,55%_65%,50%_10%,45%_60%,40%_20%,35%_75%,30%_15%,25%_65%,20%_20%,15%_70%,10%_10%,5%_60%,0_20%)]"></div>
 </div>
 </div>
-<!-- 3. OUR PILLARS / THE STORIES THAT MOVE US (Warm Broadsheet Canvas) -->
-<div class="bg-[#FAF8F5] text-on-surface py-16 px-6 lg:px-12 border-b border-[#E2E0D8]" id="pillars">
-<div class="max-w-[1440px] mx-auto">
+<!-- MAIN EDITORIAL CONTAINER -->
+<main class="max-w-[1440px] mx-auto bg-[#FAF8F5] border-x border-[#E2E0D8]">
+<section class="relative bg-[#0d0d0f] text-white overflow-hidden">
+<!-- 3. OUR PILLARS / THE STORIES THAT MOVE US (Paper Canvas) -->
+<div class="kb-pillars text-on-surface py-16 lg:py-20 px-6 lg:px-12" id="pillars">
+<div class="max-w-[1440px] mx-auto relative">
 <!-- Section Header -->
-<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 lg:mb-14">
 <div>
-<span class="font-label-sm text-xs font-bold uppercase tracking-widest text-primary block mb-2">
-            OUR PILLARS
-          </span>
-<div class="flex items-baseline flex-wrap gap-3">
-<h2 class="font-display-xl text-4xl sm:text-6xl font-extrabold uppercase tracking-tight text-black leading-none">
-              THE STORIES
-            </h2>
-<span class="font-headline-md italic font-bold text-primary text-3xl sm:text-4xl underline decoration-primary decoration-4 underline-offset-8">
-              THAT MOVE US
-            </span>
+<span class="font-label-sm text-xs font-bold uppercase tracking-[0.18em] text-[#e11d2a] block mb-3">OUR PILLARS</span>
+<h2 class="flex items-end flex-wrap gap-x-8 gap-y-2">
+<span class="kb-pillars__title">The Stories</span>
+<span class="kb-pillars__script">That<br/>Move Us<svg aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 16 C 60 8, 130 4, 196 3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="6"></path></svg></span>
+</h2>
 </div>
-</div>
-<div class="max-w-md flex items-center justify-between gap-4">
-<p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
+<div class="flex items-center gap-10 lg:gap-24 lg:pb-3">
+<p class="font-body-md text-sm text-stone-800 leading-relaxed max-w-[17rem]">
             From the streets to the studios, from the classroom to the boardroom — we tell the stories that shape our world.
           </p>
-<a class="w-10 h-10 rounded-full border border-black flex items-center justify-center flex-shrink-0 hover:bg-black hover:text-white transition-colors" href="#culture">
-<span class="material-symbols-outlined text-lg">arrow_forward</span>
+<a aria-label="Explore all pillars" class="kb-pillars__arrow text-black" href="#culture">
+<span class="material-symbols-outlined text-3xl">arrow_forward</span>
 </a>
 </div>
 </div>
 <!-- 4-Column Pillar Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
 <!-- 01 CULTURE -->
-<div class="group bg-white border border-[#E2E0D8] p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
-<div>
-<div class="relative aspect-[4/3] overflow-hidden mb-4 bg-stone-900">
-<img alt="Culture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoIYd-SCTput-gOBGe_ubQ-qbL8YTG75PVRfgNVaRM131HKr41Bn6iqLb4basN3_KqpwcIiC5m8w76az08Y3HR1ZB0LmmjLCUGALvJZiEg2mgJydkzIemxWuiS4f7PP3IF-TMx8CnUk1I7uSGa7UPRFCDzMajrhZU4fb89nxUycMhd-9XaELZh0H7cw6MKzIyJNIH4p8OLDdaL7dO3T8V14OFqUdEAqpaRxeEe-AiU9fpzyeu6KFDp"/>
-<!-- Red Soundwave Graphic Overlay -->
-<div class="absolute bottom-2 left-2 text-primary font-bold text-lg select-none drop-shadow">
-<span class="tracking-tighter">/∿∿∿/∿</span>
+<a class="kb-pillar group" href="#culture" style="--c:#e11d2a">
+<div class="kb-pillar__media">
+<img alt="Culture" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoIYd-SCTput-gOBGe_ubQ-qbL8YTG75PVRfgNVaRM131HKr41Bn6iqLb4basN3_KqpwcIiC5m8w76az08Y3HR1ZB0LmmjLCUGALvJZiEg2mgJydkzIemxWuiS4f7PP3IF-TMx8CnUk1I7uSGa7UPRFCDzMajrhZU4fb89nxUycMhd-9XaELZh0H7cw6MKzIyJNIH4p8OLDdaL7dO3T8V14OFqUdEAqpaRxeEe-AiU9fpzyeu6KFDp"/>
+<svg aria-hidden="true" class="kb-pillar__wave" viewBox="0 0 94 50"><path d="M2 30 L12 12 L18 40 L26 6 L33 44 L40 14 L47 36 L54 10 L61 42 L68 18 L76 34 L84 22 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
-</div>
-<div class="font-mono font-bold text-primary text-xs uppercase">01</div>
-<h3 class="font-headline-sm text-xl font-extrabold uppercase text-black mt-0.5 tracking-tight group-hover:text-primary transition-colors">
-              CULTURE
-            </h3>
-<p class="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
-              Music, art, fashion, food, traditions and the places that define us.
-            </p>
-          </div>
-<div class="mt-5 pt-3 border-t border-stone-100">
-<a class="inline-flex items-center gap-1.5 font-label-md text-xs font-bold uppercase tracking-wider text-black group-hover:text-primary transition-colors" href="#culture">
+<div class="kb-pillar__num">01</div>
+<h3 class="kb-pillar__name">Culture</h3>
+<p class="font-body-sm text-[13px] text-stone-700 mt-3 leading-relaxed max-w-[15rem]">Music, art, fashion, food, traditions and the places that define us.</p>
+<span class="kb-pillar__cta">
 <span>EXPLORE</span>
-<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</span>
 </a>
-</div>
-</div>
 <!-- 02 PEOPLE -->
-<div class="group bg-white border border-[#E2E0D8] p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
-<div>
-<div class="relative aspect-[4/3] overflow-hidden mb-4 bg-stone-900">
-<img alt="People" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1_tBZ9yZglckLJkfcIe7rBwmLQLyjrGWjhk1M3F_57pAZVRhAcvNfnSyJKZhtWy4Nwd8nwhVTQW9Diixqx2U2yKQngHKzP820AD-ooac3FtszXi7ziN85OqadsHAz9ifCBavk9LQRd-pgPmtr2zDDdcL-03oPj871LuIZ3sT-3oItO5cS4Eklzh08gRufkj3B6fhQN8W4Xxo_M5iShOEHr3CSpYddpfGW4HUX-Z4"/>
-<!-- Cyan Soundwave Overlay -->
-<div class="absolute bottom-2 left-2 text-secondary font-bold text-lg select-none drop-shadow">
-<span class="tracking-tighter">/∿∿∿/∿</span>
+<a class="kb-pillar group" href="#people" style="--c:#0f8a5f">
+<div class="kb-pillar__media">
+<img alt="People" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1_tBZ9yZglckLJkfcIe7rBwmLQLyjrGWjhk1M3F_57pAZVRhAcvNfnSyJKZhtWy4Nwd8nwhVTQW9Diixqx2U2yKQngHKzP820AD-ooac3FtszXi7ziN85OqadsHAz9ifCBavk9LQRd-pgPmtr2zDDdcL-03oPj871LuIZ3sT-3oItO5cS4Eklzh08gRufkj3B6fhQN8W4Xxo_M5iShOEHr3CSpYddpfGW4HUX-Z4"/>
+<svg aria-hidden="true" class="kb-pillar__wave" viewBox="0 0 94 50"><path d="M2 30 L10 26 L16 34 L22 16 L29 42 L35 20 L41 36 L47 12 L53 44 L59 22 L66 34 L74 26 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
-</div>
-<div class="font-mono font-bold text-secondary text-xs uppercase">02</div>
-<h3 class="font-headline-sm text-xl font-extrabold uppercase text-black mt-0.5 tracking-tight group-hover:text-primary transition-colors">
-              PEOPLE
-            </h3>
-<p class="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
-              Profiles, interviews and real stories from everyday changemakers.
-            </p>
-</div>
-<div class="mt-5 pt-3 border-t border-stone-100">
-<a class="inline-flex items-center gap-1.5 font-label-md text-xs font-bold uppercase tracking-wider text-black group-hover:text-primary transition-colors" href="#people">
+<div class="kb-pillar__num">02</div>
+<h3 class="kb-pillar__name">People</h3>
+<p class="font-body-sm text-[13px] text-stone-700 mt-3 leading-relaxed max-w-[15rem]">Profiles, interviews and real stories from everyday changemakers.</p>
+<span class="kb-pillar__cta">
 <span>EXPLORE</span>
-<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</span>
 </a>
-</div>
-</div>
 <!-- 03 YOUTH -->
-<div class="group bg-white border border-[#E2E0D8] p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
-<div>
-<div class="relative aspect-[4/3] overflow-hidden mb-4 bg-stone-900">
-<img alt="Youth" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA9dUwITR1VnNLOQjoQjOXUJ0Sm-UAXk6q0jGu-I_k7dfXtRipV-iRRcda3bLkTiBj0OOIBqOD_PX42uRkNACn8WPU0Tv9NxlqXJQ_XEBRyfTRWyposMv8-YiniHXQgBUdaRzi5Qe-LBn4y6uAXCC3GTAB5qqNgKj02cbqcbHD0rzPNK7jCRk2oKVKu93jZW17pK0Ghq_40sUGNQgR-f-RD4IDDyZaJuM7exIXQUA"/>
-<!-- Yellow Soundwave Overlay -->
-<div class="absolute bottom-2 left-2 text-amber-500 font-bold text-lg select-none drop-shadow">
-<span class="tracking-tighter">/∿∿∿/∿</span>
+<a class="kb-pillar group" href="#youth" style="--c:#e0a100">
+<div class="kb-pillar__media">
+<img alt="Youth" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA9dUwITR1VnNLOQjoQjOXUJ0Sm-UAXk6q0jGu-I_k7dfXtRipV-iRRcda3bLkTiBj0OOIBqOD_PX42uRkNACn8WPU0Tv9NxlqXJQ_XEBRyfTRWyposMv8-YiniHXQgBUdaRzi5Qe-LBn4y6uAXCC3GTAB5qqNgKj02cbqcbHD0rzPNK7jCRk2oKVKu93jZW17pK0Ghq_40sUGNQgR-f-RD4IDDyZaJuM7exIXQUA"/>
+<svg aria-hidden="true" class="kb-pillar__wave" viewBox="0 0 94 50"><path d="M2 30 L9 24 L15 36 L21 20 L27 40 L33 18 L39 38 L45 22 L51 36 L58 26 L66 32 L78 28 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
-</div>
-<div class="font-mono font-bold text-amber-600 text-xs uppercase">03</div>
-<h3 class="font-headline-sm text-xl font-extrabold uppercase text-black mt-0.5 tracking-tight group-hover:text-primary transition-colors">
-              YOUTH
-            </h3>
-<p class="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
-              The dreams, struggles and bold ideas of a new generation.
-            </p>
-</div>
-<div class="mt-5 pt-3 border-t border-stone-100">
-<a class="inline-flex items-center gap-1.5 font-label-md text-xs font-bold uppercase tracking-wider text-black group-hover:text-primary transition-colors" href="#youth">
+<div class="kb-pillar__num">03</div>
+<h3 class="kb-pillar__name">Youth</h3>
+<p class="font-body-sm text-[13px] text-stone-700 mt-3 leading-relaxed max-w-[15rem]">The dreams, struggles and bold ideas of a new generation.</p>
+<span class="kb-pillar__cta">
 <span>EXPLORE</span>
-<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</span>
 </a>
-</div>
-</div>
 <!-- 04 IDEAS -->
-<div class="group bg-white border border-[#E2E0D8] p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
-<div>
-<div class="relative aspect-[4/3] overflow-hidden mb-4 bg-stone-900">
-<img alt="Ideas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMR6Fz5TjatqFdCpqcvHiSfNdZMgPUfmMtVp_T4hi8ryFbSJf1zjqZulZIvnyn1LcMQJK4ORRzQe96Xam5hXABWolKQNqF6FbrK4ZQdajCZ-N2yZTk_U-vkpMv1Yvrdcv2T-SGijveF0zpLtMNBEFjtqBCsZAciKGzOpPvrZgCXynkisXfk_a6FWkDwHIfDnOBMk2RoX8O-3YJFOA_fONd34AC8D4dEQ8TW1urP9k"/>
-<!-- Green Soundwave Overlay -->
-<div class="absolute bottom-2 left-2 text-emerald-500 font-bold text-lg select-none drop-shadow">
-<span class="tracking-tighter">/∿∿∿/∿</span>
+<a class="kb-pillar group" href="#ideas" style="--c:#0f8a5f">
+<div class="kb-pillar__media">
+<img alt="Ideas" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMR6Fz5TjatqFdCpqcvHiSfNdZMgPUfmMtVp_T4hi8ryFbSJf1zjqZulZIvnyn1LcMQJK4ORRzQe96Xam5hXABWolKQNqF6FbrK4ZQdajCZ-N2yZTk_U-vkpMv1Yvrdcv2T-SGijveF0zpLtMNBEFjtqBCsZAciKGzOpPvrZgCXynkisXfk_a6FWkDwHIfDnOBMk2RoX8O-3YJFOA_fONd34AC8D4dEQ8TW1urP9k"/>
+<svg aria-hidden="true" class="kb-pillar__wave" viewBox="0 0 94 50"><path d="M2 30 L10 22 L16 38 L23 14 L30 42 L37 18 L44 38 L51 24 L58 34 L66 28 L76 31 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
-</div>
-<div class="font-mono font-bold text-emerald-600 text-xs uppercase">04</div>
-<h3 class="font-headline-sm text-xl font-extrabold uppercase text-black mt-0.5 tracking-tight group-hover:text-primary transition-colors">
-              IDEAS
-            </h3>
-<p class="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
-              Thoughts worth questioning, conversations that matter, ideas for what's next.
-            </p>
-</div>
-<div class="mt-5 pt-3 border-t border-stone-100">
-<a class="inline-flex items-center gap-1.5 font-label-md text-xs font-bold uppercase tracking-wider text-black group-hover:text-primary transition-colors" href="#ideas">
+<div class="kb-pillar__num">04</div>
+<h3 class="kb-pillar__name">Ideas</h3>
+<p class="font-body-sm text-[13px] text-stone-700 mt-3 leading-relaxed max-w-[15rem]">Thoughts worth questioning, conversations that matter, ideas for what's next.</p>
+<span class="kb-pillar__cta">
 <span>EXPLORE</span>
-<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</span>
 </a>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -1252,7 +1309,7 @@
     // Set this to the Radio 98.4 stream URL to make "Listen Now" play real audio.
     var STREAM_URL = '';
 
-    var hero = document.getElementById('hero');
+    var hero = document.getElementById('home');
     var header = document.getElementById('site-header');
     if (!hero) return;
 
