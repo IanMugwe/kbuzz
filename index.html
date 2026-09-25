@@ -193,6 +193,14 @@
 
     /* Big textured word, fading out toward its base */
     .kb-hero__title { position: relative; margin-top: .75rem; }
+    .kb-logo {
+      font-family: "Anton", "Impact", sans-serif;
+      font-size: 1.6rem;
+      line-height: 1;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+    @media (min-width: 1024px) { .kb-logo { font-size: 1.9rem; } }
     .kb-hero__word {
       position: relative;
       z-index: 1;
@@ -916,8 +924,8 @@
 <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
 <div class="flex items-center gap-4">
 <a class="flex items-baseline gap-2 group select-none" href="#">
-<span class="font-display-xl text-2xl lg:text-3xl font-bold tracking-tighter text-white uppercase italic group-hover:text-primary transition-colors">
-          THE BUZZ
+<span class="kb-logo text-white group-hover:text-primary transition-colors">
+          DIGITAL DIGEST
         </span>
 <span class="font-label-sm text-[11px] text-primary tracking-widest uppercase font-semibold hidden sm:inline-block border-l border-stone-700 pl-2">
           KIAMAIKO FM
