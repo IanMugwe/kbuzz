@@ -485,8 +485,372 @@
     .kb-pillar:hover .kb-pillar__cta .material-symbols-outlined { transform: translateX(5px); }
     .kb-pillar:hover .kb-pillar__cta::after { transform: scaleX(1.25); }
     @keyframes kb-draw-in { from { stroke-dashoffset: 360; } to { stroke-dashoffset: 0; } }
+
+    /* ---------- Shared editorial system (sections below the pillars) ---------- */
+    .kb-section { position: relative; padding: 5.5rem 1.5rem; }
+    @media (min-width: 1024px) { .kb-section { padding: 7rem 3rem; } }
+    .kb-wrap { max-width: 1440px; margin: 0 auto; position: relative; }
+
+    .kb-paper {
+      background-color: #efebe4;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+      color: #0b0b0b;
+    }
+    .kb-paper--deep { background-color: #e8e3da; }
+
+    .kb-ink {
+      position: relative;
+      isolation: isolate;
+      background: #0b0b0d;
+      color: #f1eee9;
+    }
+    .kb-ink::before,
+    .kb-ink::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+    .kb-ink::before {
+      background:
+        radial-gradient(ellipse 45% 55% at 18% 25%, rgba(183, 0, 17, .24), transparent 70%),
+        radial-gradient(ellipse 40% 50% at 88% 75%, rgba(0, 108, 74, .18), transparent 70%);
+    }
+    .kb-ink::after {
+      opacity: .2;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Section headers: kicker + Anton display + brush script */
+    .kb-head {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem 4rem;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+    }
+    @media (min-width: 1024px) { .kb-head { flex-direction: row; align-items: flex-end; } }
+    .kb-head__title { display: flex; flex-wrap: wrap; align-items: flex-end; column-gap: 2rem; row-gap: .75rem; margin-top: .75rem; }
+    .kb-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #e11d2a;
+    }
+    .kb-display {
+      font-family: "Anton", "Impact", sans-serif;
+      font-size: clamp(2.75rem, 5.6vw, 5.25rem);
+      line-height: .92;
+      text-transform: uppercase;
+      color: #0b0b0b;
+    }
+    .kb-ink .kb-display { color: #f5f2ed; }
+    .kb-script {
+      position: relative;
+      display: inline-block;
+      font-family: "Permanent Marker", cursive;
+      font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+      line-height: .95;
+      text-transform: uppercase;
+      rotate: -6deg;
+      margin-bottom: .35em;
+      color: #0b0b0b;
+    }
+    .kb-ink .kb-script { color: #f1eee9; }
+    .kb-script svg {
+      position: absolute;
+      left: 8%;
+      bottom: -.5em;
+      width: 100%;
+      height: .45em;
+      color: #e11d2a;
+      overflow: visible;
+    }
+    .kb-script svg path { stroke-dasharray: 220; stroke-dashoffset: 0; }
+    .kb-rise.is-in .kb-script svg path { animation: kb-draw-in 1s .35s cubic-bezier(.6, 0, .2, 1) both; }
+    .kb-lede { font-size: 14px; line-height: 1.6; color: #292524; max-width: 20rem; }
+
+    /* Type */
+    .kb-title {
+      font-family: "Anton", "Impact", sans-serif;
+      line-height: 1.04;
+      text-transform: uppercase;
+      color: #0b0b0b;
+      transition: color .25s ease;
+    }
+    .kb-title--light { color: #f5f2ed; }
+    .group:hover .kb-title { color: var(--c, #e11d2a); }
+    .kb-body { font-size: 14px; line-height: 1.7; color: #44403c; }
+    .kb-body--light { color: #d6d3d1; }
+    .kb-meta {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #57534e;
+    }
+    .kb-meta--accent, .kb-accent { color: var(--c, #e11d2a); font-weight: 700; }
+
+    /* Links + pills */
+    .kb-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding-bottom: .45rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: inherit;
+    }
+    .kb-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1.5px;
+      background: var(--c, #e11d2a);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .kb-link .material-symbols-outlined { transition: transform .25s ease; }
+    .group:hover .kb-link .material-symbols-outlined, .kb-link:hover .material-symbols-outlined { transform: translateX(4px); }
+    .group:hover .kb-link::after, .kb-link:hover::after { transform: scaleX(1.2); }
+
+    .kb-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .6rem 1.15rem;
+      border: 1.5px solid currentColor;
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: #0b0b0b;
+      transition: background-color .25s, color .25s, border-color .25s, transform .25s;
+    }
+    .kb-pill:hover, .kb-pill[aria-pressed="true"] { background: #0b0b0b; border-color: #0b0b0b; color: #fff; }
+    .kb-pill:active { transform: scale(.97); }
+    .kb-pill--solid { background: #0b0b0b; border-color: #0b0b0b; color: #fff; padding: .8rem 1.5rem; }
+    .kb-pill--solid:hover { background: #e11d2a; border-color: #e11d2a; }
+    .kb-pill--red { background: #e11d2a; border-color: #e11d2a; color: #fff; padding: .8rem 1.4rem; }
+    .kb-pill--red:hover { background: #fff; border-color: #fff; color: #0b0b0b; }
+    .kb-pill--sm { padding: .45rem .9rem; font-size: 10px; }
+    .kb-pill--green { color: #0f8a5f; }
+    .kb-pill--green:hover { background: #0f8a5f; border-color: #0f8a5f; color: #fff; }
+
+    .kb-input {
+      padding: .85rem 1.25rem;
+      border: 1.5px solid #0b0b0b;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, .55);
+      color: #0b0b0b;
+      font-size: 14px;
+      outline: none;
+      transition: background-color .25s, box-shadow .25s;
+    }
+    .kb-input:focus { background: #fff; box-shadow: 0 0 0 3px rgba(225, 29, 42, .25); border-color: #0b0b0b; }
+    .kb-input--dark { border-color: rgba(255, 255, 255, .25); background: rgba(255, 255, 255, .06); color: #fff; }
+    .kb-input--dark::placeholder { color: #a8a29e; }
+    .kb-input--dark:focus { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .5); }
+
+    /* Media frames */
+    .kb-media { position: relative; overflow: hidden; background: #1c1917; }
+    .kb-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2, .8, .2, 1), filter .7s ease; }
+    .group:hover .kb-media img { transform: scale(1.05); filter: brightness(1.06); }
+    .kb-media__tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: .4rem .75rem;
+      background: #0b0b0b;
+      color: #fff;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .kb-wave {
+      position: absolute;
+      left: 0;
+      bottom: 12%;
+      width: 42%;
+      max-width: 220px;
+      color: var(--c, #e11d2a);
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .45));
+      pointer-events: none;
+    }
+    .kb-wave path { stroke-dasharray: 360; stroke-dashoffset: 0; }
+    .group:hover .kb-wave path { animation: kb-draw-in .9s cubic-bezier(.6, 0, .2, 1); }
+
+    /* Latest dispatches */
+    .kb-stack { display: flex; flex-direction: column; flex: 1; padding-top: 1.25rem; border-top: 2px solid #0b0b0b; }
+    .kb-stack::before { content: ""; display: block; width: 3rem; height: 4px; margin: -1.4rem 0 1.25rem; background: var(--c); transition: width .35s ease; }
+    .kb-stack:hover::before { width: 6rem; }
+    .kb-quote { display: flex; flex-direction: column; justify-content: space-between; padding: 2rem; }
+    .kb-quote__mark { font-family: "Permanent Marker", cursive; font-size: 3.5rem; line-height: .6; color: #e11d2a; }
+    .kb-quote__text { font-family: "Anton", "Impact", sans-serif; font-size: 1.85rem; line-height: 1.12; text-transform: uppercase; color: #f5f2ed; }
+    .kb-quote__rule { width: 5rem; height: .9rem; margin: 1.25rem 0 1rem; color: #e11d2a; overflow: visible; }
+    .kb-quote__name { font-family: "Permanent Marker", cursive; font-size: 1.35rem; color: #f5b400; }
+    .kb-quote__stat { font-family: "Anton", "Impact", sans-serif; font-size: 3rem; line-height: 1; color: #10b981; }
+
+    /* Events */
+    .kb-ticket {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 1.75rem;
+      background: rgba(255, 255, 255, .5);
+      border-top: 5px solid var(--c);
+      transition: translate .35s ease, box-shadow .35s ease, background-color .35s ease;
+    }
+    .kb-ticket:hover { translate: 0 -6px; background: rgba(255, 255, 255, .8); box-shadow: 0 24px 40px -24px rgba(0, 0, 0, .35); }
+    /* punched ticket notches */
+    .kb-ticket::before, .kb-ticket::after {
+      content: "";
+      position: absolute;
+      top: 6.4rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 9999px;
+      background: #efebe4;
+    }
+    .kb-ticket::before { left: -.55rem; }
+    .kb-ticket::after { right: -.55rem; }
+    .kb-ticket__date { display: flex; flex-direction: column; line-height: 1; }
+    .kb-ticket__month { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .2em; color: var(--c); }
+    .kb-ticket__day { font-family: "Anton", "Impact", sans-serif; font-size: 3.75rem; color: #0b0b0b; margin-top: .25rem; }
+    .kb-badge {
+      padding: .35rem .7rem;
+      border: 1.5px solid var(--c);
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--c);
+    }
+
+    /* Community profiles */
+    .kb-profile { display: flex; flex-direction: column; gap: 1.75rem; }
+    @media (min-width: 768px) { .kb-profile { flex-direction: row; } }
+    .kb-profile__media { flex-shrink: 0; width: 100%; aspect-ratio: 4 / 5; }
+    @media (min-width: 768px) { .kb-profile__media { width: 15rem; } }
+    .kb-profile__quote { margin-top: .75rem; font-family: "Permanent Marker", cursive; font-size: 1.1rem; line-height: 1.35; color: var(--c); rotate: -1.5deg; }
+
+    /* Studio / video */
+    .kb-section--torn { padding-top: 7.5rem; padding-bottom: 7.5rem; }
+    .kb-tear { position: absolute; left: 0; right: 0; height: 2rem; z-index: 2; }
+    .kb-tear--top {
+      top: -1px;
+      background: var(--tear-top);
+      clip-path: polygon(0 0, 100% 0, 100% 60%, 95% 20%, 90% 80%, 85% 30%, 80% 90%, 75% 40%, 70% 80%, 65% 30%, 60% 85%, 55% 35%, 50% 90%, 45% 40%, 40% 80%, 35% 25%, 30% 85%, 25% 35%, 20% 80%, 15% 30%, 10% 90%, 5% 40%, 0 80%);
+    }
+    .kb-tear--bottom {
+      bottom: -1px;
+      background: var(--tear-bottom);
+      clip-path: polygon(0 100%, 100% 100%, 100% 40%, 95% 80%, 90% 20%, 85% 70%, 80% 10%, 75% 60%, 70% 20%, 65% 70%, 60% 15%, 55% 65%, 50% 10%, 45% 60%, 40% 20%, 35% 75%, 30% 15%, 25% 65%, 20% 20%, 15% 70%, 10% 10%, 5% 60%, 0 20%);
+    }
+    .kb-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: 5rem;
+      height: 5rem;
+      display: grid;
+      place-items: center;
+      border-radius: 9999px;
+      border: 2px solid rgba(255, 255, 255, .9);
+      color: #fff;
+      background: rgba(0, 0, 0, .3);
+      backdrop-filter: blur(6px);
+      transition: transform .3s ease, background-color .3s ease, border-color .3s ease;
+    }
+    .group:hover .kb-play { transform: scale(1.1); background: #e11d2a; border-color: #e11d2a; }
+    .kb-episode { display: flex; gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid rgba(255, 255, 255, .08); cursor: pointer; }
+    .kb-episode__thumb { width: 8.5rem; aspect-ratio: 16 / 10; flex-shrink: 0; }
+    .kb-episode__time {
+      position: absolute;
+      right: .35rem;
+      bottom: .35rem;
+      padding: .1rem .35rem;
+      background: rgba(0, 0, 0, .85);
+      color: #fff;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 9px;
+    }
+
+    /* Radio */
+    .kb-show {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1.1rem 0 1.1rem 1.25rem;
+      border-top: 1px solid rgba(0, 0, 0, .15);
+      box-shadow: inset 3px 0 0 var(--c);
+      transition: padding-left .3s ease, background-color .3s ease;
+    }
+    .kb-show:last-child { border-bottom: 1px solid rgba(0, 0, 0, .15); }
+    .kb-show:hover { padding-left: 1.75rem; background: rgba(255, 255, 255, .4); }
+    .kb-tuner { padding: 2.25rem 2rem 2rem; box-shadow: 0 40px 60px -30px rgba(0, 0, 0, .6); }
+    .kb-stamp {
+      position: absolute;
+      top: -1.1rem;
+      right: 1.5rem;
+      padding: .45rem 1rem;
+      background: #e11d2a;
+      color: #fff;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      rotate: 3deg;
+      box-shadow: 0 8px 20px -8px rgba(225, 29, 42, .6);
+    }
+    .kb-tuner__freq { font-family: "Anton", "Impact", sans-serif; font-size: clamp(5rem, 9vw, 7.5rem); line-height: .9; color: #f5f2ed; }
+    .kb-eq { display: flex; align-items: center; justify-content: center; gap: 3px; height: 3.5rem; }
+    .kb-eq i {
+      width: 3px;
+      height: 20%;
+      border-radius: 2px;
+      background: var(--c);
+      animation: kb-eq 1.2s ease-in-out infinite;
+      animation-delay: var(--d);
+    }
+
+    /* Newsletter → footer paint strip */
+    .kb-section--newsletter { padding-bottom: 6rem; }
+    .kb-paint { position: relative; height: 5.5rem; background: #18181B; overflow: hidden; }
+    .kb-paint::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 1.75rem;
+      z-index: 2;
+      background: #e8e3da;
+      clip-path: polygon(0 0, 100% 0, 100% 55%, 96% 85%, 92% 35%, 87% 75%, 82% 25%, 78% 70%, 73% 30%, 68% 80%, 63% 40%, 58% 75%, 53% 20%, 48% 70%, 43% 35%, 38% 85%, 33% 30%, 28% 70%, 23% 25%, 18% 80%, 13% 35%, 8% 75%, 4% 30%, 0 65%);
+    }
+    .kb-paint svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+    /* Scroll reveal (only when JS is running) */
+    .kb-js .kb-rise { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2, .8, .2, 1), transform .9s cubic-bezier(.2, .8, .2, 1), translate .35s ease, box-shadow .35s ease, background-color .35s ease; transition-delay: var(--d, 0s), var(--d, 0s), 0s, 0s, 0s; }
+    .kb-js .kb-rise.is-in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
-      .kb-hero *, .kb-hero *::before, .kb-hero *::after, .kb-pillars * { animation: none !important; transition: none !important; }
+      .kb-hero *, .kb-hero *::before, .kb-hero *::after, .kb-pillars *, .kb-section *, .kb-paint * { animation: none !important; transition: none !important; }
       .kb-hero__underline path { stroke-dashoffset: 0; }
       .kb-hero__crown { transform: rotate(8deg); }
     }
@@ -596,7 +960,7 @@
 </div>
 </div>
 <!-- MAIN EDITORIAL CONTAINER -->
-<main class="max-w-[1440px] mx-auto bg-[#FAF8F5] border-x border-[#E2E0D8]">
+<main>
 <section class="relative bg-[#0d0d0f] text-white overflow-hidden">
 <!-- 3. OUR PILLARS / THE STORIES THAT MOVE US (Paper Canvas) -->
 <div class="kb-pillars text-on-surface py-16 lg:py-20 px-6 lg:px-12" id="pillars">
@@ -682,458 +1046,434 @@
 </div>
 </section>
 <!-- 4. LATEST STORIES (ASYMMETRIC EDITORIAL GRID) -->
-<section class="p-6 lg:p-12 border-b border-[#E2E0D8]">
-<div class="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-on-surface pb-4 mb-8 gap-4">
+<section class="kb-paper kb-paper--deep kb-section">
+<div class="kb-wrap">
+<div class="kb-head kb-rise">
 <div>
-<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
-<span class="w-1.5 h-1.5 bg-primary"></span>
-            DISPATCH DESK
-          </span>
-<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight">
-            LATEST DISPATCHES / HABARI ZA SASA
-          </h2>
+<span class="kb-kicker">DISPATCH DESK</span>
+<h2 class="kb-head__title">
+<span class="kb-display">Latest Dispatches</span>
+<span class="kb-script">Habari<br/>za Sasa<svg aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 16 C 60 8, 130 4, 196 3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="6"></path></svg></span>
+</h2>
 </div>
 <!-- Filter Pills -->
-<div class="flex flex-wrap items-center gap-2 font-label-sm text-label-sm uppercase">
-<button class="px-3 py-1.5 bg-black text-white font-semibold">All Stories</button>
-<button class="px-3 py-1.5 bg-white border border-[#E2E0D8] text-on-surface hover:bg-stone-200 transition-colors">Investigative</button>
-<button class="px-3 py-1.5 bg-white border border-[#E2E0D8] text-on-surface hover:bg-stone-200 transition-colors">Music &amp; Sheng</button>
-<button class="px-3 py-1.5 bg-white border border-[#E2E0D8] text-on-surface hover:bg-stone-200 transition-colors">Policy</button>
-<button class="px-3 py-1.5 bg-white border border-[#E2E0D8] text-on-surface hover:bg-stone-200 transition-colors">Enterprise</button>
+<div class="flex flex-wrap items-center gap-2 lg:justify-end lg:max-w-[34rem]" data-kb-filter="">
+<button aria-pressed="true" class="kb-pill kb-pill--sm" type="button">All Stories</button>
+<button aria-pressed="false" class="kb-pill kb-pill--sm" type="button">Investigative</button>
+<button aria-pressed="false" class="kb-pill kb-pill--sm" type="button">Music &amp; Sheng</button>
+<button aria-pressed="false" class="kb-pill kb-pill--sm" type="button">Policy</button>
+<button aria-pressed="false" class="kb-pill kb-pill--sm" type="button">Enterprise</button>
 </div>
 </div>
 <!-- Asymmetrical 4-Card Layout -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 items-stretch">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12 items-stretch">
 <!-- Feature Card (Spans 5 cols) -->
-<article class="lg:col-span-5 border border-[#E2E0D8] bg-white p-6 flex flex-col justify-between group">
-<div>
-<div class="relative overflow-hidden mb-4 border border-[#E2E0D8]">
-<img class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Intense portrait of a Kenyan urban agriculturalist tending lush green rooftop vegetables overlooking the Nairobi Eastlands skyline under bright daylight. Editorial photography emphasizing contrast between urban iron-sheet roofs and thriving organic vegetation. Vibrant deep greens, rich earth tones, and sharp architectural details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAar5umggD87HnMcgqwmEx4RhCuWXzU2BeF1mDlzsQJTCk6Me2qKfoREGLNm7tVXs9c7SoJq_G6DwodWrBNhUSW2MzIqL5rpAnsLERmljbeyOgaMiE1k6kUakhgzuG047nLFmgrYwdmW_ubhRjzNfouUdoahTFX7LB6PI4VoyeH0TgMWQ8c3k-HCyoMFiD8CoIhw0Pw3wOaHylGjPGj73ggvEKphiR4NpDijvb7dqc"/>
-<span class="absolute top-3 left-3 bg-[#18181B] text-white font-label-sm text-label-sm px-2.5 py-1 uppercase tracking-wider">
-                Ecological Resilience
-              </span>
+<article class="lg:col-span-5 flex flex-col group kb-rise" style="--c:#0f8a5f">
+<div class="kb-media aspect-[16/10]">
+<img alt="" data-alt="Intense portrait of a Kenyan urban agriculturalist tending lush green rooftop vegetables overlooking the Nairobi Eastlands skyline under bright daylight. Editorial photography emphasizing contrast between urban iron-sheet roofs and thriving organic vegetation. Vibrant deep greens, rich earth tones, and sharp architectural details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAar5umggD87HnMcgqwmEx4RhCuWXzU2BeF1mDlzsQJTCk6Me2qKfoREGLNm7tVXs9c7SoJq_G6DwodWrBNhUSW2MzIqL5rpAnsLERmljbeyOgaMiE1k6kUakhgzuG047nLFmgrYwdmW_ubhRjzNfouUdoahTFX7LB6PI4VoyeH0TgMWQ8c3k-HCyoMFiD8CoIhw0Pw3wOaHylGjPGj73ggvEKphiR4NpDijvb7dqc"/>
+<svg aria-hidden="true" class="kb-wave" viewBox="0 0 94 50"><path d="M2 30 L10 26 L16 34 L22 16 L29 42 L35 20 L41 36 L47 12 L53 44 L59 22 L66 34 L74 26 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
+<span class="kb-media__tag">Ecological Resilience</span>
 </div>
-<div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2 mb-2">
+<div class="kb-meta mt-5 flex items-center gap-2">
 <span>Oct 24, 2024</span>
 <span>•</span>
 <span>By Mercy Chebet</span>
 </div>
-<h3 class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+<h3 class="kb-title text-[1.9rem] mt-2">
               Greening the Concrete: Rooftop Agriculture Thrives Along the Riverbank
             </h3>
-<p class="font-body-md text-body-md text-on-surface-variant mt-3">
+<p class="kb-body mt-3">
               How youth environmental cooperatives transformed forty corrugated rooftops along the Nairobi River basin into high-yield organic hydroponic gardens, securing fresh greens for over 800 households.
             </p>
-</div>
-<div class="mt-6 pt-4 border-t border-[#E2E0D8] flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Field Report #88</span>
-<span class="font-label-md text-label-md text-primary font-semibold flex items-center gap-1">
-              DISPATCH NOTES <span class="material-symbols-outlined text-sm">north_east</span>
-</span>
+<div class="mt-auto pt-6 flex items-center justify-between gap-4">
+<span class="kb-meta text-[#0f8a5f]">Field Report #88</span>
+<span class="kb-link">DISPATCH NOTES <span class="material-symbols-outlined text-lg">north_east</span></span>
 </div>
 </article>
 <!-- Stacked Card 1 & 2 (Spans 4 cols) -->
-<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="lg:col-span-4 flex flex-col gap-10">
 <!-- Stacked 1 -->
-<article class="border border-[#E2E0D8] bg-white p-5 flex-1 flex flex-col justify-between group">
-<div>
-<div class="flex items-center justify-between mb-2">
-<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Sheng &amp; Sound</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">4 min read</span>
+<article class="kb-stack group kb-rise" style="--c:#e11d2a">
+<div class="flex items-center justify-between mb-3">
+<span class="kb-meta kb-meta--accent">Sheng &amp; Sound</span>
+<span class="kb-meta">4 min read</span>
 </div>
-<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+<h4 class="kb-title text-[1.55rem]">
                 The Sound of Gengetone 2.0: Producers Fusing Benga with Trap
               </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+<p class="kb-body text-[13px] mt-3">
                 Inside bedroom recording booths in Kiamaiko, self-taught sound engineers are splicing traditional Luo Benga guitar licks with 808 sub-bass, pioneering East Africa’s newest sonic export.
               </p>
-</div>
-<div class="mt-4 pt-3 border-t border-[#E2E0D8] flex items-center justify-between font-label-sm text-label-sm">
-<span class="text-on-surface font-semibold">By Kenzy Oduor</span>
-<span class="text-primary font-semibold group-hover:translate-x-1 transition-transform">→ READ</span>
+<div class="mt-auto pt-5 flex items-center justify-between">
+<span class="kb-meta text-stone-900">By Kenzy Oduor</span>
+<span class="kb-link">READ <span class="material-symbols-outlined text-lg">arrow_forward</span></span>
 </div>
 </article>
 <!-- Stacked 2 -->
-<article class="border border-[#E2E0D8] bg-white p-5 flex-1 flex flex-col justify-between group">
-<div>
-<div class="flex items-center justify-between mb-2">
-<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">Street Canvas</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">5 min read</span>
+<article class="kb-stack group kb-rise" style="--c:#e0a100">
+<div class="flex items-center justify-between mb-3">
+<span class="kb-meta kb-meta--accent">Street Canvas</span>
+<span class="kb-meta">5 min read</span>
 </div>
-<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+<h4 class="kb-title text-[1.55rem]">
                 Matatu Artistry: The Master Painters Preserving Street Aesthetics
               </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+<p class="kb-body text-[13px] mt-3">
                 With spray cans and airbrushes, Kiamaiko garage workshops remain the beating heart of custom bus design, honoring Nairobi’s rolling art galleries.
               </p>
-</div>
-<div class="mt-4 pt-3 border-t border-[#E2E0D8] flex items-center justify-between font-label-sm text-label-sm">
-<span class="text-on-surface font-semibold">By Sarah Kamau</span>
-<span class="text-primary font-semibold group-hover:translate-x-1 transition-transform">→ READ</span>
+<div class="mt-auto pt-5 flex items-center justify-between">
+<span class="kb-meta text-stone-900">By Sarah Kamau</span>
+<span class="kb-link">READ <span class="material-symbols-outlined text-lg">arrow_forward</span></span>
 </div>
 </article>
 </div>
 <!-- Stat / Quote Callout Card (Spans 3 cols) -->
-<div class="lg:col-span-3 bg-[#18181B] text-white p-6 lg:p-8 flex flex-col justify-between border-t-4 border-primary">
+<div class="lg:col-span-3 kb-ink kb-quote kb-rise">
 <div>
-<div class="flex items-center justify-between font-label-sm text-label-sm text-stone-400 mb-6 uppercase tracking-wider">
+<div class="flex items-center justify-between kb-meta text-stone-400 mb-6">
 <span>Oral Archive</span>
-<span class="material-symbols-outlined text-primary text-xl">format_quote</span>
+<span class="kb-quote__mark">“</span>
 </div>
-<p class="font-display-xl text-3xl lg:text-4xl text-[#FAF8F5] leading-snug font-serif italic mb-6">
+<p class="kb-quote__text">
               "Kiamaiko is not just a place on the map; it is Nairobi's beating heartbeat of resilience."
             </p>
-<div class="w-12 h-0.5 bg-primary mb-4"></div>
-<p class="font-headline-sm text-base text-stone-200 font-semibold">Mzee Juma</p>
-<p class="font-label-sm text-label-sm text-stone-400 uppercase">Community Elder &amp; Founding Council Voice (Age 78)</p>
+<svg aria-hidden="true" class="kb-quote__rule" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 14 C 60 8, 130 5, 196 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="7"></path></svg>
+<p class="kb-quote__name">Mzee Juma</p>
+<p class="kb-meta text-stone-400 mt-1">Community Elder &amp; Founding Council Voice (Age 78)</p>
 </div>
-<div class="mt-8 pt-6 border-t border-stone-800">
-<div class="text-2xl font-bold font-label-md text-secondary-fixed">84,000+</div>
-<p class="font-label-sm text-label-sm text-stone-400 uppercase tracking-wider mt-1">Weekly Listeners &amp; Broadsheet Readers in Eastlands</p>
+<div class="mt-10 pt-6 border-t border-white/10">
+<div class="kb-quote__stat" data-kb-count="84000">84,000+</div>
+<p class="kb-meta text-stone-400 mt-2">Weekly Listeners &amp; Broadsheet Readers in Eastlands</p>
+</div>
 </div>
 </div>
 </div>
 </section>
 <!-- 5. EVENTS AROUND KIAMAIKO -->
-<section class="p-6 lg:p-12 border-b border-[#E2E0D8] bg-[#F4F1EA]/50" id="events">
-<div class="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-on-surface pb-4 mb-8">
+<section class="kb-paper kb-section" id="events">
+<div class="kb-wrap">
+<div class="kb-head kb-rise">
 <div>
-<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-widest flex items-center gap-1.5">
-<span class="material-symbols-outlined text-sm">event</span>
-            PUBLIC GATHERINGS
-          </span>
-<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight">
-            COMMUNITY CALENDAR • HAPPENING IN THE HOOD
-          </h2>
+<span class="kb-kicker"><span class="material-symbols-outlined text-base">event</span>PUBLIC GATHERINGS</span>
+<h2 class="kb-head__title">
+<span class="kb-display">Community Calendar</span>
+<span class="kb-script">Happening<br/>in the Hood<svg aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 16 C 60 8, 130 4, 196 3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="6"></path></svg></span>
+</h2>
 </div>
-<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+<p class="kb-lede">
           Direct Citizen Registration • Entry Free or Subsidized
         </p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 <!-- Event 1 -->
-<div class="bg-white border border-[#E2E0D8] p-6 flex flex-col justify-between relative group hover:border-black transition-colors">
-<div class="flex items-start justify-between mb-4">
-<div class="bg-[#18181B] text-white p-3 text-center min-w-[70px]">
-<span class="block font-label-sm text-xs text-primary-fixed uppercase tracking-wider">NOV</span>
-<span class="block font-display-xl text-3xl font-bold leading-none mt-1">02</span>
+<div class="kb-ticket group kb-rise" style="--c:#e11d2a">
+<div class="flex items-start justify-between">
+<div class="kb-ticket__date">
+<span class="kb-ticket__month">NOV</span>
+<span class="kb-ticket__day">02</span>
 </div>
-<span class="font-label-sm text-label-sm px-2 py-0.5 bg-emerald-100 text-secondary font-bold uppercase">Free Entry</span>
+<span class="kb-badge">Free Entry</span>
 </div>
-<div>
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+<div class="mt-6">
+<h3 class="kb-title text-[1.6rem]">
               Eastlands Open Mic &amp; Spoken Word Slam
             </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+<p class="kb-body text-[13px] mt-3">
               A high-voltage poetry battle highlighting youth perspectives on social justice, community rights, and Nairobi urban survival.
             </p>
-<div class="mt-4 flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<div class="kb-meta mt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-base kb-accent">location_on</span>
 <span>Kiamaiko Social Hall • 4:00 PM</span>
 </div>
 </div>
-<div class="mt-6 pt-4 border-t border-[#E2E0D8] flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-on-surface-variant">142 Registered</span>
-<button class="px-3 py-1.5 bg-black text-white hover:bg-primary font-label-sm text-label-sm uppercase font-semibold transition-colors">
+<div class="mt-auto pt-6 flex items-center justify-between gap-3">
+<span class="kb-meta">142 Registered</span>
+<button class="kb-pill kb-pill--solid" type="button">
               RSVP Pass
             </button>
 </div>
 </div>
 <!-- Event 2 -->
-<div class="bg-white border border-[#E2E0D8] p-6 flex flex-col justify-between relative group hover:border-black transition-colors">
-<div class="flex items-start justify-between mb-4">
-<div class="bg-[#18181B] text-white p-3 text-center min-w-[70px]">
-<span class="block font-label-sm text-xs text-primary-fixed uppercase tracking-wider">NOV</span>
-<span class="block font-display-xl text-3xl font-bold leading-none mt-1">08</span>
+<div class="kb-ticket group kb-rise" style="--c:#0f8a5f; --d:.08s">
+<div class="flex items-start justify-between">
+<div class="kb-ticket__date">
+<span class="kb-ticket__month">NOV</span>
+<span class="kb-ticket__day">08</span>
 </div>
-<span class="font-label-sm text-label-sm px-2 py-0.5 bg-stone-200 text-on-surface font-bold uppercase">Limited Seats</span>
+<span class="kb-badge">Limited Seats</span>
 </div>
-<div>
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+<div class="mt-6">
+<h3 class="kb-title text-[1.6rem]">
               Sheng &amp; Identity Symposium: Language as Cultural Armor
             </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+<p class="kb-body text-[13px] mt-3">
               Linguists, rappers, and historians gather to unpack how Nairobi street patois protects community autonomy against institutional erasure.
             </p>
-<div class="mt-4 flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<div class="kb-meta mt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-base kb-accent">location_on</span>
 <span>Nairobi Creative Space • 2:00 PM</span>
 </div>
 </div>
-<div class="mt-6 pt-4 border-t border-[#E2E0D8] flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-on-surface-variant">96 Registered</span>
-<button class="px-3 py-1.5 bg-black text-white hover:bg-primary font-label-sm text-label-sm uppercase font-semibold transition-colors">
+<div class="mt-auto pt-6 flex items-center justify-between gap-3">
+<span class="kb-meta">96 Registered</span>
+<button class="kb-pill kb-pill--solid" type="button">
               RSVP Pass
             </button>
 </div>
 </div>
 <!-- Event 3 -->
-<div class="bg-white border border-[#E2E0D8] p-6 flex flex-col justify-between relative group hover:border-black transition-colors">
-<div class="flex items-start justify-between mb-4">
-<div class="bg-[#18181B] text-white p-3 text-center min-w-[70px]">
-<span class="block font-label-sm text-xs text-primary-fixed uppercase tracking-wider">NOV</span>
-<span class="block font-display-xl text-3xl font-bold leading-none mt-1">15</span>
+<div class="kb-ticket group kb-rise" style="--c:#e0a100; --d:.16s">
+<div class="flex items-start justify-between">
+<div class="kb-ticket__date">
+<span class="kb-ticket__month">NOV</span>
+<span class="kb-ticket__day">15</span>
 </div>
-<span class="font-label-sm text-label-sm px-2 py-0.5 bg-emerald-100 text-secondary font-bold uppercase">All Ages</span>
+<span class="kb-badge">All Ages</span>
 </div>
-<div>
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-tight">
+<div class="mt-6">
+<h3 class="kb-title text-[1.6rem]">
               Kiamaiko Artisan Street Bazaar &amp; Food Fair
             </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+<p class="kb-body text-[13px] mt-3">
               A celebration of local leathercraft, hand-beaded design, street roasts, live Benga sets, and youth tech demonstrations.
             </p>
-<div class="mt-4 flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<div class="kb-meta mt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-base kb-accent">location_on</span>
 <span>Old Kiamaiko Road Corridor • All Day</span>
 </div>
 </div>
-<div class="mt-6 pt-4 border-t border-[#E2E0D8] flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-on-surface-variant">380+ Attending</span>
-<button class="px-3 py-1.5 bg-black text-white hover:bg-primary font-label-sm text-label-sm uppercase font-semibold transition-colors">
+<div class="mt-auto pt-6 flex items-center justify-between gap-3">
+<span class="kb-meta">380+ Attending</span>
+<button class="kb-pill kb-pill--solid" type="button">
               Get Free Pass
             </button>
 </div>
 </div>
 </div>
+</div>
 </section>
 <!-- 6. COMMUNITY SPOTLIGHT: PEOPLE OF KIAMAIKO -->
-<section class="p-6 lg:p-12 border-b border-[#E2E0D8] bg-[#FBF8FC]" id="community">
-<div class="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-on-surface pb-4 mb-8">
+<section class="kb-paper kb-paper--deep kb-section" id="community">
+<div class="kb-wrap">
+<div class="kb-head kb-rise">
 <div>
-<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
-<span class="material-symbols-outlined text-sm">group</span>
-            PORTRAIT SERIES
-          </span>
-<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight">
-            PEOPLE OF KIAMAIKO • GRASSROOTS LEADERSHIP
-          </h2>
+<span class="kb-kicker"><span class="material-symbols-outlined text-base">group</span>PORTRAIT SERIES</span>
+<h2 class="kb-head__title">
+<span class="kb-display">People of Kiamaiko</span>
+<span class="kb-script">Grassroots<br/>Leadership<svg aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 16 C 60 8, 130 4, 196 3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="6"></path></svg></span>
+</h2>
 </div>
-<button class="inline-flex items-center gap-2 font-label-sm text-label-sm uppercase font-bold text-on-surface border border-[#E2E0D8] px-4 py-2 hover:bg-black hover:text-white transition-colors">
+<button class="kb-pill" type="button">
 <span>Nominate a Changemaker</span>
-<span class="material-symbols-outlined text-sm">add_circle</span>
+<span class="material-symbols-outlined text-base">add_circle</span>
 </button>
 </div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-14">
 <!-- Profile 1 -->
-<div class="border border-[#E2E0D8] bg-white p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
-<div class="w-full md:w-48 h-60 flex-shrink-0 overflow-hidden border border-[#E2E0D8] relative">
-<img class="w-full h-full object-cover" data-alt="Dignified close-up editorial portrait of Amina Hassan, a sharp 24-year-old Kenyan woman software engineer and educator in Kiamaiko Nairobi. High-contrast ambient lighting, wearing a stylish modest headwrap and warm smile, with computer screens and circuit boards softly blurred in the background. Highly textured documentary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA9dUwITR1VnNLOQjoQjOXUJ0Sm-UAXk6q0jGu-I_k7dfXtRipV-iRRcda3bLkTiBj0OOIBqOD_PX42uRkNACn8WPU0Tv9NxlqXJQ_XEBRyfTRWyposMv8-YiniHXQgBUdaRzi5Qe-LBn4y6uAXCC3GTAB5qqNgKj02cbqcbHD0rzPNK7jCRk2oKVKu93jZW17pK0Ghq_40sUGNQgR-f-RD4IDDyZaJuM7exIXQUA"/>
+<div class="kb-profile group kb-rise" style="--c:#0f8a5f">
+<div class="kb-media kb-profile__media">
+<img alt="" data-alt="Dignified close-up editorial portrait of Amina Hassan, a sharp 24-year-old Kenyan woman software engineer and educator in Kiamaiko Nairobi. High-contrast ambient lighting, wearing a stylish modest headwrap and warm smile, with computer screens and circuit boards softly blurred in the background. Highly textured documentary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA9dUwITR1VnNLOQjoQjOXUJ0Sm-UAXk6q0jGu-I_k7dfXtRipV-iRRcda3bLkTiBj0OOIBqOD_PX42uRkNACn8WPU0Tv9NxlqXJQ_XEBRyfTRWyposMv8-YiniHXQgBUdaRzi5Qe-LBn4y6uAXCC3GTAB5qqNgKj02cbqcbHD0rzPNK7jCRk2oKVKu93jZW17pK0Ghq_40sUGNQgR-f-RD4IDDyZaJuM7exIXQUA"/>
+<svg aria-hidden="true" class="kb-wave" viewBox="0 0 94 50"><path d="M2 30 L10 26 L16 34 L22 16 L29 42 L35 20 L41 36 L47 12 L53 44 L59 22 L66 34 L74 26 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
-<div class="flex-1">
-<span class="font-label-sm text-label-sm px-2 py-0.5 bg-emerald-100 text-secondary font-bold uppercase tracking-wider">
+<div class="flex-1 flex flex-col">
+<span class="kb-meta kb-meta--accent">
               Tech Educator • Cohort Founder
             </span>
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-2">
+<h3 class="kb-title text-[2.4rem] mt-2">
               Amina Hassan
             </h3>
-<p class="font-body-sm text-body-sm italic text-on-surface-variant mt-1">
+<p class="kb-profile__quote">
               "The market gave us sustenance; technology will give us global ownership."
             </p>
-<p class="font-body-md text-body-md text-on-surface mt-3">
+<p class="kb-body mt-4">
               At 24, Amina built a micro-coding academy above her grandmother's butchery stall. She has trained over 120 young women in Python, digital finance, and e-commerce logistics.
             </p>
-<div class="mt-4 pt-3 border-t border-[#E2E0D8] flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
-<span>@aminacodes_ke</span>
-<a class="text-primary font-bold hover:underline" href="#">Read Extended Profile →</a>
+<div class="mt-auto pt-6 flex items-center justify-between gap-3">
+<span class="kb-meta">@aminacodes_ke</span>
+<a class="kb-link" href="#">Read Extended Profile <span class="material-symbols-outlined text-lg">arrow_forward</span></a>
 </div>
 </div>
 </div>
 <!-- Profile 2 -->
-<div class="border border-[#E2E0D8] bg-white p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
-<div class="w-full md:w-48 h-60 flex-shrink-0 overflow-hidden border border-[#E2E0D8] relative">
-<img class="w-full h-full object-cover" data-alt="Intense high-contrast portrait of Karanja K-Jay Omondi, an East African metal sculptor standing in his gritty Kiamaiko open-air workshop surrounded by welding sparks and recycled iron sculptures. Warm natural sunlight, wearing safety goggles and leather apron, confident and visionary demeanor. Rich tonal contrast and deep shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1_tBZ9yZglckLJkfcIe7rBwmLQLyjrGWjhk1M3F_57pAZVRhAcvNfnSyJKZhtWy4Nwd8nwhVTQW9Diixqx2U2yKQngHKzP820AD-ooac3FtszXi7ziN85OqadsHAz9ifCBavk9LQRd-pgPmtr2zDDdcL-03oPj871LuIZ3sT-3oItO5cS4Eklzh08gRufkj3B6fhQN8W4Xxo_M5iShOEHr3CSpYddpfGW4HUX-Z4"/>
+<div class="kb-profile group kb-rise" style="--c:#e0a100; --d:.08s">
+<div class="kb-media kb-profile__media">
+<img alt="" data-alt="Intense high-contrast portrait of Karanja K-Jay Omondi, an East African metal sculptor standing in his gritty Kiamaiko open-air workshop surrounded by welding sparks and recycled iron sculptures. Warm natural sunlight, wearing safety goggles and leather apron, confident and visionary demeanor. Rich tonal contrast and deep shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1_tBZ9yZglckLJkfcIe7rBwmLQLyjrGWjhk1M3F_57pAZVRhAcvNfnSyJKZhtWy4Nwd8nwhVTQW9Diixqx2U2yKQngHKzP820AD-ooac3FtszXi7ziN85OqadsHAz9ifCBavk9LQRd-pgPmtr2zDDdcL-03oPj871LuIZ3sT-3oItO5cS4Eklzh08gRufkj3B6fhQN8W4Xxo_M5iShOEHr3CSpYddpfGW4HUX-Z4"/>
+<svg aria-hidden="true" class="kb-wave" viewBox="0 0 94 50"><path d="M2 30 L9 24 L15 36 L21 20 L27 40 L33 18 L39 38 L45 22 L51 36 L58 26 L66 32 L78 28 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
-<div class="flex-1">
-<span class="font-label-sm text-label-sm px-2 py-0.5 bg-amber-100 text-amber-900 font-bold uppercase tracking-wider">
+<div class="flex-1 flex flex-col">
+<span class="kb-meta kb-meta--accent">
               Visual Sculptor • Upcycler
             </span>
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-2">
+<h3 class="kb-title text-[2.4rem] mt-2">
               Karanja "K-Jay" Omondi
             </h3>
-<p class="font-body-sm text-body-sm italic text-on-surface-variant mt-1">
+<p class="kb-profile__quote">
               "There is no waste in Nairobi; only resources waiting for vision."
             </p>
-<p class="font-body-md text-body-md text-on-surface mt-3">
+<p class="kb-body mt-4">
               Sourcing scrap metals, engine valves, and discarded machinery parts from Eastlands yards, K-Jay constructs monumental wildlife and human figures exhibited worldwide.
             </p>
-<div class="mt-4 pt-3 border-t border-[#E2E0D8] flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
-<span>@kjay_metalworks</span>
-<a class="text-primary font-bold hover:underline" href="#">Read Extended Profile →</a>
+<div class="mt-auto pt-6 flex items-center justify-between gap-3">
+<span class="kb-meta">@kjay_metalworks</span>
+<a class="kb-link" href="#">Read Extended Profile <span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+</div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- 7. KIAMAIKO FM VIDEO (DIGITAL MEDIA GRID / OBSIDIAN) -->
-<section class="p-6 lg:p-12 bg-[#18181B] text-[#FAF8F5] border-b border-black" id="studio">
-<div class="flex flex-col md:flex-row md:items-end justify-between border-b border-stone-800 pb-4 mb-8">
+<!-- 7. KIAMAIKO FM VIDEO (DIGITAL MEDIA GRID / INK) -->
+<section class="kb-ink kb-section kb-section--torn" id="studio" style="--tear-top:#e8e3da; --tear-bottom:#efebe4">
+<div aria-hidden="true" class="kb-tear kb-tear--top"></div>
+<div class="kb-wrap">
+<div class="kb-head kb-rise">
 <div>
-<span class="font-label-sm text-label-sm text-primary-fixed font-bold uppercase tracking-widest flex items-center gap-1.5">
-<span class="material-symbols-outlined text-sm text-primary">videocam</span>
-            FIELD RECORDINGS • CINEMA DISPATCHES
-          </span>
-<h2 class="font-headline-lg text-headline-lg font-bold text-white uppercase tracking-tight">
-            KIAMAIKO TV • VISUAL JOURNALISM
-          </h2>
+<span class="kb-kicker"><span class="material-symbols-outlined text-base">videocam</span>FIELD RECORDINGS • CINEMA DISPATCHES</span>
+<h2 class="kb-head__title">
+<span class="kb-display">Kiamaiko TV</span>
+<span class="kb-script">Visual<br/>Journalism<svg aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 16 C 60 8, 130 4, 196 3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="6"></path></svg></span>
+</h2>
 </div>
-<div class="font-label-md text-label-md text-stone-400 uppercase tracking-wider flex items-center gap-2">
+<div class="kb-meta text-stone-300 flex items-center gap-2">
 <span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
 <span>Broadcasting in 4K UHD</span>
 </div>
 </div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 <!-- Main Featured Video (Spans 8 cols) -->
-<div class="lg:col-span-8 group cursor-pointer">
-<div class="relative overflow-hidden border border-stone-700 bg-black aspect-video flex items-center justify-center">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85" data-alt="Cinematic wide 16:9 documentary still inside a historic artisan leather tannery in Kiamaiko Nairobi. High contrast lighting with atmospheric smoke shafts of afternoon sun illuminating skilled older craftsmen stretching and treating hide. Editorial color palette dominated by warm ochres rich deep blacks and subtle crimson tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMR6Fz5TjatqFdCpqcvHiSfNdZMgPUfmMtVp_T4hi8ryFbSJf1zjqZulZIvnyn1LcMQJK4ORRzQe96Xam5hXABWolKQNqF6FbrK4ZQdajCZ-N2yZTk_U-vkpMv1Yvrdcv2T-SGijveF0zpLtMNBEFjtqBCsZAciKGzOpPvrZgCXynkisXfk_a6FWkDwHIfDnOBMk2RoX8O-3YJFOA_fONd34AC8D4dEQ8TW1urP9k"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+<div class="lg:col-span-8 group cursor-pointer kb-rise" style="--c:#e11d2a">
+<div class="kb-media aspect-video">
+<img alt="" class="opacity-85" data-alt="Cinematic wide 16:9 documentary still inside a historic artisan leather tannery in Kiamaiko Nairobi. High contrast lighting with atmospheric smoke shafts of afternoon sun illuminating skilled older craftsmen stretching and treating hide. Editorial color palette dominated by warm ochres rich deep blacks and subtle crimson tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMR6Fz5TjatqFdCpqcvHiSfNdZMgPUfmMtVp_T4hi8ryFbSJf1zjqZulZIvnyn1LcMQJK4ORRzQe96Xam5hXABWolKQNqF6FbrK4ZQdajCZ-N2yZTk_U-vkpMv1Yvrdcv2T-SGijveF0zpLtMNBEFjtqBCsZAciKGzOpPvrZgCXynkisXfk_a6FWkDwHIfDnOBMk2RoX8O-3YJFOA_fONd34AC8D4dEQ8TW1urP9k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-black/30"></div>
 <!-- Play Trigger -->
-<div class="absolute w-16 h-16 bg-primary text-white flex items-center justify-center group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-3xl">play_arrow</span>
-</div>
-<div class="absolute top-4 left-4 bg-black/80 px-2.5 py-1 text-white font-label-sm text-label-sm uppercase font-mono tracking-widest">
+<span class="kb-play"><span class="material-symbols-outlined text-4xl">play_arrow</span></span>
+<div class="absolute top-4 left-4 kb-meta text-white bg-black/60 backdrop-blur px-3 py-1.5">
               DOCUSERIES EPISODE 01
             </div>
-<div class="absolute bottom-4 right-4 bg-black/90 px-2 py-0.5 text-stone-300 font-label-sm text-label-sm font-mono">
+<div class="absolute bottom-4 right-4 kb-meta text-stone-200 bg-black/60 backdrop-blur px-2.5 py-1">
               14:20 MIN
             </div>
 </div>
-<div class="mt-4">
-<span class="font-label-sm text-label-sm text-secondary-fixed font-bold uppercase tracking-widest">Featured Documentary</span>
-<h3 class="font-headline-md text-headline-md text-white font-bold group-hover:text-primary-fixed transition-colors mt-1">
+<div class="mt-6">
+<span class="kb-meta text-[#10b981]">Featured Documentary</span>
+<h3 class="kb-title kb-title--light text-[2.1rem] mt-2">
               Voices from the Tannery Quarter: Fifty Years of Craft and Community
             </h3>
-<p class="font-body-md text-body-md text-stone-300 mt-2">
+<p class="kb-body kb-body--light mt-3 max-w-3xl">
               An immersive 15-minute investigation chronicling three generations of leather tanners navigating urban gentrification, water purification advocacy, and the global preservation of heritage techniques.
             </p>
 </div>
 </div>
 <!-- Secondary Video Column (Spans 4 cols) -->
-<div class="lg:col-span-4 flex flex-col gap-6">
-<div class="font-label-sm text-label-sm text-stone-400 uppercase tracking-widest border-b border-stone-800 pb-2">
+<div class="lg:col-span-4 flex flex-col kb-rise" style="--d:.1s">
+<div class="kb-meta text-stone-400 pb-3 mb-2 border-b border-white/10">
             Recent Episodes &amp; Broadcast Tapes
           </div>
 <!-- Episode 1 -->
-<div class="flex gap-4 group cursor-pointer">
-<div class="w-32 h-20 bg-stone-900 border border-stone-800 flex-shrink-0 relative overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Documentary video thumbnail showing vibrant Eastlands Nairobi night street food stalls with sizzling skewers of meat and steaming broth pots under bright warm light bulbs. High contrast authentic urban nightlife photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyesbB0qyIZGKSPC-IXy9aFXQL30P2-dmMPDVGWmjCH77BYSOxp1ZreRSd7FJyIDuBsBNBCvf-lNeLES2JRshXCv0YdQKyZHczp3juKeVyFe2RlV7xkz8_6dEvlVebChp1ACLYIKR5Kp2wzkPrl1o44Epz0eIs32D_B67HeWY6R4CI30mqpuNcfjN79H2frPxqppayuQe0gAts55j4aZQloQNZ7A_lD46Ryh7SeSE"/>
-<span class="absolute bottom-1 right-1 bg-black/90 text-white font-label-sm text-[9px] px-1 font-mono">08:45</span>
+<div class="kb-episode group" style="--c:#e11d2a">
+<div class="kb-media kb-episode__thumb">
+<img alt="" data-alt="Documentary video thumbnail showing vibrant Eastlands Nairobi night street food stalls with sizzling skewers of meat and steaming broth pots under bright warm light bulbs. High contrast authentic urban nightlife photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyesbB0qyIZGKSPC-IXy9aFXQL30P2-dmMPDVGWmjCH77BYSOxp1ZreRSd7FJyIDuBsBNBCvf-lNeLES2JRshXCv0YdQKyZHczp3juKeVyFe2RlV7xkz8_6dEvlVebChp1ACLYIKR5Kp2wzkPrl1o44Epz0eIs32D_B67HeWY6R4CI30mqpuNcfjN79H2frPxqppayuQe0gAts55j4aZQloQNZ7A_lD46Ryh7SeSE"/>
+<span class="kb-episode__time">08:45</span>
 </div>
 <div>
-<span class="font-label-sm text-[10px] text-primary-fixed uppercase tracking-wider">Street Food Tour</span>
-<h4 class="font-headline-sm text-sm font-bold text-white group-hover:text-primary-fixed transition-colors line-clamp-2">
+<span class="kb-meta kb-meta--accent">Street Food Tour</span>
+<h4 class="kb-title kb-title--light text-[1.2rem] mt-1 line-clamp-2">
                 Searching for the Best Ugali &amp; Goat Broth in Eastlands
               </h4>
-<p class="font-label-sm text-[11px] text-stone-400 mt-1">3.2k Views • 2 days ago</p>
+<p class="kb-meta text-stone-500 mt-1">3.2k Views • 2 days ago</p>
 </div>
 </div>
 <!-- Episode 2 -->
-<div class="flex gap-4 group cursor-pointer">
-<div class="w-32 h-20 bg-stone-900 border border-stone-800 flex-shrink-0 relative overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Intimate acoustic recording session thumbnail inside a radio studio showing a talented female East African singer singing passionately into a large studio condenser microphone under dramatic warm spotlighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDLZnus0ZcFJjEGMri8AaI8MQw-REIF76xrxOJyNHpWRf9U-uAmvMt0ex-IomuGoRgvFIzSS1_nKcqN9gWPk_AJ_iUrCuM9k35qErWHfIrQIWy6iR6QIXwHzcdop0cnPbB3Bnd_s_2mbiy0iqVdQ_dnsDPplsoN36FPJuVxnuud8rlAiWO78G_1ZCLOP2ufBax7OBl4PNqtIzyiRA4KfctNQP2e_y7glwotP3Dixc"/>
-<span class="absolute bottom-1 right-1 bg-black/90 text-white font-label-sm text-[9px] px-1 font-mono">11:12</span>
+<div class="kb-episode group" style="--c:#10b981">
+<div class="kb-media kb-episode__thumb">
+<img alt="" data-alt="Intimate acoustic recording session thumbnail inside a radio studio showing a talented female East African singer singing passionately into a large studio condenser microphone under dramatic warm spotlighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDLZnus0ZcFJjEGMri8AaI8MQw-REIF76xrxOJyNHpWRf9U-uAmvMt0ex-IomuGoRgvFIzSS1_nKcqN9gWPk_AJ_iUrCuM9k35qErWHfIrQIWy6iR6QIXwHzcdop0cnPbB3Bnd_s_2mbiy0iqVdQ_dnsDPplsoN36FPJuVxnuud8rlAiWO78G_1ZCLOP2ufBax7OBl4PNqtIzyiRA4KfctNQP2e_y7glwotP3Dixc"/>
+<span class="kb-episode__time">11:12</span>
 </div>
 <div>
-<span class="font-label-sm text-[10px] text-secondary-fixed uppercase tracking-wider">Studio Sessions #4</span>
-<h4 class="font-headline-sm text-sm font-bold text-white group-hover:text-primary-fixed transition-colors line-clamp-2">
+<span class="kb-meta kb-meta--accent">Studio Sessions #4</span>
+<h4 class="kb-title kb-title--light text-[1.2rem] mt-1 line-clamp-2">
                 Live Acoustic Performance with Njoki Karu
               </h4>
-<p class="font-label-sm text-[11px] text-stone-400 mt-1">6.8k Views • 5 days ago</p>
+<p class="kb-meta text-stone-500 mt-1">6.8k Views • 5 days ago</p>
 </div>
 </div>
 <!-- Episode 3 -->
-<div class="flex gap-4 group cursor-pointer">
-<div class="w-32 h-20 bg-stone-900 border border-stone-800 flex-shrink-0 relative overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Investigative journalism video thumbnail featuring a neighborhood town hall meeting in Nairobi with citizens addressing city infrastructure engineers over paper blueprints. High-contrast authentic editorial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKb-IShS94DOdufYL_AzxscZzNselNjbR8h_w4Cepu5SlcehbMFQPwencR3Bg7H6_ntJ8uJ7bpg3pyM3MdepaN7YNrLqP42fhXPSw0z5Tgs7R3arEq88hMg0Lz7OfKduu36IuZ5QIUzErjbhE_H5uMNke96JtJc9BOnVcPXziNBSZXKHKyvLJrkafSaFUtdyY5bJt4KK7QWkoh5-zPWuvwkk3bnh7PlXZV-IzooIo"/>
-<span class="absolute bottom-1 right-1 bg-black/90 text-white font-label-sm text-[9px] px-1 font-mono">06:30</span>
+<div class="kb-episode group" style="--c:#f5b400">
+<div class="kb-media kb-episode__thumb">
+<img alt="" data-alt="Investigative journalism video thumbnail featuring a neighborhood town hall meeting in Nairobi with citizens addressing city infrastructure engineers over paper blueprints. High-contrast authentic editorial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKb-IShS94DOdufYL_AzxscZzNselNjbR8h_w4Cepu5SlcehbMFQPwencR3Bg7H6_ntJ8uJ7bpg3pyM3MdepaN7YNrLqP42fhXPSw0z5Tgs7R3arEq88hMg0Lz7OfKduu36IuZ5QIUzErjbhE_H5uMNke96JtJc9BOnVcPXziNBSZXKHKyvLJrkafSaFUtdyY5bJt4KK7QWkoh5-zPWuvwkk3bnh7PlXZV-IzooIo"/>
+<span class="kb-episode__time">06:30</span>
 </div>
 <div>
-<span class="font-label-sm text-[10px] text-tertiary-fixed uppercase tracking-wider">Civic Watch</span>
-<h4 class="font-headline-sm text-sm font-bold text-white group-hover:text-primary-fixed transition-colors line-clamp-2">
+<span class="kb-meta kb-meta--accent">Civic Watch</span>
+<h4 class="kb-title kb-title--light text-[1.2rem] mt-1 line-clamp-2">
                 Roads, Clean Water &amp; Infrastructure Audit 2024
               </h4>
-<p class="font-label-sm text-[11px] text-stone-400 mt-1">1.9k Views • 1 week ago</p>
+<p class="kb-meta text-stone-500 mt-1">1.9k Views • 1 week ago</p>
 </div>
 </div>
 </div>
 </div>
+</div>
+<div aria-hidden="true" class="kb-tear kb-tear--bottom"></div>
 </section>
 <!-- 8. PODCAST & RADIO COMING SOON -->
-<section class="p-6 lg:p-12 border-b border-[#E2E0D8] bg-[#FAF8F5]" id="radio">
-<div class="border-4 border-on-surface p-6 lg:p-10 relative bg-white">
-<!-- Frequency Stamp Badge -->
-<div class="absolute -top-5 right-6 bg-primary text-white font-label-sm text-label-sm px-4 py-1 uppercase tracking-widest font-bold">
-          FREQUENCY ALLOCATION: 98.4 MHZ
-        </div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-<div class="lg:col-span-7">
-<div class="flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase font-bold tracking-widest mb-2">
-<span class="material-symbols-outlined text-lg">mic</span>
-              ANALOG BROADCAST • COMMUNITY RADIO
-            </div>
-<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight uppercase leading-[1.1]">
-              98.4 KIAMAIKO FM — THE AIRWAVES ARE COMING TO LIFE
-            </h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant mt-4">
+<section class="kb-paper kb-section" id="radio">
+<div class="kb-wrap">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 kb-rise">
+<span class="kb-kicker"><span class="material-symbols-outlined text-lg">mic</span>ANALOG BROADCAST • COMMUNITY RADIO</span>
+<h2 class="mt-3">
+<span class="kb-display block">98.4 Kiamaiko FM —</span>
+<span class="kb-script mt-4 ml-1">The Airwaves Are<br/>Coming to Life<svg aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 16 C 60 8, 130 4, 196 3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="6"></path></svg></span>
+</h2>
+<p class="kb-body text-base mt-8 max-w-xl">
               Broadcasting real-time stories, hyper-local investigative journalism, and the freshest East African soundscapes directly from our Kiamaiko community studio. Tune in on analog frequency or stream lossless digital audio anywhere in Nairobi.
             </p>
-<div class="mt-6 space-y-3">
-<div class="p-3 bg-[#FAF8F5] border border-[#E2E0D8] flex items-center justify-between">
+<div class="mt-8">
+<div class="kb-show group" style="--c:#e11d2a">
 <div>
-<span class="font-label-sm text-label-sm text-primary font-bold">SHOW 01 • 06:00 - 10:00</span>
-<p class="font-headline-sm text-sm font-bold text-on-surface">Asubuhi Njema with Captain Otis (Morning Talk &amp; News)</p>
+<span class="kb-meta kb-meta--accent">SHOW 01 • 06:00 - 10:00</span>
+<p class="kb-title text-[1.25rem] mt-1">Asubuhi Njema with Captain Otis (Morning Talk &amp; News)</p>
 </div>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Daily</span>
+<span class="kb-meta">Daily</span>
 </div>
-<div class="p-3 bg-[#FAF8F5] border border-[#E2E0D8] flex items-center justify-between">
+<div class="kb-show group" style="--c:#0f8a5f">
 <div>
-<span class="font-label-sm text-label-sm text-secondary font-bold">SHOW 02 • 14:00 - 18:00</span>
-<p class="font-headline-sm text-sm font-bold text-on-surface">Sheng Unplugged (Youth, Street Style &amp; Music)</p>
+<span class="kb-meta kb-meta--accent">SHOW 02 • 14:00 - 18:00</span>
+<p class="kb-title text-[1.25rem] mt-1">Sheng Unplugged (Youth, Street Style &amp; Music)</p>
 </div>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Mon - Fri</span>
+<span class="kb-meta">Mon - Fri</span>
 </div>
-<div class="p-3 bg-[#FAF8F5] border border-[#E2E0D8] flex items-center justify-between">
+<div class="kb-show group" style="--c:#e0a100">
 <div>
-<span class="font-label-sm text-label-sm text-tertiary font-bold">SHOW 03 • 20:00 - 23:00</span>
-<p class="font-headline-sm text-sm font-bold text-on-surface">The Eastlands Digest (Economic Deep Dives &amp; Policy)</p>
+<span class="kb-meta kb-meta--accent">SHOW 03 • 20:00 - 23:00</span>
+<p class="kb-title text-[1.25rem] mt-1">The Eastlands Digest (Economic Deep Dives &amp; Policy)</p>
 </div>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Weekends</span>
+<span class="kb-meta">Weekends</span>
 </div>
 </div>
 </div>
 <!-- Radio Frequency Tuning Dial Interface -->
-<div class="lg:col-span-5 bg-[#18181B] text-white p-6 border border-stone-800">
-<div class="flex items-center justify-between border-b border-stone-700 pb-3 mb-4">
-<span class="font-label-sm text-label-sm text-stone-400 uppercase">SIGNAL TUNER (FM / WEB)</span>
-<span class="font-label-sm text-label-sm text-secondary-fixed font-mono font-bold">ONLINE PILOT</span>
+<div class="lg:col-span-5 kb-ink kb-tuner kb-rise" style="--d:.1s">
+<!-- Frequency Stamp Badge -->
+<div class="kb-stamp">FREQUENCY ALLOCATION: 98.4 MHZ</div>
+<div class="flex items-center justify-between kb-meta pb-4 border-b border-white/10">
+<span class="text-stone-400">SIGNAL TUNER (FM / WEB)</span>
+<span class="text-[#10b981]">ONLINE PILOT</span>
 </div>
-<div class="text-center py-4 bg-black/60 border border-stone-800 my-2">
-<div class="font-display-xl text-5xl font-mono font-bold tracking-tighter text-white">98.4</div>
-<div class="font-label-sm text-label-sm text-primary-fixed tracking-widest uppercase mt-1">MEGAHERTZ NAIROBI</div>
+<div class="text-center pt-8 pb-4">
+<div class="kb-tuner__freq">98.4</div>
+<div class="kb-meta text-[#e11d2a] mt-2">MEGAHERTZ NAIROBI</div>
 </div>
 <!-- Waveform Graphical Bars -->
-<div class="flex items-end justify-between h-12 py-2 gap-1 px-4 bg-stone-900 border border-stone-800">
-<span class="w-1 bg-primary h-4 animate-pulse"></span>
-<span class="w-1 bg-stone-500 h-8"></span>
-<span class="w-1 bg-secondary-fixed h-10 animate-bounce"></span>
-<span class="w-1 bg-primary h-6"></span>
-<span class="w-1 bg-stone-300 h-9"></span>
-<span class="w-1 bg-primary h-11 animate-pulse"></span>
-<span class="w-1 bg-stone-500 h-5"></span>
-<span class="w-1 bg-secondary-fixed h-8"></span>
-<span class="w-1 bg-primary h-12"></span>
-<span class="w-1 bg-stone-400 h-7 animate-pulse"></span>
-<span class="w-1 bg-primary h-5"></span>
-<span class="w-1 bg-secondary h-9"></span>
-</div>
-<div class="mt-6">
-<label class="block font-label-sm text-label-sm text-stone-300 uppercase tracking-wider mb-2">
+<div aria-hidden="true" class="kb-eq"><i style="--c:#e11d2a;--d:-0.39s"></i><i style="--c:#e11d2a;--d:-0.18s"></i><i style="--c:#e11d2a;--d:-0.78s"></i><i style="--c:#e11d2a;--d:-0.09s"></i><i style="--c:#e11d2a;--d:-0.64s"></i><i style="--c:#e11d2a;--d:-0.44s"></i><i style="--c:#e11d2a;--d:-0.07s"></i><i style="--c:#e11d2a;--d:-0.61s"></i><i style="--c:#e11d2a;--d:-0.04s"></i><i style="--c:#e11d2a;--d:-0.52s"></i><i style="--c:#e11d2a;--d:-0.08s"></i><i style="--c:#e11d2a;--d:-0.11s"></i><i style="--c:#f5b400;--d:-0.51s"></i><i style="--c:#f5b400;--d:-0.99s"></i><i style="--c:#f5b400;--d:-0.15s"></i><i style="--c:#f5b400;--d:-0.27s"></i><i style="--c:#f5b400;--d:-0.75s"></i><i style="--c:#f5b400;--d:-1.14s"></i><i style="--c:#f5b400;--d:-0.69s"></i><i style="--c:#f5b400;--d:-0.48s"></i><i style="--c:#f5b400;--d:-1.17s"></i><i style="--c:#f5b400;--d:-0.06s"></i><i style="--c:#f5b400;--d:-1.03s"></i><i style="--c:#f5b400;--d:-0.35s"></i><i style="--c:#10b981;--d:-0.17s"></i><i style="--c:#10b981;--d:-0.14s"></i><i style="--c:#10b981;--d:-0.37s"></i><i style="--c:#10b981;--d:-0.98s"></i><i style="--c:#10b981;--d:-0.22s"></i><i style="--c:#10b981;--d:-0.70s"></i><i style="--c:#10b981;--d:-0.77s"></i><i style="--c:#10b981;--d:-0.45s"></i><i style="--c:#10b981;--d:-0.66s"></i><i style="--c:#10b981;--d:-0.08s"></i><i style="--c:#10b981;--d:-0.07s"></i><i style="--c:#10b981;--d:-0.25s"></i></div>
+<div class="mt-8">
+<label class="block kb-meta text-stone-300 mb-3" for="kb-radio-alert">
                 Register for Launch Notification &amp; SMS Broadcast Alerts
               </label>
 <div class="flex flex-col sm:flex-row gap-2">
-<input class="flex-1 bg-[#FAF8F5] text-on-surface text-sm px-3 py-2 border-0 rounded-none focus:ring-2 focus:ring-primary" placeholder="Enter email or M-Pesa phone" type="email"/>
-<button class="px-4 py-2 bg-primary hover:bg-primary-container text-white font-label-sm text-label-sm uppercase font-bold transition-colors whitespace-nowrap">
+<input class="kb-input kb-input--dark flex-1" id="kb-radio-alert" placeholder="Enter email or M-Pesa phone" type="email"/>
+<button class="kb-pill kb-pill--red" type="button">
                   Lock Frequency
                 </button>
 </div>
@@ -1143,37 +1483,38 @@
 </div>
 </section>
 <!-- 9. NEWSLETTER & DISPATCH SIGNUP -->
-<section class="p-6 lg:p-12 border-b border-[#E2E0D8] bg-[#F4F1EA]">
-<div class="max-w-4xl mx-auto text-center">
-<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-widest">
+<section class="kb-paper kb-paper--deep kb-section kb-section--newsletter">
+<div class="kb-wrap">
+<div class="max-w-4xl mx-auto text-center kb-rise">
+<span class="kb-kicker">
           FIELD DISPATCH • NO SPAM • PURE NEIGHBORHOOD PRIDE
         </span>
-<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight mt-2">
-          THE WEEKLY DISPATCH DELIVERED
-        </h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mt-3">
+<h2 class="mt-4 flex flex-col items-center">
+<span class="kb-display">The Weekly Dispatch</span>
+<span class="kb-script mt-2">Delivered<svg aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 16 C 60 8, 130 4, 196 3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="6"></path></svg></span>
+</h2>
+<p class="kb-body text-base max-w-2xl mx-auto mt-8">
           Every Friday morning, our editors curate the most important Kiamaiko stories, local enterprise guides, and cultural events straight to your inbox and WhatsApp.
         </p>
 <form class="mt-8 flex flex-col sm:flex-row items-center justify-center max-w-xl mx-auto gap-2" onsubmit="event.preventDefault();">
-<input class="w-full sm:flex-1 bg-white border border-[#E2E0D8] text-on-surface px-4 py-3 text-body-md rounded-none focus:outline-none focus:border-black" placeholder="Enter your email address" required="" type="email"/>
-<button class="w-full sm:w-auto px-6 py-3 bg-[#18181B] text-white hover:bg-primary font-label-md text-label-md uppercase font-semibold transition-colors" type="submit">
+<input class="kb-input w-full sm:flex-1" placeholder="Enter your email address" required="" type="email"/>
+<button class="kb-pill kb-pill--solid w-full sm:w-auto" type="submit">
             Subscribe to Print &amp; Digital
           </button>
 </form>
-<div class="mt-6 flex flex-wrap items-center justify-center gap-6 font-label-sm text-label-sm text-on-surface-variant uppercase">
-<span class="font-bold text-on-surface">Community Channels:</span>
-<a class="hover:text-primary transition-colors" href="#">X (Twitter)</a>
-<span>•</span>
-<a class="hover:text-primary transition-colors" href="#">Instagram</a>
-<span>•</span>
-<a class="hover:text-primary transition-colors" href="#">YouTube</a>
-<span>•</span>
-<a class="hover:text-primary transition-colors" href="#">TikTok</a>
-<span>•</span>
-<a class="text-secondary font-bold hover:underline" href="#">WhatsApp Channel (24k)</a>
+<div class="mt-8 flex flex-wrap items-center justify-center gap-2">
+<span class="kb-meta text-stone-900 mr-2">Community Channels:</span>
+<a class="kb-pill kb-pill--sm" href="#">X (Twitter)</a>
+<a class="kb-pill kb-pill--sm" href="#">Instagram</a>
+<a class="kb-pill kb-pill--sm" href="#">YouTube</a>
+<a class="kb-pill kb-pill--sm" href="#">TikTok</a>
+<a class="kb-pill kb-pill--sm kb-pill--green" href="#">WhatsApp Channel (24k)</a>
+</div>
 </div>
 </div>
 </section>
+<!-- Torn paper + paint strokes leading into the footer -->
+<div aria-hidden="true" class="kb-paint"><svg preserveAspectRatio="none" viewBox="0 0 1440 90"><line x1="0" y1="92" x2="70" y2="24" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.90"/><line x1="8" y1="92" x2="78" y2="17" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.71"/><line x1="13" y1="92" x2="83" y2="19" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.59"/><line x1="21" y1="92" x2="91" y2="24" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.94"/><line x1="27" y1="92" x2="97" y2="23" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.60"/><line x1="32" y1="92" x2="102" y2="25" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.62"/><line x1="39" y1="92" x2="109" y2="12" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.98"/><line x1="47" y1="92" x2="117" y2="21" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.70"/><line x1="55" y1="92" x2="125" y2="24" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.81"/><line x1="59" y1="92" x2="129" y2="25" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.98"/><line x1="68" y1="92" x2="138" y2="19" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.58"/><line x1="77" y1="92" x2="147" y2="22" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.68"/><line x1="86" y1="92" x2="156" y2="24" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.56"/><line x1="92" y1="92" x2="162" y2="25" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.82"/><line x1="96" y1="92" x2="166" y2="14" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.90"/><line x1="105" y1="92" x2="175" y2="25" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.73"/><line x1="109" y1="92" x2="179" y2="27" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.75"/><line x1="115" y1="92" x2="185" y2="27" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.92"/><line x1="121" y1="92" x2="191" y2="22" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.99"/><line x1="126" y1="92" x2="196" y2="14" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.59"/><line x1="131" y1="92" x2="201" y2="28" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.56"/><line x1="136" y1="92" x2="206" y2="14" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.68"/><line x1="143" y1="92" x2="213" y2="20" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.82"/><line x1="148" y1="92" x2="218" y2="27" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.76"/><line x1="155" y1="92" x2="225" y2="13" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.73"/><line x1="162" y1="92" x2="232" y2="12" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.58"/><line x1="167" y1="92" x2="237" y2="20" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.62"/><line x1="175" y1="92" x2="245" y2="28" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.60"/><line x1="180" y1="92" x2="250" y2="29" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.98"/><line x1="184" y1="92" x2="254" y2="29" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.94"/><line x1="191" y1="92" x2="261" y2="21" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.84"/><line x1="199" y1="92" x2="269" y2="13" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.76"/><line x1="206" y1="92" x2="276" y2="19" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.77"/><line x1="210" y1="92" x2="280" y2="20" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.60"/><line x1="219" y1="92" x2="289" y2="15" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.77"/><line x1="227" y1="92" x2="297" y2="26" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.64"/><line x1="233" y1="92" x2="303" y2="10" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.86"/><line x1="241" y1="92" x2="311" y2="12" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.99"/><line x1="250" y1="92" x2="320" y2="15" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.78"/><line x1="256" y1="92" x2="326" y2="26" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.79"/><line x1="262" y1="92" x2="332" y2="16" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.83"/><line x1="267" y1="92" x2="337" y2="17" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.88"/><line x1="272" y1="92" x2="342" y2="10" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.71"/><line x1="276" y1="92" x2="346" y2="16" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.76"/><line x1="285" y1="92" x2="355" y2="21" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.75"/><line x1="291" y1="92" x2="361" y2="17" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.65"/><line x1="298" y1="92" x2="368" y2="25" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.70"/><line x1="306" y1="92" x2="376" y2="30" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.77"/><line x1="312" y1="92" x2="382" y2="13" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.93"/><line x1="319" y1="92" x2="389" y2="15" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.77"/><line x1="326" y1="92" x2="396" y2="22" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.59"/><line x1="330" y1="92" x2="400" y2="12" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.88"/><line x1="339" y1="92" x2="409" y2="14" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.63"/><line x1="343" y1="92" x2="413" y2="24" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.82"/><line x1="352" y1="92" x2="422" y2="29" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.83"/><line x1="359" y1="92" x2="429" y2="27" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.62"/><line x1="364" y1="92" x2="434" y2="30" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.56"/><line x1="368" y1="92" x2="438" y2="16" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.75"/><line x1="373" y1="92" x2="443" y2="19" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.66"/><line x1="381" y1="92" x2="451" y2="20" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.89"/><line x1="387" y1="92" x2="457" y2="11" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.93"/><line x1="396" y1="92" x2="466" y2="28" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.95"/><line x1="404" y1="92" x2="474" y2="26" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.92"/><line x1="409" y1="92" x2="479" y2="10" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.79"/><line x1="416" y1="92" x2="486" y2="14" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.82"/><line x1="421" y1="92" x2="491" y2="13" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.76"/><line x1="429" y1="92" x2="499" y2="26" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.70"/><line x1="437" y1="92" x2="507" y2="13" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.90"/><line x1="445" y1="92" x2="515" y2="18" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.66"/><line x1="449" y1="92" x2="519" y2="27" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.78"/><line x1="453" y1="92" x2="523" y2="29" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.75"/><line x1="461" y1="92" x2="531" y2="24" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.86"/><line x1="469" y1="92" x2="539" y2="17" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.78"/><line x1="478" y1="92" x2="548" y2="16" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.97"/><line x1="485" y1="92" x2="555" y2="22" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.74"/><line x1="492" y1="92" x2="562" y2="17" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.58"/><line x1="499" y1="92" x2="569" y2="19" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.65"/><line x1="503" y1="92" x2="573" y2="30" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.97"/><line x1="512" y1="92" x2="582" y2="14" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.61"/><line x1="519" y1="92" x2="589" y2="13" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.89"/><line x1="526" y1="92" x2="596" y2="17" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.62"/><line x1="531" y1="92" x2="601" y2="22" stroke="#0f8a5f" stroke-width="6" stroke-opacity="1.00"/><line x1="537" y1="92" x2="607" y2="20" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.64"/><line x1="541" y1="92" x2="611" y2="27" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.56"/><line x1="548" y1="92" x2="618" y2="22" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.87"/><line x1="554" y1="92" x2="624" y2="12" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.78"/><line x1="558" y1="92" x2="628" y2="13" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.99"/><line x1="560" y1="92" x2="630" y2="15" stroke="#f1eee9" stroke-width="4" stroke-opacity="0.67"/><line x1="566" y1="92" x2="636" y2="18" stroke="#f1eee9" stroke-width="3" stroke-opacity="0.92"/><line x1="573" y1="92" x2="643" y2="26" stroke="#f1eee9" stroke-width="3" stroke-opacity="0.79"/><line x1="581" y1="92" x2="651" y2="12" stroke="#f1eee9" stroke-width="6" stroke-opacity="0.87"/><line x1="587" y1="92" x2="657" y2="15" stroke="#f1eee9" stroke-width="2" stroke-opacity="0.91"/><line x1="594" y1="92" x2="664" y2="10" stroke="#f1eee9" stroke-width="2" stroke-opacity="0.67"/><line x1="603" y1="92" x2="673" y2="12" stroke="#f1eee9" stroke-width="2" stroke-opacity="0.91"/><line x1="611" y1="92" x2="681" y2="13" stroke="#f1eee9" stroke-width="3" stroke-opacity="0.58"/><line x1="618" y1="92" x2="688" y2="27" stroke="#f1eee9" stroke-width="2" stroke-opacity="0.70"/><line x1="625" y1="92" x2="695" y2="11" stroke="#f1eee9" stroke-width="4" stroke-opacity="0.83"/><line x1="633" y1="92" x2="703" y2="15" stroke="#f1eee9" stroke-width="3" stroke-opacity="0.97"/><line x1="639" y1="92" x2="709" y2="19" stroke="#f1eee9" stroke-width="2" stroke-opacity="0.63"/><line x1="1150" y1="92" x2="1220" y2="16" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.79"/><line x1="1156" y1="92" x2="1226" y2="15" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.78"/><line x1="1162" y1="92" x2="1232" y2="18" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.91"/><line x1="1166" y1="92" x2="1236" y2="26" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.56"/><line x1="1174" y1="92" x2="1244" y2="17" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.78"/><line x1="1181" y1="92" x2="1251" y2="30" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.85"/><line x1="1188" y1="92" x2="1258" y2="22" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.80"/><line x1="1196" y1="92" x2="1266" y2="17" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.86"/><line x1="1202" y1="92" x2="1272" y2="30" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.92"/><line x1="1207" y1="92" x2="1277" y2="11" stroke="#e11d2a" stroke-width="6" stroke-opacity="1.00"/><line x1="1212" y1="92" x2="1282" y2="18" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.58"/><line x1="1219" y1="92" x2="1289" y2="22" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.57"/><line x1="1227" y1="92" x2="1297" y2="19" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.82"/><line x1="1231" y1="92" x2="1301" y2="18" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.63"/><line x1="1238" y1="92" x2="1308" y2="20" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.67"/><line x1="1246" y1="92" x2="1316" y2="19" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.66"/><line x1="1251" y1="92" x2="1321" y2="20" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.63"/><line x1="1258" y1="92" x2="1328" y2="26" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.76"/><line x1="1267" y1="92" x2="1337" y2="10" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.66"/><line x1="1271" y1="92" x2="1341" y2="14" stroke="#e11d2a" stroke-width="4" stroke-opacity="0.92"/><line x1="1278" y1="92" x2="1348" y2="19" stroke="#e11d2a" stroke-width="2" stroke-opacity="0.73"/><line x1="1284" y1="92" x2="1354" y2="26" stroke="#e11d2a" stroke-width="3" stroke-opacity="0.59"/><line x1="1289" y1="92" x2="1359" y2="25" stroke="#e11d2a" stroke-width="6" stroke-opacity="0.89"/><line x1="1290" y1="92" x2="1360" y2="30" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.88"/><line x1="1295" y1="92" x2="1365" y2="26" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.92"/><line x1="1304" y1="92" x2="1374" y2="26" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.88"/><line x1="1309" y1="92" x2="1379" y2="28" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.92"/><line x1="1318" y1="92" x2="1388" y2="11" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.59"/><line x1="1323" y1="92" x2="1393" y2="22" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.98"/><line x1="1330" y1="92" x2="1400" y2="30" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.83"/><line x1="1338" y1="92" x2="1408" y2="10" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.77"/><line x1="1345" y1="92" x2="1415" y2="26" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.89"/><line x1="1353" y1="92" x2="1423" y2="12" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.85"/><line x1="1362" y1="92" x2="1432" y2="12" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.66"/><line x1="1368" y1="92" x2="1438" y2="16" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.88"/><line x1="1373" y1="92" x2="1443" y2="22" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.77"/><line x1="1377" y1="92" x2="1447" y2="19" stroke="#0f8a5f" stroke-width="6" stroke-opacity="0.96"/><line x1="1381" y1="92" x2="1451" y2="14" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.58"/><line x1="1387" y1="92" x2="1457" y2="19" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.84"/><line x1="1395" y1="92" x2="1465" y2="11" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.56"/><line x1="1402" y1="92" x2="1472" y2="13" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.99"/><line x1="1411" y1="92" x2="1481" y2="19" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.85"/><line x1="1420" y1="92" x2="1490" y2="24" stroke="#0f8a5f" stroke-width="4" stroke-opacity="0.76"/><line x1="1424" y1="92" x2="1494" y2="12" stroke="#0f8a5f" stroke-width="3" stroke-opacity="0.69"/><line x1="1431" y1="92" x2="1501" y2="12" stroke="#0f8a5f" stroke-width="2" stroke-opacity="0.68"/><line x1="1439" y1="92" x2="1509" y2="22" stroke="#0f8a5f" stroke-width="6" stroke-opacity="1.00"/></svg></div>
 </main>
 <!-- 10. EDITORIAL FOOTER (SHARED COMPONENT IMPLEMENTATION) -->
 <footer class="w-full bg-[#18181B] text-white border-t border-black">
@@ -1271,6 +1612,7 @@
 </div>
 </footer>
 <!-- PERSISTENT BROADCAST AUDIO BAR (STICKY BOTTOM DOCKED) -->
+<!--
 <div class="fixed bottom-0 inset-x-0 bg-[#18181B] text-white border-t border-black z-50 shadow-2xl">
 <div class="max-w-[1440px] mx-auto px-4 lg:px-12 py-2 flex items-center justify-between gap-4">
 <div class="flex items-center gap-3">
@@ -1304,6 +1646,7 @@
 </div>
 </div>
 </div>
+-->
 <script>
   (function () {
     // Set this to the Radio 98.4 stream URL to make "Listen Now" play real audio.
@@ -1482,6 +1825,46 @@
 
     // Re-measure once the display font is in, since it changes the word's height.
     (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(init);
+  })();
+</script>
+<script>
+  (function () {
+    // Filter pills: visual toggle (stories get wired to real categories later)
+    document.querySelectorAll('[data-kb-filter]').forEach(function (group) {
+      group.addEventListener('click', function (e) {
+        var btn = e.target.closest('.kb-pill');
+        if (!btn) return;
+        group.querySelectorAll('.kb-pill').forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+      });
+    });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+
+    // Reveal blocks as they scroll into view
+    document.documentElement.classList.add('kb-js');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.kb-rise').forEach(function (el) { io.observe(el); });
+
+    // Count stats up from zero the first time they are seen
+    var counter = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        counter.unobserve(entry.target);
+        var el = entry.target, end = +el.dataset.kbCount, start = performance.now();
+        (function tick(now) {
+          var k = Math.min(1, (now - start) / 1600);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))).toLocaleString('en-US') + (k === 1 ? '+' : '');
+          if (k < 1) requestAnimationFrame(tick);
+        })(start);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-kb-count]').forEach(function (el) { counter.observe(el); });
   })();
 </script>
 </body></html>
