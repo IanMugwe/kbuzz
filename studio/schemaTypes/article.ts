@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {DocumentTextIcon} from '@sanity/icons/DocumentText'
+import {SourceUrlInput} from '../components/SourceUrlInput'
 
 export const article = defineType({
   name: 'article',
@@ -85,7 +86,8 @@ export const article = defineType({
       title: 'Source URL',
       type: 'url',
       group: 'media',
-      description: 'Link to the original report or post, shown as "Originally reported by…".',
+      description: 'Link to the original report or post, shown as "Originally reported by…". Paste it first to fill the story from the link.',
+      components: {input: SourceUrlInput},
     }),
     defineField({
       name: 'embedUrl',

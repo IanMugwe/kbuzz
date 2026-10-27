@@ -16,6 +16,7 @@ Sign in with the Google or email account you were invited with.
 3. Optional, on the **Media & links** tab:
    - **Gallery** — drop several photos at once; each needs alt text. Readers can swipe and open them full screen.
    - **Source URL** — link to the original report; shown as "Originally reported by …".
+     **Starting from a link?** Paste it here first and press **Fill from link**: an empty headline, slug, excerpt and cover image are filled from the page's preview. Always rewrite the text in our own words and add alt text to the cover. Some sites block previews; then fill the fields by hand.
    - **Embed URL** — a YouTube, SoundCloud or Zeno link shows a player under the cover. X and TikTok links show as a link card.
 4. Press **Publish** (bottom right). The website updates itself in about 2 minutes.
 

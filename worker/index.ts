@@ -1,7 +1,9 @@
 // Edge Worker in front of the static Astro build.
-// - fetch: everything is served from the static assets in dist/.
+// - fetch: /api/unfurl* powers the Studio's "Fill from link" button; everything else is static assets in dist/.
 // - scheduled: rebuilds the site when a story scheduled for the future becomes due,
 //   because Sanity's publish webhook fires when the editor presses Publish, not when publishedAt passes.
+
+import {handleUnfurl} from './unfurl'
 
 interface Env {
   ASSETS: Fetcher
@@ -25,6 +27,7 @@ async function storiesBecameDue(since: Date): Promise<number> {
 
 export default {
   async fetch(request, env) {
+    if (new URL(request.url).pathname.startsWith('/api/unfurl')) return handleUnfurl(request)
     return env.ASSETS.fetch(request)
   },
 
