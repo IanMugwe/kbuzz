@@ -1,0 +1,15 @@
+---
+interface Props { kicker: string; title: string; script?: string; description?: string }
+const {kicker, title, script, description} = Astro.props
+---
+<div class="kb-head kb-rise">
+<div>
+<span class="kb-kicker">{kicker}</span>
+<h1 class="kb-head__title">
+<span class="kb-display">{title}</span>
+{script && <span class="kb-script">{script}<svg aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 16 C 60 8, 130 4, 196 3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="6"></path></svg></span>}
+</h1>
+{description && <p class="kb-body mt-4 max-w-xl">{description}</p>}
+</div>
+<slot/>
+</div>

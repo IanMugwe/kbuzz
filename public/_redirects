@@ -1,0 +1,2 @@
+/admin    https://kbuzz.sanity.studio 302
+/admin/*  https://kbuzz.sanity.studio/:splat 302

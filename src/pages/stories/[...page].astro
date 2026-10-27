@@ -1,0 +1,37 @@
+---
+import type {GetStaticPaths, Page} from 'astro'
+import Base from '../../layouts/Base.astro'
+import PageHead from '../../components/PageHead.astro'
+import StoryGrid from '../../components/StoryGrid.astro'
+import {client, queries, type ArticleCard, type Category} from '../../lib/sanity'
+
+export const getStaticPaths = (async ({paginate}) => {
+  const [stories, categories] = await Promise.all([
+    client.fetch<ArticleCard[]>(queries.latest),
+    client.fetch<Category[]>(queries.categories),
+  ])
+  return paginate(stories, {pageSize: 12, props: {categories}})
+}) satisfies GetStaticPaths
+
+const {page, categories} = Astro.props as {page: Page<ArticleCard>; categories: Category[]}
+---
+<Base title={page.currentPage > 1 ? `All stories — page ${page.currentPage}` : 'All stories'}>
+<main class="kb-paper kb-section">
+<div class="kb-wrap">
+<PageHead kicker="DISPATCH DESK" script="Habari zote" title="All Stories">
+<nav aria-label="Story categories" class="flex flex-wrap items-center gap-2 lg:justify-end lg:max-w-[34rem]">
+<a aria-current="page" class="kb-pill kb-pill--sm" href="/stories">All Stories</a>
+{categories.map((c) => <a class="kb-pill kb-pill--sm" href={`/category/${c.slug}`}>{c.title}</a>)}
+</nav>
+</PageHead>
+<StoryGrid stories={page.data}/>
+{(page.url.prev || page.url.next) && (
+<nav aria-label="Pagination" class="mt-16 flex items-center justify-between">
+{page.url.prev ? <a class="kb-pill" href={page.url.prev}>← Newer</a> : <span/>}
+<span class="kb-meta">Page {page.currentPage} of {page.lastPage}</span>
+{page.url.next ? <a class="kb-pill" href={page.url.next}>Older →</a> : <span/>}
+</nav>
+)}
+</div>
+</main>
+</Base>

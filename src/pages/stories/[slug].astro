@@ -1,0 +1,120 @@
+---
+import type {GetStaticPaths} from 'astro'
+import Base from '../../layouts/Base.astro'
+import StoryCard from '../../components/StoryCard.astro'
+import {client, formatDate, imageSrcset, imageUrl, queries, readMinutes, type Article, type ArticleCard} from '../../lib/sanity'
+import {bodyHtml} from '../../lib/portableText'
+import {embedHtml} from '../../lib/embed'
+import {SITE_NAME, SITE_URL} from '../../lib/site'
+
+export const getStaticPaths = (async () => {
+  const slugs = await client.fetch<string[]>(`*[_type == "article" && defined(slug.current) && publishedAt <= now()].slug.current`)
+  return slugs.map((slug) => ({params: {slug}}))
+}) satisfies GetStaticPaths
+
+const story = await client.fetch<Article>(queries.article, {slug: Astro.params.slug})
+const related = await client.fetch<ArticleCard[]>(queries.related, {id: story._id, category: story.category?.slug ?? ''})
+
+const url = `${SITE_URL}/stories/${story.slug}`
+const description = story.seo?.description || story.excerpt
+const shareImage = imageUrl(story.seo?.image || story.cover, 1200, 630)
+const accent = story.category?.accent ?? '#e11d2a'
+const source = story.sourceUrl ? new URL(story.sourceUrl) : null
+const shareText = encodeURIComponent(`${story.title} — ${url}`)
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: story.title,
+  description,
+  image: [shareImage],
+  datePublished: story.publishedAt,
+  dateModified: story.updatedAt || story.publishedAt,
+  author: story.author ? [{'@type': 'Person', name: story.author.name, url: `${SITE_URL}/authors/${story.author.slug}`}] : [],
+  publisher: {'@type': 'Organization', name: SITE_NAME, logo: {'@type': 'ImageObject', url: `${SITE_URL}/favicon.svg`}},
+  mainEntityOfPage: url,
+}
+---
+<Base description={description} image={shareImage} publishedAt={story.publishedAt} title={story.seo?.title || story.title} type="article">
+<script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+<main class="kb-paper kb-story" style={`--c:${accent}`}>
+<article>
+<header class="kb-story__head kb-wrap">
+<a class="kb-meta kb-meta--accent" href={`/category/${story.category?.slug}`}>{story.category?.title}</a>
+<h1 class="kb-story__title">{story.title}</h1>
+<p class="kb-story__dek">{story.excerpt}</p>
+<div class="kb-story__byline kb-meta">
+<a class="text-stone-900" href={`/authors/${story.author?.slug}`}>By {story.author?.name}</a>
+<span>•</span>
+<time datetime={story.publishedAt}>{formatDate(story.publishedAt)}</time>
+{story.updatedAt && <><span>•</span><span>Updated {formatDate(story.updatedAt)}</span></>}
+<span>•</span>
+<span>{readMinutes(story.words)} min read</span>
+</div>
+</header>
+
+<figure class="kb-story__cover">
+<div class="kb-media">
+<img alt={story.cover.alt} decoding="async" fetchpriority="high" sizes="(min-width: 1200px) 1100px, 100vw" src={imageUrl(story.cover, 1600, 900)} srcset={imageSrcset(story.cover, [640, 1100, 1600, 2200], 16 / 9)}/>
+</div>
+{(story.cover.caption || story.cover.credit) && (
+<figcaption class="kb-story__caption">{[story.cover.caption, story.cover.credit && `Photo: ${story.cover.credit}`].filter(Boolean).join(' · ')}</figcaption>
+)}
+</figure>
+
+<div class="kb-story__layout">
+<aside aria-label="Share this story" class="kb-story__share">
+<span class="kb-meta">Share</span>
+<a aria-label="Share on WhatsApp" class="kb-share" href={`https://wa.me/?text=${shareText}`} rel="noopener" target="_blank">WA</a>
+<a aria-label="Share on X" class="kb-share" href={`https://x.com/intent/post?text=${shareText}`} rel="noopener" target="_blank">X</a>
+<a aria-label="Share on Facebook" class="kb-share" href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} rel="noopener" target="_blank">FB</a>
+<button aria-label="Copy link" class="kb-share" data-copy={url} type="button"><span class="material-symbols-outlined text-lg">link</span></button>
+</aside>
+
+<div class="kb-story__body">
+{story.embedUrl && <Fragment set:html={embedHtml(story.embedUrl)}/>}
+<div class="kb-prose" set:html={bodyHtml(story.body)}/>
+
+{story.gallery && story.gallery.length > 0 && (
+<section aria-label="Gallery" class="kb-gallery">
+<h2 class="kb-meta">Gallery · {story.gallery.length} photos</h2>
+<div class="kb-gallery__track">
+{story.gallery.map((img, i) => (
+<button class="kb-gallery__item" data-full={imageUrl(img, 2000)} data-caption={img.caption ?? ''} data-index={i} type="button">
+<img alt={img.alt} decoding="async" loading="lazy" src={imageUrl(img, 640, 480)}/>
+</button>
+))}
+</div>
+</section>
+)}
+
+{source && (
+<p class="kb-story__source kb-meta">Originally reported by <a href={source.href} rel="noopener" target="_blank">{source.hostname.replace(/^www\./, '')}</a></p>
+)}
+{story.tags && story.tags.length > 0 && (
+<ul class="kb-story__tags">{story.tags.map((t) => <li class="kb-pill kb-pill--sm">{t}</li>)}</ul>
+)}
+</div>
+</div>
+</article>
+
+{related.length > 0 && (
+<section class="kb-paper--deep kb-section">
+<div class="kb-wrap">
+<div class="kb-head"><div><span class="kb-kicker">KEEP READING</span><h2 class="kb-head__title"><span class="kb-display">More in {story.category?.title}</span></h2></div></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-14">
+{related.map((s, i) => <StoryCard delay={i * 0.08} story={s}/>)}
+</div>
+</div>
+</section>
+)}
+</main>
+
+<dialog aria-label="Photo viewer" class="kb-lightbox">
+<button aria-label="Close" class="kb-lightbox__close" type="button"><span class="material-symbols-outlined">close</span></button>
+<button aria-label="Previous photo" class="kb-lightbox__nav kb-lightbox__nav--prev" type="button"><span class="material-symbols-outlined">arrow_back</span></button>
+<figure><img alt=""/><figcaption></figcaption></figure>
+<button aria-label="Next photo" class="kb-lightbox__nav kb-lightbox__nav--next" type="button"><span class="material-symbols-outlined">arrow_forward</span></button>
+</dialog>
+<script is:inline slot="scripts" src="/scripts/story.js"></script>
+</Base>
