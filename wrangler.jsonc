@@ -1,8 +1,18 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "kbuzz",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-10-19",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+  // Hourly check for scheduled stories that have become due (see worker/index.ts).
+  "triggers": {
+    "crons": ["5 * * * *"]
+  },
+  "observability": {
+    "enabled": true
   }
 }

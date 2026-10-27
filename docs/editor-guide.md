@@ -10,7 +10,7 @@ Sign in with the Google or email account you were invited with.
    - **Headline** — up to 120 characters. Click **Generate** next to **Slug** to make the web address.
    - **Subheadline / excerpt** — one or two sentences (max 200). This shows on story cards and in WhatsApp previews.
    - **Category** and **Author** — pick from the list. New authors and categories are added under **Authors** / **Categories** in the left menu.
-   - **Published at** — defaults to now. A future time schedules the story: it stays hidden until then and appears on the next site update after that time.
+   - **Published at** — defaults to now. A future time schedules the story: press **Publish** now, and it appears on the site within an hour after that time.
    - **Cover image** — drag a photo in, then fill in **Alt text** (required: describe the photo in a sentence). Use **Edit → hotspot** to mark the important part so crops on phones keep it in frame.
    - **Body** — write the story. The toolbar adds headings, quotes, links, inline images and embeds.
 3. Optional, on the **Media & links** tab:
