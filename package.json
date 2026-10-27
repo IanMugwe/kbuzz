@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro build && wrangler dev",
-    "deploy": "astro build && wrangler deploy"
+    "deploy": "astro build && wrangler deploy",
+    "check": "astro check && tsc -p worker"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
@@ -24,6 +25,7 @@
     "postcss": "^8.5.0",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3",
-    "wrangler": "4.151.3"
+    "wrangler": "4.151.3",
+    "@cloudflare/workers-types": "^5.20261027.1"
   }
 }
