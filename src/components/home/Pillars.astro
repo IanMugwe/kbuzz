@@ -1,3 +1,10 @@
+---
+import {Image} from 'astro:assets'
+import aminaHassanImg from '../../assets/img/amina-hassan.jpg'
+import cultureImg from '../../assets/img/culture.jpg'
+import karanjaSculptorImg from '../../assets/img/karanja-sculptor.jpg'
+import leatherTanneryImg from '../../assets/img/leather-tannery.jpg'
+---
 <section class="relative bg-[#0d0d0f] text-white overflow-hidden">
 <!-- 3. OUR PILLARS / THE STORIES THAT MOVE US (Paper Canvas) -->
 <div class="kb-pillars text-on-surface py-16 lg:py-20 px-6 lg:px-12" id="pillars">
@@ -25,7 +32,7 @@
 <!-- 01 CULTURE -->
 <a class="kb-pillar group" href="#culture" style="--c:#e11d2a">
 <div class="kb-pillar__media">
-<img alt="Culture" loading="lazy" src="/assets/img/culture.jpg"/>
+<Image alt="Culture" loading="lazy" src={cultureImg} format="webp" quality={72}/>
 <svg aria-hidden="true" class="kb-pillar__wave" viewBox="0 0 94 50"><path d="M2 30 L12 12 L18 40 L26 6 L33 44 L40 14 L47 36 L54 10 L61 42 L68 18 L76 34 L84 22 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
 <div class="kb-pillar__num">01</div>
@@ -39,7 +46,7 @@
 <!-- 02 PEOPLE -->
 <a class="kb-pillar group" href="#people" style="--c:#0f8a5f">
 <div class="kb-pillar__media">
-<img alt="People" loading="lazy" src="/assets/img/karanja-sculptor.jpg"/>
+<Image alt="People" loading="lazy" src={karanjaSculptorImg} format="webp" quality={72}/>
 <svg aria-hidden="true" class="kb-pillar__wave" viewBox="0 0 94 50"><path d="M2 30 L10 26 L16 34 L22 16 L29 42 L35 20 L41 36 L47 12 L53 44 L59 22 L66 34 L74 26 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
 <div class="kb-pillar__num">02</div>
@@ -53,7 +60,7 @@
 <!-- 03 YOUTH -->
 <a class="kb-pillar group" href="#youth" style="--c:#e0a100">
 <div class="kb-pillar__media">
-<img alt="Youth" loading="lazy" src="/assets/img/amina-hassan.jpg"/>
+<Image alt="Youth" loading="lazy" src={aminaHassanImg} format="webp" quality={72}/>
 <svg aria-hidden="true" class="kb-pillar__wave" viewBox="0 0 94 50"><path d="M2 30 L9 24 L15 36 L21 20 L27 40 L33 18 L39 38 L45 22 L51 36 L58 26 L66 32 L78 28 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
 <div class="kb-pillar__num">03</div>
@@ -67,7 +74,7 @@
 <!-- 04 IDEAS -->
 <a class="kb-pillar group" href="#ideas" style="--c:#0f8a5f">
 <div class="kb-pillar__media">
-<img alt="Ideas" loading="lazy" src="/assets/img/leather-tannery.jpg"/>
+<Image alt="Ideas" loading="lazy" src={leatherTanneryImg} format="webp" quality={72}/>
 <svg aria-hidden="true" class="kb-pillar__wave" viewBox="0 0 94 50"><path d="M2 30 L10 22 L16 38 L23 14 L30 42 L37 18 L44 38 L51 24 L58 34 L66 28 L76 31 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
 <div class="kb-pillar__num">04</div>

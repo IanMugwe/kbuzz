@@ -1,3 +1,8 @@
+---
+import {Image} from 'astro:assets'
+import aminaHassanImg from '../../assets/img/amina-hassan.jpg'
+import karanjaSculptorImg from '../../assets/img/karanja-sculptor.jpg'
+---
 <!-- 6. COMMUNITY SPOTLIGHT: PEOPLE OF KIAMAIKO -->
 <section class="kb-paper kb-paper--deep kb-section" id="community">
 <div class="kb-wrap">
@@ -18,7 +23,7 @@
 <!-- Profile 1 -->
 <div class="kb-profile group kb-rise" style="--c:#0f8a5f">
 <div class="kb-media kb-profile__media">
-<img alt="" data-alt="Dignified close-up editorial portrait of Amina Hassan, a sharp 24-year-old Kenyan woman software engineer and educator in Kiamaiko Nairobi. High-contrast ambient lighting, wearing a stylish modest headwrap and warm smile, with computer screens and circuit boards softly blurred in the background. Highly textured documentary style." src="/assets/img/amina-hassan.jpg"/>
+<Image alt="" data-alt="Dignified close-up editorial portrait of Amina Hassan, a sharp 24-year-old Kenyan woman software engineer and educator in Kiamaiko Nairobi. High-contrast ambient lighting, wearing a stylish modest headwrap and warm smile, with computer screens and circuit boards softly blurred in the background. Highly textured documentary style." src={aminaHassanImg} format="webp" quality={72}/>
 <svg aria-hidden="true" class="kb-wave" viewBox="0 0 94 50"><path d="M2 30 L10 26 L16 34 L22 16 L29 42 L35 20 L41 36 L47 12 L53 44 L59 22 L66 34 L74 26 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
 <div class="flex-1 flex flex-col">
@@ -43,7 +48,7 @@
 <!-- Profile 2 -->
 <div class="kb-profile group kb-rise" style="--c:#e0a100; --d:.08s">
 <div class="kb-media kb-profile__media">
-<img alt="" data-alt="Intense high-contrast portrait of Karanja K-Jay Omondi, an East African metal sculptor standing in his gritty Kiamaiko open-air workshop surrounded by welding sparks and recycled iron sculptures. Warm natural sunlight, wearing safety goggles and leather apron, confident and visionary demeanor. Rich tonal contrast and deep shadows." src="/assets/img/karanja-sculptor.jpg"/>
+<Image alt="" data-alt="Intense high-contrast portrait of Karanja K-Jay Omondi, an East African metal sculptor standing in his gritty Kiamaiko open-air workshop surrounded by welding sparks and recycled iron sculptures. Warm natural sunlight, wearing safety goggles and leather apron, confident and visionary demeanor. Rich tonal contrast and deep shadows." src={karanjaSculptorImg} format="webp" quality={72}/>
 <svg aria-hidden="true" class="kb-wave" viewBox="0 0 94 50"><path d="M2 30 L9 24 L15 36 L21 20 L27 40 L33 18 L39 38 L45 22 L51 36 L58 26 L66 32 L78 28 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
 </div>
 <div class="flex-1 flex flex-col">

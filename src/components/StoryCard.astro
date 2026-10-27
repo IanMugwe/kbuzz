@@ -1,8 +1,9 @@
 ---
 import {formatDate, imageSrcset, imageUrl, readMinutes, type ArticleCard} from '../lib/sanity'
 
-interface Props { story: ArticleCard; delay?: number }
-const {story, delay = 0} = Astro.props
+interface Props { story: ArticleCard; delay?: number; level?: 2 | 3 }
+const {story, delay = 0, level = 3} = Astro.props
+const Heading = level === 2 ? 'h2' : 'h3'
 ---
 <article class="kb-card group kb-rise" style={`--c:${story.category?.accent ?? '#e11d2a'}; --d:${delay}s`}>
 <a class="kb-card__link" href={`/stories/${story.slug}`}>
@@ -16,7 +17,7 @@ const {story, delay = 0} = Astro.props
 <span>•</span>
 <span>{readMinutes(story.words)} min read</span>
 </div>
-<h3 class="kb-title text-[1.5rem] mt-2">{story.title}</h3>
+<Heading class="kb-title text-[1.5rem] mt-2">{story.title}</Heading>
 <p class="kb-body text-[13px] mt-2">{story.excerpt}</p>
 <div class="mt-auto pt-5 flex items-center justify-between">
 <span class="kb-meta text-stone-900">By {story.author?.name}</span>

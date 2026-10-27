@@ -1,4 +1,6 @@
 ---
+import {antonUrl} from '../styles/fonts'
+import '../styles/icons.css'
 import '../styles/kbuzz.css'
 import '../styles/story.css'
 import Header from '../components/Header.astro'
@@ -49,12 +51,9 @@ const canonical = new URL(Astro.url.pathname, SITE_URL).href
 {publishedAt && <meta content={publishedAt} property="article:published_time"/>}
 <meta content="summary_large_image" name="twitter:card"/>
 <slot name="head"/>
-<!-- Google Fonts: Newsreader (Editorial Serif), Hanken Grotesk, JetBrains Mono -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Permanent+Marker&amp;family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts are self-hosted (src/styles/fonts.ts, src/styles/icons.css); preload the headline face (the icon subset is inlined into the CSS). -->
+<link as="font" crossorigin="" href={antonUrl} rel="preload" type="font/woff2"/>
+<link href="https://cdn.sanity.io" rel="preconnect"/>
 </head>
 <body class="bg-[#FAF8F5] text-on-surface font-body-md text-body-md antialiased selection:bg-primary-container selection:text-white">
 <Header solid={solidHeader}/>
