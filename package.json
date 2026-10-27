@@ -1,0 +1,11 @@
+{
+  "name": "kbuzz",
+  "private": true,
+  "scripts": {
+    "build": "sh scripts/build.sh",
+    "deploy": "sh scripts/build.sh && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.151.3"
+  }
+}
