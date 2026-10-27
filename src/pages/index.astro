@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro'
+import Hero from '../components/home/Hero.astro'
+import Pillars from '../components/home/Pillars.astro'
+import Dispatches from '../components/home/Dispatches.astro'
+import Events from '../components/home/Events.astro'
+import Community from '../components/home/Community.astro'
+import Studio from '../components/home/Studio.astro'
+import Radio from '../components/home/Radio.astro'
+import Newsletter from '../components/home/Newsletter.astro'
+import {client, queries, type ArticleCard} from '../lib/sanity'
+
+const stories = await client.fetch<ArticleCard[]>(`${queries.latest}[0...12]`)
+---
+<Base solidHeader={false}>
+<Hero/>
+<!-- MAIN EDITORIAL CONTAINER -->
+<main>
+<Pillars/>
+<Dispatches stories={stories}/>
+<Events/>
+<Community/>
+<Studio/>
+<Radio/>
+<Newsletter/>
+</main>
+<script is:inline slot="scripts" src="/scripts/hero.js"></script>
+</Base>

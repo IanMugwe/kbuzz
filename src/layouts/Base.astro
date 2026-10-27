@@ -1,0 +1,66 @@
+---
+import '../styles/kbuzz.css'
+import '../styles/story.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import {SITE_DESCRIPTION, SITE_NAME, SITE_URL} from '../lib/site'
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+  type?: 'website' | 'article'
+  solidHeader?: boolean
+  publishedAt?: string
+  noindex?: boolean
+}
+
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  image = `${SITE_URL}/assets/img/og-cover.jpg`,
+  type = 'website',
+  solidHeader = true,
+  publishedAt,
+  noindex = false,
+} = Astro.props
+const pageTitle = title ? `${title} — ${SITE_NAME}` : 'KIAMAIKO FM — Voice & Pulse of the Community (98.4 FM)'
+const canonical = new URL(Astro.url.pathname, SITE_URL).href
+---
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>{pageTitle}</title>
+<meta content={description} name="description"/>
+<meta content="#b70011" name="theme-color"/>
+<link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href={canonical} rel="canonical"/>
+<link href="/rss.xml" rel="alternate" title="K Buzz stories" type="application/rss+xml"/>
+{noindex && <meta content="noindex" name="robots"/>}
+<!-- Social sharing (WhatsApp, X, Facebook) -->
+<meta content={type} property="og:type"/>
+<meta content={SITE_NAME} property="og:site_name"/>
+<meta content={title ?? 'KIAMAIKO FM — Voice & Pulse of the Community'} property="og:title"/>
+<meta content={description} property="og:description"/>
+<meta content={image} property="og:image"/>
+<meta content={canonical} property="og:url"/>
+{publishedAt && <meta content={publishedAt} property="article:published_time"/>}
+<meta content="summary_large_image" name="twitter:card"/>
+<slot name="head"/>
+<!-- Google Fonts: Newsreader (Editorial Serif), Hanken Grotesk, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Permanent+Marker&amp;family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-[#FAF8F5] text-on-surface font-body-md text-body-md antialiased selection:bg-primary-container selection:text-white">
+<Header solid={solidHeader}/>
+<slot/>
+<Footer/>
+<slot name="scripts"/>
+<script is:inline src="/scripts/reveal.js"></script>
+</body>
+</html>

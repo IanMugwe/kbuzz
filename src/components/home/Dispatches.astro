@@ -1,0 +1,94 @@
+---
+import {formatDate, imageSrcset, imageUrl, readMinutes, type ArticleCard} from '../../lib/sanity'
+
+interface Props { stories: ArticleCard[] }
+const {stories} = Astro.props
+// The featured story takes the large slot; the next two newest stack beside it.
+const feature = stories.find((s) => s.featured) ?? stories[0]
+const stacked = stories.filter((s) => s !== feature).slice(0, 2)
+// One pill per category that has stories, newest first, at most four.
+const pills = [...new Map(stories.filter((s) => s.category).map((s) => [s.category.slug, s.category])).values()].slice(0, 4)
+---
+<!-- 4. LATEST STORIES (ASYMMETRIC EDITORIAL GRID) -->
+<section class="kb-paper kb-paper--deep kb-section">
+<div class="kb-wrap">
+<div class="kb-head kb-rise">
+<div>
+<span class="kb-kicker">DISPATCH DESK</span>
+<h2 class="kb-head__title">
+<span class="kb-display">Latest Dispatches</span>
+<span class="kb-script">Habari<br/>za Sasa<svg aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 16 C 60 8, 130 4, 196 3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="6"></path></svg></span>
+</h2>
+</div>
+<!-- Filter Pills: link to the category pages -->
+<nav aria-label="Story categories" class="flex flex-wrap items-center gap-2 lg:justify-end lg:max-w-[34rem]">
+<a aria-current="page" class="kb-pill kb-pill--sm" href="/stories">All Stories</a>
+{pills.map((c) => <a class="kb-pill kb-pill--sm" href={`/category/${c.slug}`}>{c.title}</a>)}
+</nav>
+</div>
+<!-- Asymmetrical 4-Card Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12 items-stretch">
+<!-- Feature Card (Spans 5 cols) -->
+{feature ? (
+<a class="lg:col-span-5 flex flex-col group kb-rise" href={`/stories/${feature.slug}`} style={`--c:${feature.category?.accent ?? '#0f8a5f'}`}>
+<div class="kb-media aspect-[16/10]">
+<img alt={feature.cover?.alt ?? ''} decoding="async" sizes="(min-width: 1024px) 540px, 100vw" src={imageUrl(feature.cover, 900, 563)} srcset={imageSrcset(feature.cover, [480, 900, 1400], 1.6)}/>
+<svg aria-hidden="true" class="kb-wave" viewBox="0 0 94 50"><path d="M2 30 L10 26 L16 34 L22 16 L29 42 L35 20 L41 36 L47 12 L53 44 L59 22 L66 34 L74 26 L92 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path></svg>
+{feature.category && <span class="kb-media__tag">{feature.category.title}</span>}
+</div>
+<div class="kb-meta mt-5 flex items-center gap-2">
+<span>{formatDate(feature.publishedAt)}</span>
+<span>•</span>
+<span>By {feature.author?.name}</span>
+</div>
+<h3 class="kb-title text-[1.9rem] mt-2">{feature.title}</h3>
+<p class="kb-body mt-3">{feature.excerpt}</p>
+<div class="mt-auto pt-6 flex items-center justify-between gap-4">
+<span class="kb-meta" style="color: var(--c)">{readMinutes(feature.words)} min read</span>
+<span class="kb-link">READ THE STORY <span class="material-symbols-outlined text-lg">north_east</span></span>
+</div>
+</a>
+) : (
+<div class="lg:col-span-9 kb-body">New dispatches are on the way.</div>
+)}
+<!-- Stacked Cards (Spans 4 cols) -->
+{stacked.length > 0 && (
+<div class="lg:col-span-4 flex flex-col gap-10">
+{stacked.map((story) => (
+<a class="kb-stack group kb-rise" href={`/stories/${story.slug}`} style={`--c:${story.category?.accent ?? '#e11d2a'}`}>
+<div class="flex items-center justify-between mb-3">
+<span class="kb-meta kb-meta--accent">{story.category?.title}</span>
+<span class="kb-meta">{readMinutes(story.words)} min read</span>
+</div>
+<h4 class="kb-title text-[1.55rem]">{story.title}</h4>
+<p class="kb-body text-[13px] mt-3">{story.excerpt}</p>
+<div class="mt-auto pt-5 flex items-center justify-between">
+<span class="kb-meta text-stone-900">By {story.author?.name}</span>
+<span class="kb-link">READ <span class="material-symbols-outlined text-lg">arrow_forward</span></span>
+</div>
+</a>
+))}
+</div>
+)}
+<!-- Stat / Quote Callout Card (Spans 3 cols) -->
+<div class="lg:col-span-3 kb-ink kb-quote kb-rise">
+<div>
+<div class="flex items-center justify-between kb-meta text-stone-400 mb-6">
+<span>Oral Archive</span>
+<span class="kb-quote__mark">“</span>
+</div>
+<p class="kb-quote__text">
+              "Kiamaiko is not just a place on the map; it is Nairobi's beating heartbeat of resilience."
+            </p>
+<svg aria-hidden="true" class="kb-quote__rule" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M4 14 C 60 8, 130 5, 196 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="7"></path></svg>
+<p class="kb-quote__name">Mzee Juma</p>
+<p class="kb-meta text-stone-400 mt-1">Community Elder &amp; Founding Council Voice (Age 78)</p>
+</div>
+<div class="mt-10 pt-6 border-t border-white/10">
+<div class="kb-quote__stat" data-kb-count="84000">84,000+</div>
+<p class="kb-meta text-stone-400 mt-2">Weekly Listeners &amp; Broadsheet Readers in Eastlands</p>
+</div>
+</div>
+</div>
+</div>
+</section>

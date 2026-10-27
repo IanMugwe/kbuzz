@@ -1,0 +1,26 @@
+---
+import {formatDate, imageSrcset, imageUrl, readMinutes, type ArticleCard} from '../lib/sanity'
+
+interface Props { story: ArticleCard; delay?: number }
+const {story, delay = 0} = Astro.props
+---
+<article class="kb-card group kb-rise" style={`--c:${story.category?.accent ?? '#e11d2a'}; --d:${delay}s`}>
+<a class="kb-card__link" href={`/stories/${story.slug}`}>
+<div class="kb-media aspect-[16/10]">
+<img alt={story.cover?.alt ?? ''} decoding="async" loading="lazy" sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
+  src={imageUrl(story.cover, 800, 500)} srcset={imageSrcset(story.cover, [400, 800, 1200], 1.6)}/>
+{story.category && <span class="kb-media__tag">{story.category.title}</span>}
+</div>
+<div class="kb-meta mt-4 flex items-center gap-2">
+<span>{formatDate(story.publishedAt)}</span>
+<span>•</span>
+<span>{readMinutes(story.words)} min read</span>
+</div>
+<h3 class="kb-title text-[1.5rem] mt-2">{story.title}</h3>
+<p class="kb-body text-[13px] mt-2">{story.excerpt}</p>
+<div class="mt-auto pt-5 flex items-center justify-between">
+<span class="kb-meta text-stone-900">By {story.author?.name}</span>
+<span class="kb-link">READ <span class="material-symbols-outlined text-lg">arrow_forward</span></span>
+</div>
+</a>
+</article>

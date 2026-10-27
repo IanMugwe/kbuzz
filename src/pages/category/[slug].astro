@@ -1,0 +1,33 @@
+---
+import type {GetStaticPaths} from 'astro'
+import Base from '../../layouts/Base.astro'
+import PageHead from '../../components/PageHead.astro'
+import StoryGrid from '../../components/StoryGrid.astro'
+import {client, queries, type ArticleCard, type Category} from '../../lib/sanity'
+
+export const getStaticPaths = (async () => {
+  const [stories, categories] = await Promise.all([
+    client.fetch<ArticleCard[]>(queries.latest),
+    client.fetch<Category[]>(queries.categories),
+  ])
+  return categories.map((category) => ({
+    params: {slug: category.slug},
+    props: {category, categories, stories: stories.filter((s) => s.category?.slug === category.slug)},
+  }))
+}) satisfies GetStaticPaths
+
+const {category, categories, stories} = Astro.props as {category: Category; categories: Category[]; stories: ArticleCard[]}
+---
+<Base description={category.description} title={category.title}>
+<main class="kb-paper kb-section" style={`--c:${category.accent}`}>
+<div class="kb-wrap">
+<PageHead description={category.description} kicker="CATEGORY" title={category.title}>
+<nav aria-label="Story categories" class="flex flex-wrap items-center gap-2 lg:justify-end lg:max-w-[34rem]">
+<a class="kb-pill kb-pill--sm" href="/stories">All Stories</a>
+{categories.map((c) => <a aria-current={c.slug === category.slug ? 'page' : undefined} class="kb-pill kb-pill--sm" href={`/category/${c.slug}`}>{c.title}</a>)}
+</nav>
+</PageHead>
+<StoryGrid empty={`No ${category.title} stories yet.`} stories={stories}/>
+</div>
+</main>
+</Base>

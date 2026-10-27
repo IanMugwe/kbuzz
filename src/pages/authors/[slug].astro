@@ -1,0 +1,30 @@
+---
+import type {GetStaticPaths} from 'astro'
+import Base from '../../layouts/Base.astro'
+import PageHead from '../../components/PageHead.astro'
+import StoryGrid from '../../components/StoryGrid.astro'
+import {client, imageUrl, queries, type ArticleCard, type Author} from '../../lib/sanity'
+
+export const getStaticPaths = (async () => {
+  const [stories, authors] = await Promise.all([
+    client.fetch<ArticleCard[]>(queries.latest),
+    client.fetch<Author[]>(queries.authors),
+  ])
+  return authors.map((author) => ({
+    params: {slug: author.slug},
+    props: {author, stories: stories.filter((s) => s.author?.slug === author.slug)},
+  }))
+}) satisfies GetStaticPaths
+
+const {author, stories} = Astro.props as {author: Author; stories: ArticleCard[]}
+---
+<Base description={author.bio} title={author.name}>
+<main class="kb-paper kb-section">
+<div class="kb-wrap">
+<PageHead description={author.bio} kicker={author.role ?? 'CONTRIBUTOR'} title={author.name}>
+{author.photo && <img alt="" class="kb-author__photo" height="160" src={imageUrl(author.photo, 320, 320)} width="160"/>}
+</PageHead>
+<StoryGrid empty={`No stories by ${author.name} yet.`} stories={stories}/>
+</div>
+</main>
+</Base>
