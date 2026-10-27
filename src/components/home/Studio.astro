@@ -1,3 +1,10 @@
+---
+import {Image} from 'astro:assets'
+import acousticSessionImg from '../../assets/img/acoustic-session.jpg'
+import leatherTanneryImg from '../../assets/img/leather-tannery.jpg'
+import streetFoodImg from '../../assets/img/street-food.jpg'
+import townHallImg from '../../assets/img/town-hall.jpg'
+---
 <!-- 7. KIAMAIKO FM VIDEO (DIGITAL MEDIA GRID / INK) -->
 <section class="kb-ink kb-section kb-section--torn" id="studio" style="--tear-top:#e8e3da; --tear-bottom:#efebe4">
 <div aria-hidden="true" class="kb-tear kb-tear--top"></div>
@@ -19,7 +26,7 @@
 <!-- Main Featured Video (Spans 8 cols) -->
 <div class="lg:col-span-8 group cursor-pointer kb-rise" style="--c:#e11d2a">
 <div class="kb-media aspect-video">
-<img alt="" class="opacity-85" data-alt="Cinematic wide 16:9 documentary still inside a historic artisan leather tannery in Kiamaiko Nairobi. High contrast lighting with atmospheric smoke shafts of afternoon sun illuminating skilled older craftsmen stretching and treating hide. Editorial color palette dominated by warm ochres rich deep blacks and subtle crimson tones." src="/assets/img/leather-tannery.jpg"/>
+<Image alt="" class="opacity-85" data-alt="Cinematic wide 16:9 documentary still inside a historic artisan leather tannery in Kiamaiko Nairobi. High contrast lighting with atmospheric smoke shafts of afternoon sun illuminating skilled older craftsmen stretching and treating hide. Editorial color palette dominated by warm ochres rich deep blacks and subtle crimson tones." src={leatherTanneryImg} format="webp" quality={72}/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-black/30"></div>
 <!-- Play Trigger -->
 <span class="kb-play"><span class="material-symbols-outlined text-4xl">play_arrow</span></span>
@@ -48,7 +55,7 @@
 <!-- Episode 1 -->
 <div class="kb-episode group" style="--c:#e11d2a">
 <div class="kb-media kb-episode__thumb">
-<img alt="" data-alt="Documentary video thumbnail showing vibrant Eastlands Nairobi night street food stalls with sizzling skewers of meat and steaming broth pots under bright warm light bulbs. High contrast authentic urban nightlife photo." src="/assets/img/street-food.jpg"/>
+<Image alt="" data-alt="Documentary video thumbnail showing vibrant Eastlands Nairobi night street food stalls with sizzling skewers of meat and steaming broth pots under bright warm light bulbs. High contrast authentic urban nightlife photo." src={streetFoodImg} format="webp" quality={72}/>
 <span class="kb-episode__time">08:45</span>
 </div>
 <div>
@@ -62,7 +69,7 @@
 <!-- Episode 2 -->
 <div class="kb-episode group" style="--c:#10b981">
 <div class="kb-media kb-episode__thumb">
-<img alt="" data-alt="Intimate acoustic recording session thumbnail inside a radio studio showing a talented female East African singer singing passionately into a large studio condenser microphone under dramatic warm spotlighting." src="/assets/img/acoustic-session.jpg"/>
+<Image alt="" data-alt="Intimate acoustic recording session thumbnail inside a radio studio showing a talented female East African singer singing passionately into a large studio condenser microphone under dramatic warm spotlighting." src={acousticSessionImg} format="webp" quality={72}/>
 <span class="kb-episode__time">11:12</span>
 </div>
 <div>
@@ -76,7 +83,7 @@
 <!-- Episode 3 -->
 <div class="kb-episode group" style="--c:#f5b400">
 <div class="kb-media kb-episode__thumb">
-<img alt="" data-alt="Investigative journalism video thumbnail featuring a neighborhood town hall meeting in Nairobi with citizens addressing city infrastructure engineers over paper blueprints. High-contrast authentic editorial lighting." src="/assets/img/town-hall.jpg"/>
+<Image alt="" data-alt="Investigative journalism video thumbnail featuring a neighborhood town hall meeting in Nairobi with citizens addressing city infrastructure engineers over paper blueprints. High-contrast authentic editorial lighting." src={townHallImg} format="webp" quality={72}/>
 <span class="kb-episode__time">06:30</span>
 </div>
 <div>

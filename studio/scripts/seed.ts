@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url'
 import {getCliClient} from 'sanity/cli'
 
 const client = getCliClient({apiVersion: '2026-10-01'})
-const img = (name: string) => fileURLToPath(new URL(`../../public/assets/img/${name}`, import.meta.url))
+const img = (name: string) => fileURLToPath(new URL(`../../src/assets/img/${name}`, import.meta.url))
 const slugify = (s: string) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 const key = () => Math.random().toString(36).slice(2, 10)
 

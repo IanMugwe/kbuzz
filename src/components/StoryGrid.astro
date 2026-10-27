@@ -7,7 +7,7 @@ const {stories, empty = 'No stories here yet.'} = Astro.props
 ---
 {stories.length > 0 ? (
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-14">
-{stories.map((story, i) => <StoryCard story={story} delay={(i % 3) * 0.08}/>)}
+{stories.map((story, i) => <StoryCard delay={(i % 3) * 0.08} level={2} story={story}/>)}
 </div>
 ) : (
 <p class="kb-body">{empty}</p>

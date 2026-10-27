@@ -13,7 +13,7 @@ export const client = createClient({
 const builder = createImageUrlBuilder(client)
 
 export function imageUrl(source: unknown, width: number, height?: number) {
-  let img = builder.image(source as never).width(width).auto('format').quality(80)
+  let img = builder.image(source as never).width(width).auto('format').quality(75)
   if (height) img = img.height(height).fit('crop')
   return img.url()
 }
