@@ -1,11 +1,11 @@
 import {defineField, defineType} from 'sanity'
-import {icons} from '@sanity/icons'
+import {PlayIcon} from '@sanity/icons/Play'
 
 export const embed = defineType({
   name: 'embed',
   title: 'Embed',
   type: 'object',
-  icon: icons.play,
+  icon: PlayIcon,
   description: 'YouTube, SoundCloud, Zeno, X or TikTok link — shown as a player.',
   fields: [
     defineField({

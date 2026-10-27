@@ -1,10 +1,10 @@
 import {defineField, defineType} from 'sanity'
-import {icons} from '@sanity/icons'
+import {DocumentTextIcon} from '@sanity/icons/DocumentText'
 
 export const article = defineType({
   name: 'article',
   type: 'document',
-  icon: icons['document-text'],
+  icon: DocumentTextIcon,
   groups: [
     {name: 'story', title: 'Story', default: true},
     {name: 'media', title: 'Media & links'},

@@ -1,10 +1,10 @@
 import {defineField, defineType} from 'sanity'
-import {icons} from '@sanity/icons'
+import {UserIcon} from '@sanity/icons/User'
 
 export const author = defineType({
   name: 'author',
   type: 'document',
-  icon: icons.user,
+  icon: UserIcon,
   fields: [
     defineField({name: 'name', type: 'string', validation: (rule) => rule.required()}),
     defineField({

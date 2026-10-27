@@ -1,10 +1,10 @@
 import {defineField, defineType} from 'sanity'
-import {icons} from '@sanity/icons'
+import {TagIcon} from '@sanity/icons/Tag'
 
 export const category = defineType({
   name: 'category',
   type: 'document',
-  icon: icons.tag,
+  icon: TagIcon,
   fields: [
     defineField({name: 'title', type: 'string', validation: (rule) => rule.required()}),
     defineField({
